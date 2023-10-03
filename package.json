@@ -1,0 +1,15 @@
+{
+  "name": "truongbui.blog",
+  "version": "0.0.1",
+  "description": "This is package for TruongBui's blog",
+  "main": "index.js",
+  "scripts": {
+    "start": "eleventy --serve --quiet",
+		"build": "eleventy"
+  },
+  "author": "TruongBui",
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "2.0.1"
+  }
+}
