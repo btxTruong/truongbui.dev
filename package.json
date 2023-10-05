@@ -1,0 +1,59 @@
+{
+	"name": "truongbui.blog",
+	"version": "0.0.1",
+	"description": "This is package for TruongBui's blog",
+	"engines": {
+		"node": "18.x.x",
+		"npm": "9.x.x"
+	},
+	"author": {
+		"name": "TruongBui",
+		"email": "btxtruong@gmail.com"
+	},
+	"homepage": "https://truongbui.dev",
+	"private": true,
+	"repository": {
+		"type": "https",
+		"url": "https://github.com/btxTruong/btxTruong.github.io.git"
+	},
+	"scripts": {
+		"predev": "npm run clean",
+		"dev": "cross-env NODE_ENV=development eleventy --serve",
+		"prebuild": "npm run clean",
+		"build": "cross-env NODE_ENV=production eleventy",
+		"clean": "rimraf _site",
+		"prepare": "npx husky install",
+		"lint": "run-p lint:*",
+		"lint:stylelint": "stylelint \"src/**/*.css\"",
+		"lint:prettier": "prettier --check \"src/**/*.{md,liquid,html}\"",
+		"lint:fix": "run-p lint:*:fix",
+		"lint:stylelint:fix": "stylelint \"src/**/*.css\" --fix",
+		"lint:prettier:fix": "prettier --write \"src/**/*.{md,liquid,html}\""
+	},
+	"license": "MIT",
+	"devDependencies": {
+		"@11ty/eleventy": "2.0.1",
+		"@11ty/eleventy-plugin-syntaxhighlight": "5.0.0",
+		"@11ty/eleventy-plugin-vite": "4.0.0",
+		"@commitlint/cli": "17.7.2",
+		"@commitlint/config-conventional": "17.7.0",
+		"autoprefixer": "10.4.16",
+		"browserslist": "4.22.1",
+		"cross-env": "7.0.3",
+		"cssnano": "6.0.1",
+		"husky": "8.0.3",
+		"lint-staged": "14.0.1",
+		"npm-run-all": "4.1.5",
+		"postcss": "8.4.31",
+		"postcss-import": "15.1.0",
+		"prettier": "3.0.3",
+		"rimraf": "5.0.5",
+		"stylelint": "15.10.3",
+		"stylelint-config-standard": "34.0.0",
+		"tailwindcss": "3.3.3"
+	},
+	"lint-staged": {
+		"*.{md,liquid,html}": "prettier --write --ignore-unknown",
+		"*.css": "stylelint --cache --fix"
+	}
+}
