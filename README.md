@@ -1,1 +1,0 @@
-# hey! This is TruongBui's blog.
