@@ -1,0 +1,53 @@
+<header>
+	<nav class='h-14 flex justify-between items-center border-b'>
+		<div class='text-base hover:text-blue-500'>
+			<a href='/'>
+				<span class='font-bold'>Truong.</span>
+				<span>Bui</span>
+			</a>
+		</div>
+		<ul class='flex gap-x-5'>
+			<script webc:type='js'>
+				const navigationTabs = [
+					{
+						text: 'whoami',
+						url: '/whoami/',
+					},
+					{
+						text: 'bookmarks',
+						url: '/bookmarks/',
+					},
+				];
+				const page = $data.page;
+
+				navigationTabs
+					.map((item) => {
+							let current;
+							let highlight;
+
+							if (item.url === page.url) {
+								current = 'aria-current="page"';
+								highlight = 'underline';
+							} else {
+								current = '';
+								highlight = '';
+							}
+
+							return `
+                <li class='cursor-default hover:text-blue-500'>
+                  <a
+                    href='${item.url}'
+                    class='text-base font-bold ${highlight}'
+                    ${current}
+                  >
+                    ${item.text}
+                  </a>
+                </li>
+              `
+						}
+					)
+					.join('');
+			</script>
+		</ul>
+	</nav>
+</header>

@@ -1,0 +1,15 @@
+<script webc:type="js">
+	// https://11tywebcfun.netlify.app/recipes/webc-inside-your-head/
+	let pageDescription = $data.site.description;
+
+	if (description) {
+		pageDescription = `${description}`;
+	}
+
+	const authorName = `${$data.site.author.firstName} ${$data.site.author.lastName}`;
+
+	`
+		<meta name="author" content="${authorName}" />
+		<meta name="description" content="${pageDescription}" />
+	`;
+</script>

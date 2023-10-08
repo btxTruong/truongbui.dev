@@ -10,6 +10,12 @@
 		"name": "TruongBui",
 		"email": "btxtruong@gmail.com"
 	},
+	"keywords": [
+		"11ty",
+		"TailwindCSS",
+		"vite",
+		"PostCSS"
+	],
 	"homepage": "https://truongbui.dev",
 	"private": true,
 	"repository": {
@@ -18,7 +24,7 @@
 	},
 	"scripts": {
 		"predev": "npm run clean",
-		"dev": "cross-env NODE_ENV=development eleventy --serve",
+		"dev": "cross-env NODE_ENV=development eleventy --incremental --serve",
 		"prebuild": "npm run clean",
 		"build": "cross-env NODE_ENV=production eleventy",
 		"clean": "rimraf _site",
@@ -42,6 +48,7 @@
 		"browserslist": "4.22.1",
 		"cross-env": "7.0.3",
 		"cssnano": "6.0.1",
+		"eleventy-plugin-svg-sprite": "2.4.2",
 		"eslint": "8.51.0",
 		"eslint-config-airbnb-base": "15.0.0",
 		"eslint-plugin-import": "2.28.1",

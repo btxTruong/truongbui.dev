@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- custom elements are not permitted inside <head>	-->
+	<title webc:is="meta-title"></title>
+	<meta webc:is="meta-description">
+
+<!--	we need webc:keep because 11ty runs webc in bundler mode. that means that when it find <style>, <link rel="stylesheet"> or <script> they are  -->
+<!--	removed from output markup. Ref: https://www.11ty.dev/docs/languages/webc/#asset-bundling -->
+	<link rel="stylesheet" href="/assets/css/main.css" webc:keep>
+</head>
+<body class="h-screen bg-white mx-auto max-w-4xl">
+<!-- we need close tag here to make it work. it mean <site-header /> not work -->
+<site-header></site-header>
+
+<mai @raw="content"></mai>
+
+<site-footer></site-footer>
+</body>
+</html>

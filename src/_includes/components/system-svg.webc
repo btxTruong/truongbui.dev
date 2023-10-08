@@ -1,0 +1,12 @@
+<script webc:type='js'>
+	const href = `/sprites/icons.svg#svg-${icon}`;
+	let classes = ['h-6', 'w-6'];
+	if (this.class) {
+		classes = classes.concat(this.class);
+	}
+	`
+	<svg class='${classes.join(' ')}'>
+		<use href='${href}'></use>
+	t</svg>
+	`
+</script>

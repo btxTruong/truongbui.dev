@@ -1,3 +1,6 @@
+---
+layout: 'layouts/base.webc'
+---
 <div>
-	Hi there, I'm Truong Bui
+	<p>Hi there, I'm Truong Bui</p>
 </div>
