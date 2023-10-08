@@ -1,0 +1,14 @@
+{
+	"lang": "en",
+	"title": "Truong Bui's Blog",
+	"description": "Share my knowledge, experience and about web development",
+	"author": {
+		"fistName": "Truong",
+		"lastName": "Bui",
+		"email": "btxtruong@gmail.com"
+	},
+	"url": "https://www.truongbui.dev",
+	"social": {
+		"github": "https://github.com/btxtruong"
+	}
+}
