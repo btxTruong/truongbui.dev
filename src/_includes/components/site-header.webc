@@ -1,5 +1,5 @@
-<header>
-	<nav class='h-14 flex justify-between items-center border-b'>
+<header class='sticky top-0 bg-white opacity-[.97] w-full border-b mb-8'>
+	<nav class='flex justify-between items-center mx-auto max-w-4xl py-4'>
 		<div class='text-base hover:text-blue-500'>
 			<a href='/'>
 				<span class='font-bold'>Truong.</span>

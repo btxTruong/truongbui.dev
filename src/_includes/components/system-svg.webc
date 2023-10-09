@@ -7,6 +7,6 @@
 	`
 	<svg class='${classes.join(' ')}'>
 		<use href='${href}'></use>
-	t</svg>
+	</svg>
 	`
 </script>

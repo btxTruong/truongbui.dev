@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,11 +13,11 @@
 <!--	removed from output markup. Ref: https://www.11ty.dev/docs/languages/webc/#asset-bundling -->
 	<link rel="stylesheet" href="/assets/css/main.css" webc:keep>
 </head>
-<body class="h-screen bg-white mx-auto max-w-4xl">
+<body class="bg-white flex flex-col min-h-screen">
 <!-- we need close tag here to make it work. it mean <site-header /> not work -->
 <site-header></site-header>
 
-<mai @raw="content"></mai>
+<main @raw="content" class='flex-1 mx-auto max-w-4xl'></main>
 
 <site-footer></site-footer>
 </body>
