@@ -1,15 +1,17 @@
-<footer class='sticky top-[100vh] h-14 flex justify-between items-center border-t'>
-	<div>
-		<script webc:type='js'>
-			const today = new Date();
-			const year = today.getFullYear();
+<footer class='border-t w-full bg-white'>
+	<div class='mx-auto max-w-4xl flex justify-between items-center py-2'>
+		<div>
+			<script webc:type='js'>
+				const today = new Date();
+				const year = today.getFullYear();
 
-			`<p class='leading-5 text-gray-500'>&copy; ${year} Truong Bui</p>`
-		</script>
-	</div>
-	<div class='cursor-default'>
-		<a @attributes='({ href: $data.site.social.github })' class='hover:fill-blue-500'>
-			<system-svg icon='github'></system-svg>
-		</a>
+				`<p class='leading-5 text-gray-500'>&copy; ${year} Truong Bui</p>`
+			</script>
+		</div>
+		<div class='cursor-default'>
+			<a @attributes='({ href: $data.site.social.github })' class='hover:fill-blue-500'>
+				<system-svg icon='github'></system-svg>
+			</a>
+		</div>
 	</div>
 </footer>

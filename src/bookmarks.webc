@@ -1,5 +1,6 @@
 ---
 layout: 'layouts/base.webc'
+title: 'bookmarks'
 ---
 
 <p>bookmarks</p>
