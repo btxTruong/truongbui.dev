@@ -1,4 +1,4 @@
-<header class='sticky top-0 bg-white opacity-[.97] w-full border-b mt-auto'>
+<header class='sticky top-0 bg-white opacity-[.97] w-full border-b mb-8'>
 	<nav class='flex justify-between items-center mx-auto max-w-4xl py-4'>
 		<div class='text-base hover:text-blue-500'>
 			<a href='/'>
