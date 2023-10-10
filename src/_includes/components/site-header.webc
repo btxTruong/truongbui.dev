@@ -1,4 +1,4 @@
-<header class='sticky top-0 bg-white opacity-[.97] w-full border-b mb-8'>
+<header class='sticky top-0 bg-white opacity-[.97] w-full mb-8'>
 	<nav class='flex justify-between items-center mx-auto max-w-4xl py-4'>
 		<div class='text-base hover:text-blue-500'>
 			<a href='/'>
@@ -27,7 +27,7 @@
 
 							if (item.url === page.url) {
 								current = 'aria-current="page"';
-								highlight = 'underline';
+								highlight = 'underline decoration-blue-500 decoration-2 underline-offset-4';
 							} else {
 								current = '';
 								highlight = '';
@@ -50,4 +50,7 @@
 			</script>
 		</ul>
 	</nav>
+	<div class="w-full h-[1px] bg-gray-200">
+		<div class="h-full bg-blue-500 w-0" id="scrollIndicator"></div>
+	</div>
 </header>
