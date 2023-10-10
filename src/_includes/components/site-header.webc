@@ -1,6 +1,6 @@
 <header class='sticky top-0 bg-white opacity-[.97] w-full mb-8'>
 	<nav class='flex justify-between items-center mx-auto max-w-4xl py-4'>
-		<div class='text-base hover:text-pink-500'>
+		<div class='text-base hover:text-primary'>
 			<a href='/'>
 				<span class='font-bold'>Truong.</span>
 				<span>Bui</span>
@@ -27,14 +27,14 @@
 
 							if (item.url === page.url) {
 								current = 'aria-current="page"';
-								highlight = 'text-pink-500';
+								highlight = 'text-primary';
 							} else {
 								current = '';
 								highlight = '';
 							}
 
 							return `
-                <li class='cursor-default hover:text-pink-500'>
+                <li class='cursor-default hover:text-primary'>
                   <a
                     href='${item.url}'
                     class='text-base font-bold ${highlight}'
@@ -51,6 +51,6 @@
 		</ul>
 	</nav>
 	<div class="w-full h-[1px] bg-gray-200">
-		<div class="h-full bg-pink-500 w-0" id="scrollIndicator"></div>
+		<div class="h-full bg-primary w-0" id="scrollIndicator"></div>
 	</div>
 </header>
