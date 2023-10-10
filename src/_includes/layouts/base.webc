@@ -9,8 +9,8 @@
 	<title webc:is="meta-title"></title>
 	<meta webc:is="meta-description">
 
-<!--	we need webc:keep because 11ty runs webc in bundler mode. that means that when it find <style>, <link rel="stylesheet"> or <script> they are  -->
-<!--	removed from output markup. Ref: https://www.11ty.dev/docs/languages/webc/#asset-bundling -->
+	<!--	we need webc:keep because 11ty runs webc in bundler mode. that means that when it find <style>, <link rel="stylesheet"> or <script> they are  -->
+	<!--	removed from output markup. Ref: https://www.11ty.dev/docs/languages/webc/#asset-bundling -->
 	<link rel="stylesheet" href="/assets/css/main.css" webc:keep>
 </head>
 <body class="bg-white flex flex-col min-h-screen">
@@ -20,5 +20,7 @@
 <main @raw="content" class='flex-1 mx-auto max-w-4xl'></main>
 
 <site-footer></site-footer>
+
+<script type="module" src="/assets/js/scroll-indicator.js" webc:keep></script>
 </body>
 </html>
