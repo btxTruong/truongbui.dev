@@ -10,7 +10,7 @@
 			</script>
 		</div>
 		<div class='cursor-default'>
-			<a @attributes='({ href: $data.site.social.github })' class='opacity-60 hover:opacity-100 hover:fill-blue-500'>
+			<a @attributes='({ href: $data.site.social.github })' class='opacity-60 hover:opacity-100 hover:fill-pink-500'>
 				<system-svg icon='github'></system-svg>
 			</a>
 		</div>
