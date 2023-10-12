@@ -1,0 +1,17 @@
+<!--https://www.raymondcamden.com/2023/02/03/using-javascript-in-a-webc-component-->
+
+<template webc:root webc:type="11ty" 11ty:type="ejs">
+	<div id='type-writer'></div>
+</template>
+
+<script webc:keep>
+	document.addEventListener('DOMContentLoaded', () => {
+		const typeWriter = new window.TypeWriter({
+			element: document.getElementById('type-writer'),
+			sentences: ['Developer', 'Traveler', 'Self learner', 'Do small things with great love'],
+			characterCss: 'border-r-4 border-primary pr-0.5',
+			typeSpeed: 100
+		})
+		typeWriter.run()
+	})
+</script>

@@ -1,6 +1,6 @@
 ---
 layout: 'layouts/base.webc'
-title: 'whoami'
+title: 'projects'
 ---
 
 <p>about</p>

@@ -17,10 +17,12 @@
 <!-- we need close tag here to make it work. it mean <site-header /> not work -->
 <site-header></site-header>
 
-<main @raw="content" class='flex-1 mx-auto max-w-4xl'></main>
+<main @raw="content" class='flex-1 mx-auto max-w-4xl w-full'></main>
 
 <site-footer></site-footer>
 
-<script type="module" src="/assets/js/scroll-indicator.js" webc:keep></script>
+
+<script type='module' src="/assets/js/scroll-indicator.js" webc:keep></script>
+<script type='module' src="/assets/js/typewriter-effect.js" webc:keep></script>
 </body>
 </html>
