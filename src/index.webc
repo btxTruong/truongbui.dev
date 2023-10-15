@@ -11,7 +11,8 @@ ignoreNameInHeader: true
 			</div>
 
 			<div class='mt-5 font-mono text-neutral-600 text-lg'>
-				<p>I am Truong Bui, a web developer hailing from Vietnam 🇻🇳. This site is my attempt to share
+<!--				https://emojidb.org/web-emojis-->
+				<p>Hey 👋, I'm Truong Bui, a web developer hailing from Vietnam 🇻🇳. This site is my attempt to share
 					web programming insights while battling my &lt;goldfish memory🐠&gt;.</p>
 			</div>
 
