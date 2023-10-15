@@ -1,0 +1,6 @@
+---
+layout: 'layouts/base.webc'
+title: 'bookmarks'
+---
+
+<p class='items-baseline'>blog</p>

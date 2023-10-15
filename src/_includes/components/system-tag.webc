@@ -1,0 +1,6 @@
+<script webc:type='js'>
+	const href = `/tags/${tag}/`;
+	`
+	<a class="mr-3 text-sm font-medium lowercase text-primary-500 before:content-['#'] hover:text-primary-400 cursor-pointer" @attributes='({ href: href })'>${tag}</a>
+	`
+</script>

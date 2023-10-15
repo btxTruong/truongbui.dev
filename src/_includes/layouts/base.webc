@@ -17,7 +17,7 @@
 <!-- we need close tag here to make it work. it mean <site-header /> not work -->
 <site-header></site-header>
 
-<main @raw="content" class='flex-1 mx-auto max-w-4xl w-full'></main>
+<main @raw="content" class='flex-1 mx-auto max-w-3xl w-full'></main>
 
 <site-footer></site-footer>
 

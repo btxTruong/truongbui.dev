@@ -9,7 +9,7 @@
 		const typeWriter = new window.TypeWriter({
 			element: document.getElementById('type-writer'),
 			sentences: ['Developer', 'Traveler', 'Self learner', 'Do small things with great love'],
-			characterCss: 'border-r-4 border-primary pr-0.5',
+			characterCss: 'border-r-4 border-primary-500 pr-0.5 font-mono text-neutral-600',
 			typeSpeed: 100
 		})
 		typeWriter.run()

@@ -1,9 +1,9 @@
 <header class='sticky top-0 bg-white opacity-[.97] w-full mb-8'>
-	<nav class='flex justify-between items-center mx-auto max-w-4xl py-4'>
+	<nav class='flex justify-between items-center mx-auto max-w-3xl py-4'>
 		<script webc:type='js'>
 			const header = (content) => {
 				return `
-				<div className='text-base hover:text-primary'>
+				<div class='hover:text-primary-500 font-bold'>
 					${content}
 			</div>
 				`
@@ -11,10 +11,11 @@
 
 			const authorName = `
 			<a href='/'>
-				<span className='font-bold text-xl'>${$data.site.author.firstName} ${$data.site.author.lastName}</span>
+				<span class=''>${$data.site.author.firstName} ${$data.site.author.lastName}</span>
 			</a>
 			`
-			if (ignoreNameInHeader) {
+
+			if ($data.ignoreNameInHeader) {
 				header('')
 			} else {
 				header(authorName)
@@ -24,6 +25,10 @@
 		<ul class='flex gap-x-5'>
 			<script webc:type='js'>
 				const navigationTabs = [
+					{
+						text: 'blog',
+						url: '/blog/',
+					},
 					{
 						text: 'projects',
 						url: '/projects/',
@@ -42,14 +47,14 @@
 
 							if (item.url === page.url) {
 								current = 'aria-current="page"';
-								highlight = 'text-primary font-semibold';
+								highlight = 'text-primary-500 font-semibold';
 							} else {
 								current = '';
 								highlight = '';
 							}
 
 							return `
-                <li class='cursor-default hover:text-primary'>
+                <li class='cursor-default hover:text-primary-500'>
                   <a
                     href='${item.url}'
                     class='text-base ${highlight}'
@@ -66,6 +71,6 @@
 		</ul>
 	</nav>
 	<div class="w-full h-[1px] bg-gray-200">
-		<div class="h-full bg-primary w-0" id="scrollIndicator"></div>
+		<div class="h-full bg-primary-500 w-0" id="scrollIndicator"></div>
 	</div>
 </header>

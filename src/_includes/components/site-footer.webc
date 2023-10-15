@@ -1,6 +1,6 @@
 <footer class='w-full bg-slate-50 mt-8'>
 	<div class="w-full h-[1px] bg-gray-200"></div>
-	<div class='mx-auto max-w-4xl flex justify-between items-center py-2'>
+	<div class='mx-auto max-w-3xl flex justify-between items-center py-2'>
 		<div>
 			<script webc:type='js'>
 				const today = new Date();
@@ -9,10 +9,18 @@
 				`<p class='text-xs leading-5 text-gray-500'>&copy; ${year} Truong Bui</p>`
 			</script>
 		</div>
-		<div class='cursor-default'>
-			<a @attributes='({ href: $data.site.social.github })' class='opacity-60 hover:opacity-100 hover:fill-primary'>
-				<system-svg icon='github'></system-svg>
-			</a>
+		<div class='flex gap-2'>
+			<div class='cursor-default'>
+				<a @attributes='({ href: $data.site.social.github })' class='opacity-60 hover:opacity-100 hover:fill-primary-500'>
+					<system-svg icon='github'></system-svg>
+				</a>
+			</div>
+			<div class='cursor-default'>
+				<a @attributes='({ href: `mailto: ${$data.site.author.email}` })'
+					 class='opacity-60 hover:opacity-100 hover:fill-primary-500'>
+					<system-svg icon='email'></system-svg>
+				</a>
+			</div>
 		</div>
 	</div>
 </footer>
