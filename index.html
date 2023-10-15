@@ -16,28 +16,33 @@
 	<!--	we need webc:keep because 11ty runs webc in bundler mode. that means that when it find <style>, <link rel="stylesheet"> or <script> they are  -->
 	<!--	removed from output markup. Ref: https://www.11ty.dev/docs/languages/webc/#asset-bundling -->
 	
-  <script type="module" crossorigin src="/assets/scroll-indicator-b239401f.js"></script>
-  <link rel="stylesheet" href="/assets/scroll-indicator-33c17eab.css">
+  <script type="module" crossorigin src="/assets/typewriter-effect-edfae4ad.js"></script>
+  <link rel="stylesheet" href="/assets/typewriter-effect-f3529c74.css">
 </head>
 <body class="bg-white flex flex-col min-h-screen">
 <!-- we need close tag here to make it work. it mean <site-header /> not work -->
 <header class="sticky top-0 bg-white opacity-[.97] w-full mb-8">
-	<nav class="flex justify-between items-center mx-auto max-w-4xl py-4">
-		<div class="text-base hover:text-primary">
-			<a href="/">
-				<span class="font-bold">Truong.</span>
-				<span>Bui</span>
-			</a>
-		</div>
+	<nav class="flex justify-between items-center mx-auto max-w-3xl py-4">
+		<div class="hover:text-primary-500 font-bold">
+					
+			</div>
+				
+
 		<ul class="flex gap-x-5">
-			<li class="cursor-default hover:text-primary">
-                  <a href="/whoami/" class="text-base font-bold">
-                    whoami
+			<li class="cursor-default hover:text-primary-500">
+                  <a href="/blog/" class="text-base">
+                    blog
                   </a>
                 </li>
               
-                <li class="cursor-default hover:text-primary">
-                  <a href="/bookmarks/" class="text-base font-bold">
+                <li class="cursor-default hover:text-primary-500">
+                  <a href="/projects/" class="text-base">
+                    projects
+                  </a>
+                </li>
+              
+                <li class="cursor-default hover:text-primary-500">
+                  <a href="/bookmarks/" class="text-base">
                     bookmarks
                   </a>
                 </li>
@@ -45,137 +50,168 @@
 		</ul>
 	</nav>
 	<div class="w-full h-[1px] bg-gray-200">
-		<div id="scrollIndicator" class="h-full bg-primary w-0"></div>
+		<div id="scrollIndicator" class="h-full bg-primary-500 w-0"></div>
 	</div>
 </header>
 
 
-<main class="flex-1 mx-auto max-w-4xl"><div>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-	labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-	laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-	voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-	non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-	labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-	laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-	voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-	non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<main class="flex-1 mx-auto max-w-3xl w-full"><div>
+	<article class="flex">
+		<div>
+			<h1 class="text-4xl font-bold">Truong Bui</h1>
+			<div>
+				<system-typing-effect 11ty:type="ejs"><!--https://www.raymondcamden.com/2023/02/03/using-javascript-in-a-webc-component--><div id="type-writer"></div>
 
 
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const typeWriter = new window.TypeWriter({
+			element: document.getElementById('type-writer'),
+			sentences: ['Developer', 'Traveler', 'Self learner', 'Do small things with great love'],
+			characterCss: 'border-r-4 border-primary-500 pr-0.5 font-mono text-neutral-600',
+			typeSpeed: 100
+		})
+		typeWriter.run()
+	})
+</script>
+</system-typing-effect>
+			</div>
+
+			<div class="mt-5 font-mono text-neutral-600 text-lg">
+<!--				https://emojidb.org/web-emojis-->
+				<p>Hey 👋, I'm Truong Bui, a web developer hailing from Vietnam 🇻🇳. This site is my attempt to share
+					web programming insights while battling my &lt;goldfish memory🐠&gt;.</p>
+			</div>
+
+			<div class="flex mt-8 gap-2">
+				<div class="cursor-default">
+					<a class="opacity-60 hover:opacity-100 hover:fill-primary-500" href="https://github.com/btxtruong">
+						<svg class="h-6 w-6">
+		<use href="/assets/icons-16a8bb44.svg#svg-github"></use>
+	</svg>
+	
+
+					</a>
+				</div>
+				<div class="cursor-default">
+					<a class="opacity-60 hover:opacity-100 hover:fill-primary-500" href="mailto: btxtruong@gmail.com">
+						<svg class="h-6 w-6">
+		<use href="/assets/icons-16a8bb44.svg#svg-email"></use>
+	</svg>
+	
+
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div>
+			<img src="/assets/avatar-4b69219e.jpeg" alt="avatar" class="rounded-full w-72">
+		</div>
+	</article>
+
+	<hr class="my-9">
+
+	<div>
+		<div class="flex items-center justify-between">
+			<h2 class="text-3xl font-bold">Recent blog posts</h2>
+			<p class="text-gray-500 cursor-pointer hover:text-primary-500">View all blog posts 🚀</p>
+		</div>
+
+
+		<article class="flex flex-col w-full py-4">
+		<p class="text-base font-medium leading-6 text-gray-400">2022-12-12</p>
+		<div>
+			<h3 class="text-xl font-medium leading-8 cursor-pointer hover:text-primary-500">
+				<a>Academic acknowledged landscapes closure cooler feat neighborhood, tiny stations nested eminem solely schedule reuters, happiness static tuesday thinking cinema tender. </a>
+			</h3>
+			
+		<p class="flex items-center">
+				
+					<a class="mr-3 text-sm font-medium lowercase text-primary-500 before:content-['#'] hover:text-primary-400 cursor-pointer">js</a>
+	
+
+				
+
+					<a class="mr-3 text-sm font-medium lowercase text-primary-500 before:content-['#'] hover:text-primary-400 cursor-pointer">ts</a>
+	
+
+				
+		</p>
+		
+		</div>
+	</article>
+	
+
+		<article class="flex flex-col w-full py-4">
+		<p class="text-base font-medium leading-6 text-gray-400">2022-12-12</p>
+		<div>
+			<h3 class="text-xl font-medium leading-8 cursor-pointer hover:text-primary-500">
+				<a>Hazards invisible computers bell implied pound syria, stress ending pickup female institution hotmail mathematics, starting. </a>
+			</h3>
+			
+		</div>
+	</article>
+	
+
+		<article class="flex flex-col w-full py-4">
+		<p class="text-base font-medium leading-6 text-gray-400">2022-12-12</p>
+		<div>
+			<h3 class="text-xl font-medium leading-8 cursor-pointer hover:text-primary-500">
+				<a>designers</a>
+			</h3>
+			
+		<p class="flex items-center">
+				
+					<a class="mr-3 text-sm font-medium lowercase text-primary-500 before:content-['#'] hover:text-primary-400 cursor-pointer">js</a>
+	
+
+				
+
+					<a class="mr-3 text-sm font-medium lowercase text-primary-500 before:content-['#'] hover:text-primary-400 cursor-pointer">ts</a>
+	
+
+				
+		</p>
+		
+		</div>
+	</article>
+	
+
+	</div>
 </div>
 </main>
 
 <footer class="w-full bg-slate-50 mt-8">
 	<div class="w-full h-[1px] bg-gray-200"></div>
-	<div class="mx-auto max-w-4xl flex justify-between items-center py-2">
+	<div class="mx-auto max-w-3xl flex justify-between items-center py-2">
 		<div>
 			<p class="text-xs leading-5 text-gray-500">© 2023 Truong Bui</p>
 		</div>
-		<div class="cursor-default">
-			<a class="opacity-60 hover:opacity-100 hover:fill-primary" href="https://github.com/btxtruong">
-				<svg class="h-6 w-6">
-		<use href="/assets/icons-49b8644e.svg#svg-github"></use>
+		<div class="flex gap-2">
+			<div class="cursor-default">
+				<a class="opacity-60 hover:opacity-100 hover:fill-primary-500" href="https://github.com/btxtruong">
+					<svg class="h-6 w-6">
+		<use href="/assets/icons-16a8bb44.svg#svg-github"></use>
 	</svg>
 	
 
-			</a>
+				</a>
+			</div>
+			<div class="cursor-default">
+				<a class="opacity-60 hover:opacity-100 hover:fill-primary-500" href="mailto: btxtruong@gmail.com">
+					<svg class="h-6 w-6">
+		<use href="/assets/icons-16a8bb44.svg#svg-email"></use>
+	</svg>
+	
+
+				</a>
+			</div>
 		</div>
 	</div>
 </footer>
+
+
 
 
 
