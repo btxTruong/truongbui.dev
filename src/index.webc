@@ -2,7 +2,7 @@
 layout: 'layouts/base.webc'
 ignoreNameInHeader: true
 ---
-<div class='p-4 md:p-0'>
+<div class='px-4 md:px-0'>
 	<article class='flex'>
 		<div>
 			<h1 class='text-4xl font-bold'>Truong Bui</h1>
@@ -12,8 +12,8 @@ ignoreNameInHeader: true
 
 			<div class='mt-5'>
 <!--				https://emojidb.org/web-emojis-->
-				<p class='font-mono text-neutral-600'>Hey 👋, I am Truong Bui, a web developer hailing from Vietnam 🇻🇳. This site is my attempt to share
-					web programming knowledge while battling my &lt;goldfish memory 🐠&gt;.</p>
+				<p class='font-mono text-neutral-600'>Hey 👋, I am Truong Bui, a web developer hailing from Vietnam, 🇻🇳. This site is my attempt to share web programming knowledge
+					while battling my <span class='text-primary-500'>&lt;</span>goldfish memory 🐠<span class='text-primary-500'>&gt;</span>.</p>
 			</div>
 
 			<div class='flex mt-8 gap-2'>
@@ -42,7 +42,9 @@ ignoreNameInHeader: true
 	<div>
 		<div class='flex items-center justify-between'>
 			<h2 class='text-3xl font-bold'>Recent blog</h2>
-			<p class='text-gray-500 cursor-pointer hover:text-primary-500'>View all blog posts 🚀</p>
+			<p class='text-gray-500 cursor-pointer hover:text-primary-500'>
+				<a href='/blog/'>View all blog posts 🚀</a>
+			</p>
 		</div>
 
 
