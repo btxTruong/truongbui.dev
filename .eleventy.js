@@ -21,6 +21,11 @@ module.exports = function(eleventyConfig) {
 		defaultClasses: "default-class",
 	})
 
+	// Functions
+	eleventyConfig.addGlobalData('ignoreTag', function(tagToIgnore, tags) {
+		return tags.filter(tag => tag !== tagToIgnore);
+	});
+
 	// Static assets
 	eleventyConfig.addPassthroughCopy('./src/public');
 	eleventyConfig.addPassthroughCopy('./src/assets');

@@ -14,14 +14,12 @@
 		`
 	};
 
-	const postHref = `/blog/${slug}`;
-
 	`
 	<article class='flex flex-col w-full py-4'>
 		<p @text='postDate' class='text-base font-medium leading-6 text-gray-400'></p>
 		<div>
 			<h3  class='text-xl font-medium leading-8 cursor-pointer hover:text-primary-500'>
-				<a @text='title' @attributes='({ href: postHref })'></a>
+				<a @text='title' @attributes='({ href: url })'></a>
 			</h3>
 			${renderTags(tags)}
 		</div>
