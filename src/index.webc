@@ -48,11 +48,6 @@ ignoreNameInHeader: true
 		</div>
 
 
-		<system-post
-			title='Academic acknowledged landscapes closure cooler feat neighborhood, tiny stations nested eminem solely schedule reuters, happiness static tuesday thinking cinema tender. '
-			post-date='2022-12-12' :@tags='["js", "ts"]'></system-post>
-		<system-post title='Hazards invisible computers bell implied pound syria, stress ending pickup female institution hotmail mathematics, starting. '
-								 post-date='2022-12-12'></system-post>
-		<system-post title='designers' post-date='2022-12-12' :@tags='["js", "ts"]'></system-post>
+		<system-posts tag='posts' limit='3'></system-posts>
 	</div>
 </div>

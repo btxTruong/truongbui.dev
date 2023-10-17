@@ -15,6 +15,16 @@ module.exports = {
 					400: "#F06BAD",
 					500: '#EC4899',
 					600: "#DE177A",
+				},
+				callout: {
+					info: {
+						primary: "#80DFFF",
+						background: "#DFF7FF",
+					},
+					warning: {
+						primary: "#FFFF3D",
+						background: "#FFFFB3",
+					}
 				}
 			}
 		},

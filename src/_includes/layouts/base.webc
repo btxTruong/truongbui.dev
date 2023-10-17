@@ -12,6 +12,7 @@
 	<!--	we need webc:keep because 11ty runs webc in bundler mode. that means that when it find <style>, <link rel="stylesheet"> or <script> they are  -->
 	<!--	removed from output markup. Ref: https://www.11ty.dev/docs/languages/webc/#asset-bundling -->
 	<link rel="stylesheet" href="/assets/css/main.css" webc:keep>
+	<link rel="stylesheet" href="/assets/css/prism-one-dark.css" webc:keep>
 </head>
 <body class="bg-white flex flex-col min-h-screen">
 <!-- we need close tag here to make it work. it mean <site-header /> not work -->
@@ -24,5 +25,6 @@
 
 <script type='module' src="/assets/js/scroll-indicator.js" webc:keep></script>
 <script type='module' src="/assets/js/typewriter-effect.js" webc:keep></script>
+<script type='module' src="/assets/js/copy-code.js" webc:keep></script>
 </body>
 </html>

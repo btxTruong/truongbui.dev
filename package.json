@@ -53,6 +53,7 @@
 		"eslint-config-airbnb-base": "15.0.0",
 		"eslint-plugin-import": "2.28.1",
 		"husky": "8.0.3",
+		"jsdom": "22.1.0",
 		"lint-staged": "15.0.1",
 		"npm-run-all": "4.1.5",
 		"postcss": "8.4.31",
@@ -66,5 +67,8 @@
 	"lint-staged": {
 		"*.{md,liquid,html,webc}": "prettier --write --ignore-unknown",
 		"*.css": "stylelint --cache --fix"
+	},
+	"dependencies": {
+		"clipboard-polyfill": "4.0.1"
 	}
 }

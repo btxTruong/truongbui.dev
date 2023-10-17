@@ -1,6 +1,10 @@
 ---
 layout: 'layouts/base.webc'
-title: 'bookmarks'
+title: 'blog'
 ---
 
-<p class='items-baseline'>blog</p>
+<div class='px-4 md:px-0'>
+	<system-tags></system-tags>
+	<hr class='my-7'/>
+	<system-posts tag='posts'></system-posts>
+</div>

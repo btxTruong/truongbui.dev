@@ -1,0 +1,28 @@
+<script webc:type='js'>
+	const allTags = $data.collections;
+	const ignoreTags = ['posts', 'all'];
+	const tags = Object.keys(allTags).filter((tag) => {
+		return !ignoreTags.includes(tag);
+	});
+
+	const internalClass = this.class || 'justify-center';
+
+	const renderTags = (tags) => {
+		if (!tags) return '';
+		return `
+		<p class='flex items-center flex-wrap ${internalClass}'>
+				${
+			tags.sort().map((tag) => {
+				return `
+					<system-tag tag='${tag}'></system-tag>
+				`;
+			}).join('\n')
+		}
+		</p>
+		`
+	};
+
+	`
+	${renderTags(tags)}
+	`
+</script>

@@ -1,0 +1,18 @@
+<script webc:type='js'>
+	const tagData = $data.collections[tag];
+	const renderPosts = (posts, limit) => {
+		return sortPostsByDate(posts).slice(0, limit).map((post) => {
+			return `
+				<system-post
+				title='${post.data.title}'
+				post-date='${post.date}'
+			  :@tags='${JSON.stringify(post.data.tags)}'
+				url='${post.url}'
+				></system-post>
+				`
+		}).join('\n');
+	}
+	`
+		${renderPosts(tagData, limit)}
+	`
+</script>
