@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- custom elements are not permitted inside <head>	-->
+	<title>fourth blog — Truong Bui's Blog</title>
+
+	<meta name="author" content="Truong Bui">
+		<meta name="description" content="Share my knowledge, experience and tips about web development">
+	
+
+
+	<!--	we need webc:keep because 11ty runs webc in bundler mode. that means that when it find <style>, <link rel="stylesheet"> or <script> they are  -->
+	<!--	removed from output markup. Ref: https://www.11ty.dev/docs/languages/webc/#asset-bundling -->
+	
+	
+  <script type="module" crossorigin src="/assets/copy-code-5716852f.js"></script>
+  <link rel="stylesheet" href="/assets/copy-code-d3a755b8.css">
+</head>
+<body class="bg-white flex flex-col min-h-screen">
+<!-- we need close tag here to make it work. it mean <site-header /> not work -->
+<header class="sticky top-0 bg-white opacity-[.97] w-full mb-8">
+	<nav class="flex justify-between items-center mx-auto max-w-3xl py-4 px-4 md:px-0">
+		<div class="hover:text-primary-500 font-bold">
+					
+			<a href="/">
+				<span>Truong Bui</span>
+			</a>
+			
+			</div>
+				
+
+		<ul class="flex gap-x-5">
+			<li class="cursor-default hover:text-primary-500">
+                  <a href="/blog/" class="text-base">
+                    blog
+                  </a>
+                </li>
+              
+                <li class="cursor-default hover:text-primary-500">
+                  <a href="/projects/" class="text-base">
+                    projects
+                  </a>
+                </li>
+              
+                <li class="cursor-default hover:text-primary-500">
+                  <a href="/bookmarks/" class="text-base">
+                    bookmarks
+                  </a>
+                </li>
+              
+		</ul>
+	</nav>
+	<div class="w-full h-[1px] bg-gray-200">
+		<div id="scrollIndicator" class="h-full bg-primary-500 w-0"></div>
+	</div>
+</header>
+
+
+<main class="flex-1 mx-auto max-w-3xl w-full"><div>
+	<div class="p-4 fixed left-[5%] w-1/6 top-[20%] border-2 rounded-md hover:border-blue-300">
+				<h3 class="text-xl font-bold text-primary-500">TABLE OF CONTENTS</h3>
+				<ol class="mt-3 px-8">
+					
+				<li class="list-disc my-1 hover:text-primary-600 text-primary-500">
+					<a href="#how-to-get-there">How to get there ?</a>
+				</li>
+			
+
+				<li class="list-disc my-1 hover:text-primary-600 text-primary-500">
+					<a href="#good-to-know">Good to know</a>
+				</li>
+			
+				</ol>
+			</div>
+		
+	
+
+	<article>
+		<h1 class="text-5xl font-bold">fourth blog</h1>
+		<p class="text-sm font-medium leading-6 text-gray-400 mt-4">
+			<time datetime="2025-12-12">2025-12-12</time>
+			•
+			<span>Truong Bui</span>
+		</p>
+		<p class="flex items-center flex-wrap mt-2">
+						
+							<a class="mr-3 text-sm font-medium lowercase text-primary-400 before:content-['#'] hover:text-primary-600 cursor-pointer" href="/tags/js/">js</a>
+	
+
+							
+
+							<a class="mr-3 text-sm font-medium lowercase text-primary-400 before:content-['#'] hover:text-primary-600 cursor-pointer" href="/tags/css/">css</a>
+	
+
+							
+
+							<a class="mr-3 text-sm font-medium lowercase text-primary-400 before:content-['#'] hover:text-primary-600 cursor-pointer" href="/tags/html/">html</a>
+	
+
+							
+
+							<a class="mr-3 text-sm font-medium lowercase text-primary-400 before:content-['#'] hover:text-primary-600 cursor-pointer" href="/tags/webc/">webc</a>
+	
+
+							
+
+							<a class="mr-3 text-sm font-medium lowercase text-primary-400 before:content-['#'] hover:text-primary-600 cursor-pointer" href="/tags/web/">web</a>
+	
+
+							
+
+							<a class="mr-3 text-sm font-medium lowercase text-primary-400 before:content-['#'] hover:text-primary-600 cursor-pointer" href="/tags/postgres/">postgres</a>
+	
+
+							
+
+							<a class="mr-3 text-sm font-medium lowercase text-primary-400 before:content-['#'] hover:text-primary-600 cursor-pointer" href="/tags/sql/">sql</a>
+	
+
+							
+
+							<a class="mr-3 text-sm font-medium lowercase text-primary-400 before:content-['#'] hover:text-primary-600 cursor-pointer" href="/tags/database/">database</a>
+	
+
+							
+
+							<a class="mr-3 text-sm font-medium lowercase text-primary-400 before:content-['#'] hover:text-primary-600 cursor-pointer" href="/tags/node/">node</a>
+	
+
+							
+
+							<a class="mr-3 text-sm font-medium lowercase text-primary-400 before:content-['#'] hover:text-primary-600 cursor-pointer" href="/tags/nodejs/">nodejs</a>
+	
+
+							
+
+							<a class="mr-3 text-sm font-medium lowercase text-primary-400 before:content-['#'] hover:text-primary-600 cursor-pointer" href="/tags/express/">express</a>
+	
+
+							
+
+							<a class="mr-3 text-sm font-medium lowercase text-primary-400 before:content-['#'] hover:text-primary-600 cursor-pointer" href="/tags/expr/">expr</a>
+	
+
+							
+					</p>
+					
+			
+		<div class="mt-10"><h2 class="text-3xl mb-5 mt-8 font-medium text-slate-700 group/heading" id="how-to-get-there">
+		
+	How to get there ?
+
+		<a href="#how-to-get-there">
+			<span class="after:content-[&quot;#&quot;] text-primary-500 invisible group-hover/heading:visible"></span>
+		</a>
+	</h2>
+	
+
+<p>
+	You can get there by following the steps below:
+</p>
+
+<h2 class="text-3xl mb-5 mt-8 font-medium text-slate-700 group/heading" id="good-to-know">
+		
+	Good to know
+
+		<a href="#good-to-know">
+			<span class="after:content-[&quot;#&quot;] text-primary-500 invisible group-hover/heading:visible"></span>
+		</a>
+	</h2>
+	
+
+<p>
+	You can get there by following the steps below:
+</p>
+
+<div class="border-[3px] border-callout-info-primary rounded-lg bg-callout-info-background my-5">
+	<span class="bg-callout-info-primary font-bold rounded-br-lg absolute px-2">INFO:</span>
+	<div class="mx-5 mt-9 mb-3">
+		
+	<p>fshkfsdjhlfk;saj;dfl</p>
+
+	</div>
+</div>
+
+
+<div class="mt-5 code-block">
+			<div class="flex justify-between item-center">
+				<span class="text-xs font-medium text-slate-500 ml-3">FILENAME: /file.py</span>
+				<div class="flex text-xs font-medium text-slate-500 hover:text-primary-500 gap-1 copy-button-place mr-3">
+				</div>
+			</div>
+			<pre class="language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+		<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'hello world'</span><span class="token punctuation">)</span></code></pre>
+		</div>
+	
+
+
+<div class="mt-5 code-block">
+			<div class="flex justify-between item-center">
+				<span class="text-xs font-medium text-slate-500 ml-3">FILENAME: /file.js</span>
+				<div class="flex text-xs font-medium text-slate-500 hover:text-primary-500 gap-1 copy-button-place mr-3">
+				</div>
+			</div>
+			<pre class="language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'hello world'</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span></code></pre>
+		</div>
+	
+
+
+<div class="border-[3px] border-callout-warning-primary rounded-lg bg-callout-warning-background my-5">
+	<span class="bg-callout-warning-primary font-bold rounded-br-lg absolute px-2">WARNING:</span>
+	<div class="mx-5 mt-9 mb-3">
+		
+	<p>fshkfsdjhlfk;saj;dfl</p>
+
+	</div>
+</div>
+
+</div>
+	</article>
+</div>
+</main>
+
+<footer class="w-full bg-slate-50 mt-8">
+	<div class="w-full h-[1px] bg-gray-200"></div>
+	<div class="mx-auto max-w-3xl flex justify-between items-center py-2 px-4 md:px-0">
+		<div>
+			<p class="text-xs leading-5 text-gray-500">© 2023 Truong Bui</p>
+		</div>
+		<div class="flex gap-2">
+			<div class="cursor-default">
+				<a class="opacity-60 hover:opacity-100 hover:fill-primary-500" href="https://github.com/btxtruong">
+					<svg class="h-6 w-6">
+		<use href="/assets/icons-16a8bb44.svg#svg-github"></use>
+	</svg>
+	
+
+				</a>
+			</div>
+			<div class="cursor-default">
+				<a class="opacity-60 hover:opacity-100 hover:fill-primary-500" href="mailto: btxtruong@gmail.com">
+					<svg class="h-6 w-6">
+		<use href="/assets/icons-16a8bb44.svg#svg-email"></use>
+	</svg>
+	
+
+				</a>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+
+
+
+
+
+</body>
+</html>
