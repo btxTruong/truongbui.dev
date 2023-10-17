@@ -4,28 +4,7 @@ title: 'blog'
 ---
 
 <div class='px-4 md:px-0'>
-	<div>
-		<h1 class='text-4xl font-bold'>Blog</h1>
-	</div>
-	<script webc:type='js'>
-		const posts = $data.collections.posts;
-		const renderPosts = (posts) => {
-			return posts.map((post) => {
-
-
-				return `
-				<system-post
-				title='${post.title}'
-				post-date='${post.date}'
-				:@tags='${ignoreTag('posts', post.tags)}'
-				url='${post.url}'
-				></system-post>
-				`
-			}).join('\n');
-		}
-		`
-			${renderPosts(posts)}
-		`
-	</script>
-
+	<system-tags></system-tags>
+	<hr class='my-7'/>
+	<system-posts tag='posts'></system-posts>
 </div>

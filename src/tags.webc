@@ -1,0 +1,24 @@
+<script webc:type='js'>
+	const posts = $data.collections[tag];
+
+	const renderPosts = (posts) => {
+		return sortPostsByDate(posts).map((post) => {
+			return `
+					<system-post
+					title='${post.data.title}'
+					post-date='${post.date}'
+				  :@tags='${JSON.stringify(post.data.tags)}'
+					url='${post.url}'
+					></system-post>
+					`
+		}).join('\n');
+	}
+
+	`
+	<div>
+	<h1 class='text-3xl font-bold mb-10'>Posts tagged with "${tag}"</h1>
+	</div>
+
+	${renderPosts(posts)}
+	`
+</script>

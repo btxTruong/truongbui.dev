@@ -1,0 +1,10 @@
+---
+permalink: /tags/index.html
+layout: 'layouts/base.webc'
+title: All tags
+---
+<div>
+	<h1 class='text-3xl font-bold mb-10'>All Tags</h1>
+
+	<system-tags class='justify-start'></system-tags>
+</div>

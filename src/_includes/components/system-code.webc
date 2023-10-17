@@ -1,0 +1,9 @@
+<script webc:type='js'>
+	let content = this.slots.text.default;
+	`
+		<div class='mt-5'>
+			<span class='text-xs font-medium text-slate-500 ml-3'>FILENAME: ${filename}</span>
+			${this.highlight(language, content)}
+		</div>
+	`
+</script>
