@@ -1,8 +1,12 @@
 <script webc:type='js'>
 	let content = this.slots.text.default;
 	`
-		<div class='mt-5'>
-			<span class='text-xs font-medium text-slate-500 ml-3'>FILENAME: ${filename}</span>
+		<div class='mt-5 code-block'>
+			<div class='flex justify-between item-center'>
+				<span class='text-xs font-medium text-slate-500 ml-3'>FILENAME: ${filename}</span>
+				<div class='flex text-xs font-medium text-slate-500 hover:text-primary-500 gap-1 copy-button-place mr-3'>
+				</div>
+			</div>
 			${this.highlight(language, content)}
 		</div>
 	`

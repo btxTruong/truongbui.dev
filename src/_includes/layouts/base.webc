@@ -25,5 +25,6 @@
 
 <script type='module' src="/assets/js/scroll-indicator.js" webc:keep></script>
 <script type='module' src="/assets/js/typewriter-effect.js" webc:keep></script>
+<script type='module' src="/assets/js/copy-code.js" webc:keep></script>
 </body>
 </html>
