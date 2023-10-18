@@ -1,0 +1,40 @@
+<script webc:type='js'>
+	const generateButton = (type, url) => {
+		return `
+		<div class="">
+			<a
+				href='${url}'
+			>
+				<button
+					class="flex items-center gap-1 uppercase text-sm font-semibold text-primary-400 hover:text-primary-600 focus:outline-non"
+					type="button"
+				>
+					${type === 'blog' ? 'Blog' : type === 'demo' ? 'Demo' : 'Source'}
+					<system-svg icon="go" class='w-3 h-3'></system-svg>
+				</button>
+			</a>
+		</div>
+		`
+	}
+
+	const renderButtons = (buttons) => {
+		return buttons.map((button) => generateButton(button.type, button.url)).join('\n')
+	}
+
+
+	`
+		<div
+		class="relative flex flex-col text-gray-700 shadow-md max-w-[15.3rem] w-[15.3rem] rounded-xl bg-clip-border bg-slate-50">
+		<div class="p-4">
+			<p class='text-primary-500 mb-3' @text='year'></p>
+			<h5
+				class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900" @text='title'>
+			</h5>
+			<p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit" @text='description'></p>
+		</div>
+		<div class='flex items-center pb-4 pl-4 gap-4'>
+		 ${renderButtons(buttons)}
+		</div>
+	</div>
+	`
+</script>

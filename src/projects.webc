@@ -2,5 +2,34 @@
 layout: 'layouts/base.webc'
 title: 'projects'
 ---
+<script webc:type='js'>
+	const allProjects = [
+		{
+			year: '2023',
+			title: 'truongbui.dev',
+			description: 'The source of this website.',
+			buttons: [
+				{
+					url: 'https://github.com/btxTruong/truongbui.dev',
+					type: 'source'
+				},
+			]
+		}
+	]
 
-<p>about</p>
+	const renderProjects = (projects) => {
+		return projects.map(p => `
+		<system-project
+			year='${p.year}'
+			title='${p.title}'
+			description='${p.description}'
+			:@buttons='${JSON.stringify(p.buttons)}'
+		></system-project>
+	`).join('\n')}
+
+	`
+	<article class='flex items-center gap-4 flex-wrap'>
+		${renderProjects(allProjects)}
+	</article>
+	`
+</script>

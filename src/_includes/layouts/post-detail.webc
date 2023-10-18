@@ -2,7 +2,8 @@
 layout: 'layouts/base.webc'
 ---
 <div>
-	<system-toc></system-toc>
+	<system-toc
+		class='hidden min-[1800px]:block min-[1800px]:fixed min-[1800px]:left-[5%] min-[1800px]:max-w-[25rem] min-[1800px]:top-[20%]'></system-toc>
 	<article>
 		<h1 @text='title' class='text-5xl font-bold'></h1>
 		<p class='text-sm font-medium leading-6 text-gray-400 mt-4'>
@@ -32,6 +33,8 @@ layout: 'layouts/base.webc'
 				${renderTags(tags)}
 			`
 		</script>
+		<system-toc
+			class='block min-[1800px]:hidden my-10'></system-toc>
 		<div @raw="content" class='mt-10'></div>
 	</article>
 </div>
