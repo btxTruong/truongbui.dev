@@ -2,7 +2,7 @@
 layout: 'layouts/base.webc'
 ignoreNameInHeader: true
 ---
-<div class='px-4 md:px-0'>
+<div>
 	<article class='flex'>
 		<div>
 			<h1 class='text-4xl font-bold'>Truong Bui</h1>

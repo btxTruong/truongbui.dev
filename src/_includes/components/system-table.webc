@@ -1,0 +1,62 @@
+<script webc:type='js'>
+	const renderHeader = (headers) => {
+		return headers.map(h => {
+			return `
+				<th class="p-2">
+					<div class="font-semibold text-left">${h}</div>
+				</th>
+			`
+		}).join('\n')
+	}
+
+	const renderCell = (data) => {
+		const isURL = (text) => typeof text === 'string' && (text.startsWith('http') || text.startsWith('www'))
+		const d = isURL(data) ? `<a target="_blank" href="${data}" class='hover:text-primary-500'>${data}</a>` : Array.isArray(data) ? data.join(' ') : data
+
+			return `
+				<td class="p-2">
+					<div class="text-left break-words">${d}</div>
+				</td>
+			`
+		}
+
+	const renderRow = (rows, headers) => {
+		return rows.map(c => {
+			return `
+				<tr>
+					${headers.map(h => {
+						return renderCell(c[h])
+					}).join('\n')}
+				</tr>
+			`
+		}).join('\n')
+	}
+
+	const renderTable = (headers, rows) => {
+		const header = renderHeader(headers)
+
+		const body = renderRow(rows, headers)
+
+		return `
+		<table class="table-fixed w-full">
+			<thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+			<tr>
+				${header}
+			</tr>
+			</thead>
+			<tbody class="text-sm divide-y divide-gray-100">
+				${body}
+			</tbody>
+		`
+	}
+
+	`
+	<div class="flex flex-col justify-center h-full">
+		<div class="w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+			<div class="p-3">
+				 ${renderTable(headers, rows)}
+			</div>
+		</div>
+	</div>
+	`
+</script>
