@@ -12,7 +12,8 @@ permalink: 404.html
 <script webc:type='js'>
 	`
 	<h1 @text='title'></h1>
-	<p>This is where you should tell the user how to find their content. Back to <a href="/"> home page</a></p>
+	<p>You didn't break the internet, but we can't find what you are looking for.</p>
+	<p>Back to <a href="/" class='text-primary-500'> home page</a></p>
 	`
 </script>
 </body>
