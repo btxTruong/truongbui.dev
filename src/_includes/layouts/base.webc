@@ -26,5 +26,16 @@
 <script type='module' src="/assets/js/scroll-indicator.js" webc:keep></script>
 <script type='module' src="/assets/js/typewriter-effect.js" webc:keep></script>
 <script type='module' src="/assets/js/copy-code.js" webc:keep></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G0E7089JGK" webc:keep></script>
+<script webc:keep>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-G0E7089JGK');
+</script>
+<script data-goatcounter="https://truongbui.goatcounter.com/count"
+				async src="//gc.zgo.at/count.js" webc:keep></script>
 </body>
 </html>

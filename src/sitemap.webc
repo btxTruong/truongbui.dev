@@ -1,0 +1,28 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<script webc:type='js'>
+	const renderSiteMap = () => {
+		const siteMap = $data.collections.all.map(page => {
+			return `
+					<url>
+						<loc>${$data.site.url}${page.url}</loc>
+						<lastmod>${page.date.toISOString()}</lastmod>
+					</url>
+				`;
+		}).join('');
+
+		return `
+				<?xml version="1.0" encoding="utf-8"?>
+
+				<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+					${siteMap}
+				</urlset>
+			`;
+	};
+
+	`
+		${renderSiteMap()}
+	`
+</script>

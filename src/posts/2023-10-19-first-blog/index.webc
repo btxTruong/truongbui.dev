@@ -1,0 +1,53 @@
+---
+layout: layouts/post-detail.webc
+date: 2022-10-19
+title: 'first blog'
+tags: ['thoughts']
+---
+<p>This is my first website, a project I've had pending for quite a while since I first started my journey into programming. I hope you will be happy when you read it</p>
+
+<system-anchor heading='h2'>
+	What I learned
+</system-anchor>
+
+<p>
+	I've learned many things while building my website. Even though I'm a web developer, there are some things I've never used before,
+	such as <span class='italic'>Google Analytics</span>, <span class='italic'>web tracking</span>, <span class='italic'>sitemap.xml</span>, <span class='italic'>robots.txt</span>, etc.
+	I plan to create a post in the future to explain in detail what I've learned while building this website.
+</p>
+
+<system-anchor heading='h2'>
+	What tools I used
+</system-anchor>
+<ul class='list-disc list-inside'>
+	<li>
+		<a href='https://pages.github.com/' class='underline'>Github pages</a>
+		- Host
+	</li>
+	<li>
+		<a href='https://www.11ty.dev/' class='underline'>11ty</a>
+		- Static site generator
+	</li>
+	<li>
+		<a href='https://tailwindcss.com/' class='underline'>TailwindCSS</a>
+		- Utility-first CSS framework
+	</li>
+	<li>
+		<a href='https://rsms.me/inter/' class='underline'>Inter Font</a>
+		- The Inter typeface family
+	</li>
+	<li>
+		<a href='https://www.jetbrains.com/lp/mono/' class='underline'>JetBrains Mono Font</a>
+		- The JetBrains typeface family
+	</li>
+	<li>
+		<a href='https://analytics.google.com/' class='underline'>Google Analytics</a>
+		- Website analytics
+	</li>
+	<li>
+		<a href='https://www.goatcounter.com/' class='underline'>Goat Counter</a>
+		- Website analytics without tracking of personal data
+	</li>
+</ul>
+
+<p class='italic mt-3'>and various other tools</p>
