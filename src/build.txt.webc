@@ -1,0 +1,9 @@
+---
+permalink: /public/build.txt
+eleventyExcludeFromCollections: true
+---
+<script webc:type='js'>
+	`
+	LAST BUILD: ${new Date($data.page.date).toISOString()}
+	`
+</script>
