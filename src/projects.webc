@@ -13,6 +13,10 @@ title: 'projects'
 					url: 'https://github.com/btxTruong/truongbui.dev',
 					type: 'source'
 				},
+				{
+					url: '/blog/first-blog/',
+					type: 'blog'
+				}
 			]
 		}
 	]
