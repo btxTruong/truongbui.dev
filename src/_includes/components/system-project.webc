@@ -4,6 +4,7 @@
 		<div class="">
 			<a
 				href='${url}'
+				target='_blank'
 			>
 				<button
 					class="flex items-center gap-1 uppercase text-sm font-semibold text-primary-400 hover:text-primary-600 focus:outline-non"
