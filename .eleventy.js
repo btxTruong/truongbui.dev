@@ -6,11 +6,33 @@ const svgSpritePlugin = require("eleventy-plugin-svg-sprite");
 // https://11tywebcfun.netlify.app/
 const webcPlugin = require('@11ty/eleventy-plugin-webc');
 const {JSDOM} = require('jsdom');
+const copy = require('rollup-plugin-copy');
+
+const VITE_TEMP_FOLDER_NAME = '.11ty-vite';
 
 /** @type {import('@11ty/eleventy').UserConfig} */
 module.exports = function(eleventyConfig) {
 	// Plugins
-	eleventyConfig.addPlugin(vitePlugin);
+	eleventyConfig.addPlugin(vitePlugin, {
+		tempFolderName: VITE_TEMP_FOLDER_NAME,
+
+		viteOptions: {
+			build: {
+				mode: "production",
+				rollupOptions: {
+					plugins: [
+						copy({
+							targets: [
+								{
+									src: `${VITE_TEMP_FOLDER_NAME}/sitemap.xml`,
+									dest: '_site'
+								}
+							]
+						})]
+				},
+			},
+		}
+	});
 	eleventyConfig.addPlugin(syntaxHighlightPlugin);
 	eleventyConfig.addPlugin(webcPlugin, {
 		components: 'src/_includes/components/**/*.webc'
