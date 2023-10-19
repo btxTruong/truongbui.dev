@@ -2,4 +2,4 @@
 Sitemap: https://www.truongbui.dev/sitemap.xml
 
 User-agent: *
-Allow: /
+Disallow: /build.txt
