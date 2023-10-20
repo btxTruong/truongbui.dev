@@ -1,0 +1,131 @@
+---
+startDate: 2023-10-19
+title: 'const in typescript'
+tags: ['ts']
+---
+<system-anchor heading='h2'>
+	Problem
+</system-anchor>
+
+<system-codeblock lang='ts' library='typescript v5.2.2'>
+type Brand = 'Mercedes' | 'Toyota' | 'Ferrari';
+
+interface Car {
+	speed: number;
+	brand: Brand
+}
+
+function showCar(car: Car) { }
+
+const mercedes = {
+	speed: 500,
+	brand: 'Mercedes'
+}
+
+showCar(mercedes)
+//      ^^^^^^^^
+// Argument of type '{ speed: number; brand: string; }'
+// is not assignable to parameter of type 'Car'.
+//   Types of property 'brand' are incompatible.
+//    Type 'string' is not assignable to type 'Brand'.(2345)
+</system-codeblock>
+
+<system-anchor heading='h2'>
+	Solution
+</system-anchor>
+
+<system-codeblock lang='diff-ts' library='typescript v5.2.2'>
+type Brand = 'Mercedes' | 'Toyota' | 'Ferrari';
+
+interface Car {
+	speed: number;
+	brand: Brand
+}
+
+function showCar(car: Car) { }
+
+const mercedes = {
+	speed: 500,
+- brand: 'Mercedes'
++ brand: 'Mercedes' as const
+}
+
+showCar(mercedes)
+</system-codeblock>
+
+<system-anchor heading='h2'>
+	Why ?
+</system-anchor>
+
+In typescript <system-code>let</system-code> or <system-code>const</system-code> has different behaviour
+
+<system-codeblock lang='ts'>
+let brand = 'Mercedes';
+//  ^^^^^ brand: string // primitive type
+</system-codeblock>
+
+it's different when we use <system-code>const</system-code>
+<system-codeblock lang='ts'>
+	const brand = 'Mercedes';
+	//  ^^^^^ brand: 'Mercedes' // literal type
+</system-codeblock>
+
+But with object types, <system-code>let</system-code> and <system-code>const</system-code> are the same
+
+<system-codeblock lang='ts'>
+	let car = { brand: 'Mercedes' };
+//  ^^^ car: { brand: string }
+</system-codeblock>
+
+same with <system-code>const</system-code>
+
+<system-codeblock lang='ts'>
+	const car = { brand: 'Mercedes' };
+//    ^^^ car: { brand: string }
+</system-codeblock>
+
+So, that's the reason in the example at the top <system-code>brand</system-code> in <systemp-code>Car interface</systemp-code> is a literal type not string.
+<system-codeblock lang='ts'>
+interface Car {
+	speed: number;
+	brand: Brand // branch is literal type, not a string
+}
+</system-codeblock>
+
+<system-info>
+	You can read more about literal type here
+	<system-link url='https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html'>
+		https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html
+	</system-link>
+</system-info>
+
+There are some order ways to solve this problem
+<system-codeblock lang='ts'>
+	// use type assertion
+const mercedes = {
+	speed: 500,
+	brand: 'Mercedes'
+} as Car
+
+// use type annotation
+const mercedes: Car = {
+	speed: 500,
+	brand: 'Mercedes'
+}
+
+// use const
+const mercedes = {
+	speed: 500,
+	brand: 'Mercedes'
+} as const
+</system-codeblock>
+
+But my favorite solution is using <system-code>as const</system-code> because it's shorter
+<system-codeblock lang='ts'>
+const mercedes = {
+	speed: 500,
+	brand: 'Mercedes' as const
+}
+</system-codeblock>
+
+Hope you enjoy this post, see you in the next post!

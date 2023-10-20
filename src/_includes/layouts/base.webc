@@ -13,7 +13,7 @@
 	<!--	removed from output markup. Ref: https://www.11ty.dev/docs/languages/webc/#asset-bundling -->
 	<link rel='icon' href='/assets/img/favicon.ico' webc:keep>
 	<link rel="stylesheet" href="/assets/css/main.css" webc:keep>
-	<link rel="stylesheet" href="/assets/css/prism-one-dark.css" webc:keep>
+	<link rel="stylesheet" href="/assets/css/prism.css" webc:keep>
 </head>
 <body class="bg-white flex flex-col min-h-screen">
 <!-- we need close tag here to make it work. it mean <site-header /> not work -->
@@ -27,6 +27,7 @@
 <script type='module' src="/assets/js/scroll-indicator.js" webc:keep></script>
 <script type='module' src="/assets/js/typewriter-effect.js" webc:keep></script>
 <script type='module' src="/assets/js/copy-code.js" webc:keep></script>
+<script type='module' src="/assets/js/time-distance-last-updated.js" webc:keep></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0E7089JGK" webc:keep></script>
 <script webc:keep>

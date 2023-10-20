@@ -1,6 +1,5 @@
 ---
-layout: layouts/post-detail.webc
-date: 2022-10-19
+startDate: 2023-10-19
 title: 'first blog'
 tags: ['thoughts']
 ---
@@ -47,6 +46,10 @@ tags: ['thoughts']
 	<li>
 		<a href='https://www.goatcounter.com/' class='underline'>Goat Counter</a>
 		- Website analytics without tracking of personal data
+	</li>
+	<li>
+		<a href='https://chat.openai.com/' class='underline'>ChatGPT</a>
+		- Correct my grammar
 	</li>
 </ul>
 
