@@ -1,19 +1,26 @@
 ---
 layout: 'layouts/base.webc'
 ---
-<div>
+<div class='mb-10'>
 	<system-toc
 		class='hidden min-[1800px]:block min-[1800px]:fixed min-[1800px]:left-[5%] min-[1800px]:max-w-[25rem] min-[1800px]:top-[20%]'></system-toc>
 	<article>
 		<h1 @text='title' class='text-5xl font-bold'></h1>
 		<p class='text-sm font-medium leading-6 text-gray-400 mt-4'>
-			<time :datetime='formatDate(date)' @text='formatDate(date)' class=''></time>
-			•
 			<script webc:type='js'>
 				const fullName = `${$data.site.author.firstName} ${$data.site.author.lastName}`;
 				`<span>${fullName}</span>`
 			</script>
 		</p>
+		<div class='text-sm font-medium leading-6 text-gray-400'>
+				<span>Published on: <time :datetime='formatDate(publishedDate)' @text='formatDate(publishedDate)'></time></span>
+				•
+				<span>Last updated:
+					<script webc:type='js'>
+						`<span class='time-distance-last-updated' data-last-updated='${$data.page.date}'></span>`
+					</script>
+				</span>
+		</div>
 		<script webc:type='js'>
 			const renderTags = (tags) => {
 				if (!tags) return '';
@@ -37,6 +44,7 @@ layout: 'layouts/base.webc'
 			class='block min-[1800px]:hidden my-10'></system-toc>
 		<div @raw="content" class='mt-10'></div>
 	</article>
+	<hr class="h-[2px] my-10 bg-gray-200 border-0 rounded">
 </div>
 
 <script

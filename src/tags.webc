@@ -6,7 +6,7 @@
 			return `
 					<system-post
 					title='${post.data.title}'
-					post-date='${post.date}'
+					post-date='${post.data.publishedDate}'
 				  :@tags='${JSON.stringify(post.data.tags)}'
 					url='${post.url}'
 					></system-post>

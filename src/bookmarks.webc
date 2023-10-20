@@ -1,4 +1,5 @@
 ---
+date: Last Modified
 layout: 'layouts/base.webc'
 title: 'bookmarks'
 ---
@@ -218,6 +219,11 @@ title: 'bookmarks'
 	}
 
 	`
+		<div class='mb-5 text-slate-500'>
+		<span>Last updated:
+				<span class='time-distance-last-updated' data-last-updated='${$data.page.date}'></span>
+			</span>
+		</div>
 		${renderTable(headers, bookmarks)}
 	`
 </script>
