@@ -13,7 +13,7 @@ layout: 'layouts/base.webc'
 			</script>
 		</p>
 		<div class='text-sm font-medium leading-6 text-gray-400'>
-				<span>Published on: <time :datetime='formatDate(startDate)' @text='formatDate(startDate)' class=''></time></span>
+				<span>Published on: <time :datetime='formatDate(publishedDate)' @text='formatDate(publishedDate)'></time></span>
 				•
 				<span>Last updated:
 					<script webc:type='js'>

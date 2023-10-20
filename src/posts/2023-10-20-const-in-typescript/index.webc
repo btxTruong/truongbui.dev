@@ -1,5 +1,5 @@
 ---
-startDate: 2023-10-19
+publishedDate: 2023-10-20
 title: 'const in typescript'
 tags: ['ts']
 ---
@@ -84,7 +84,9 @@ same with <system-code>const</system-code>
 //    ^^^ car: { brand: string }
 </system-codeblock>
 
-So, that's the reason in the example at the top <system-code>brand</system-code> in <systemp-code>Car interface</systemp-code> is a literal type not string.
+So, that's the reason in the example at the top <system-code>brand</system-code> in
+<system-code>Car interface</system-code> is a <system-code>literal</system-code> type not <system-code>string</system-code>.
+
 <system-codeblock lang='ts'>
 interface Car {
 	speed: number;
