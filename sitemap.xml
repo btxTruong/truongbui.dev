@@ -1,43 +1,53 @@
 <!--?xml version="1.0" encoding="utf-8"?--><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 					
 					<url>
-						<loc>https://www.truongbui.dev/blog/first-blog/</loc>
-						<lastmod>2022-10-19T00:00:00.000Z</lastmod>
-					</url>
-				
-					<url>
 						<loc>https://www.truongbui.dev/404.html</loc>
-						<lastmod>2023-10-19T08:23:17.438Z</lastmod>
+						<lastmod>2023-10-20T08:07:12.294Z</lastmod>
 					</url>
 				
 					<url>
 						<loc>https://www.truongbui.dev/tags/</loc>
-						<lastmod>2023-10-19T08:23:17.438Z</lastmod>
+						<lastmod>2023-10-20T08:07:12.298Z</lastmod>
 					</url>
 				
 					<url>
 						<loc>https://www.truongbui.dev/blog/</loc>
-						<lastmod>2023-10-19T08:23:17.442Z</lastmod>
+						<lastmod>2023-10-20T08:07:12.302Z</lastmod>
 					</url>
 				
 					<url>
 						<loc>https://www.truongbui.dev/bookmarks/</loc>
-						<lastmod>2023-10-19T08:23:17.442Z</lastmod>
+						<lastmod>2023-10-20T08:07:12.302Z</lastmod>
 					</url>
 				
 					<url>
 						<loc>https://www.truongbui.dev/</loc>
-						<lastmod>2023-10-19T08:23:17.442Z</lastmod>
+						<lastmod>2023-10-20T08:07:12.302Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/blog/first-blog/</loc>
+						<lastmod>2023-10-20T08:07:12.302Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/blog/const-in-typescript/</loc>
+						<lastmod>2023-10-20T08:07:12.302Z</lastmod>
 					</url>
 				
 					<url>
 						<loc>https://www.truongbui.dev/projects/</loc>
-						<lastmod>2023-10-19T08:23:17.442Z</lastmod>
+						<lastmod>2023-10-20T08:07:12.302Z</lastmod>
 					</url>
 				
 					<url>
 						<loc>https://www.truongbui.dev/tags/thoughts/</loc>
-						<lastmod>2023-10-19T08:23:17.442Z</lastmod>
+						<lastmod>2023-10-20T08:07:12.302Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/tags/ts/</loc>
+						<lastmod>2023-10-20T08:07:12.302Z</lastmod>
 					</url>
 				
 				</urlset>
