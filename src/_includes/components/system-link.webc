@@ -1,10 +1,10 @@
 <script webc:type='js'>
 	`
-	<span class='flex gap-1 items-center underline underline-offset-2'>
+	<span class='flex gap-1 items-center underline underline-offset-2 font-semibold hover:underline-offset-4
+	hover:decoration-2'>
 		<a href='${url}' target='_blank'>
 			<slot></slot>
 		</a>
-		<system-svg icon='go' class='w-3 h-3'></system-svg>
 	</span>
 	`
 </script>

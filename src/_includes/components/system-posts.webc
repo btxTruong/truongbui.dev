@@ -1,7 +1,7 @@
 <script webc:type='js'>
 	const tagData = $data.collections[tag];
 	const renderPosts = (posts, limit) => {
-		return sortPostsByDate(posts).slice(0, limit).map((post) => {
+		return sortByDate(posts, 'data.publishedDate').slice(0, limit).map((post) => {
 			return `
 				<system-post
 				title='${post.data.title}'

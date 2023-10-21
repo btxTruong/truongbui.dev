@@ -6,6 +6,7 @@ const svgSpritePlugin = require("eleventy-plugin-svg-sprite");
 // https://11tywebcfun.netlify.app/
 const webcPlugin = require('@11ty/eleventy-plugin-webc');
 const {JSDOM} = require('jsdom');
+const _ = require('lodash');
 
 /** @type {import('@11ty/eleventy').UserConfig} */
 module.exports = function(eleventyConfig) {
@@ -26,14 +27,14 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addFilter('formatDate', function(dateToFormat) {
 		return new Date(dateToFormat).toISOString().split('T')[0]
 	});
-	eleventyConfig.addFilter('sortPostsByDate', function (data, type) {
+	eleventyConfig.addFilter('sortByDate', function (data, field, type) {
 		if (!Array.isArray(data)) return [];
 		type = type || 'desc';
 		return [...data].sort((a, b) => {
 			if (type === 'asc') {
-				return new Date(a.date) - new Date(b.date)
+				return new Date(_.get(a, field) - new Date(_.get(b, field)));
 			} else {
-				return new Date(b.date) - new Date(a.date)
+				return new Date(_.get(b, field) - new Date(_.get(a, field)));
 			}
 		})
 	});
