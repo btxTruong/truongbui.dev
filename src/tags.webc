@@ -2,7 +2,7 @@
 	const posts = $data.collections[tag];
 
 	const renderPosts = (posts) => {
-		return sortPostsByDate(posts).map((post) => {
+		return sortByDate(posts, 'data.publishedDate').map((post) => {
 			return `
 					<system-post
 					title='${post.data.title}'

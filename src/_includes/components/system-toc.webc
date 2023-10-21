@@ -5,7 +5,7 @@
 	const renderLi = (toc) => {
 		return toc.map((item) => {
 			return `
-				<li class='list-disc my-1 hover:text-primary-600 text-primary-500'>
+				<li class='list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-bold'>
 					<a href='${item.slug}'>${item.text}</a>
 				</li>
 			`;

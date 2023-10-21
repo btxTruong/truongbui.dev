@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class='scroll-smooth'>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="/assets/css/main.css" webc:keep>
 	<link rel="stylesheet" href="/assets/css/prism.css" webc:keep>
 </head>
-<body class="bg-white flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen">
 <!-- we need close tag here to make it work. it mean <site-header /> not work -->
 <site-header></site-header>
 
@@ -23,11 +23,13 @@
 
 <site-footer></site-footer>
 
+<site-back-to-top></site-back-to-top>
 
 <script type='module' src="/assets/js/scroll-indicator.js" webc:keep></script>
 <script type='module' src="/assets/js/typewriter-effect.js" webc:keep></script>
 <script type='module' src="/assets/js/copy-code.js" webc:keep></script>
 <script type='module' src="/assets/js/time-distance-last-updated.js" webc:keep></script>
+<script type='module' src="/assets/js/back-to-top.js" webc:keep></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0E7089JGK" webc:keep></script>
 <script webc:keep>

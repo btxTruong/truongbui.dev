@@ -70,6 +70,7 @@
 	},
 	"dependencies": {
 		"clipboard-polyfill": "4.0.1",
-		"date-fns": "2.30.0"
+		"date-fns": "2.30.0",
+		"lodash": "4.17.21"
 	}
 }
