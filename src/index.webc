@@ -40,7 +40,7 @@ ignoreNameInHeader: true
 	<hr class='my-9'/>
 
 	<div>
-		<div class='flex items-center justify-between'>
+		<div class='flex justify-between flex-col gap-3 sm:flex-row sm:items-center sm:gap-0'>
 			<h2 class='text-3xl font-bold'>Recent blog</h2>
 			<p class='text-gray-500 cursor-pointer hover:text-primary-500'>
 				<a href='/blog/'>View all blog posts 🚀</a>
