@@ -8,6 +8,8 @@ const webcPlugin = require('@11ty/eleventy-plugin-webc');
 const {JSDOM} = require('jsdom');
 const _ = require('lodash');
 
+const bookmarks = require('./data/bookmarks');
+
 /** @type {import('@11ty/eleventy').UserConfig} */
 module.exports = function(eleventyConfig) {
 	// Plugins
@@ -50,10 +52,23 @@ module.exports = function(eleventyConfig) {
 			};
 		});
 	});
+	eleventyConfig.addJavaScriptFunction('addTagComponentInBookmarks', (listBookmarks) => {
+		return listBookmarks.map((bookmark) => {
+			return {
+				...bookmark,
+				tags: bookmark.tags.map((tag) => {
+					return `<system-tag tag="${tag}" url="/bookmarks/tags/${tag}/" ></system-tag>`
+				})
+			};
+		})
+	});
 
 	// Static assets
 	eleventyConfig.addPassthroughCopy('./src/public');
 	eleventyConfig.addPassthroughCopy('./src/assets');
+
+	// Global data
+	eleventyConfig.addGlobalData('bookmarks', bookmarks);
 
 	return {
 		dir: {

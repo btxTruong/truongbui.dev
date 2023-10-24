@@ -5,7 +5,7 @@ layout: 'layouts/base.webc'
 	<system-toc
 		class='hidden min-[1800px]:block min-[1800px]:fixed min-[1800px]:left-[5%] min-[1800px]:max-w-[25rem] min-[1800px]:top-[20%]'></system-toc>
 	<article>
-		<h1 @text='title' class='text-5xl font-bold'></h1>
+		<h1 @text='title' class='text-5xl font-semibold leading-[3.7rem]'></h1>
 		<p class='text-sm font-medium leading-6 text-gray-400 mt-4'>
 			<script webc:type='js'>
 				const fullName = `${$data.site.author.firstName} ${$data.site.author.lastName}`;
@@ -17,7 +17,7 @@ layout: 'layouts/base.webc'
 				•
 				<span>Last updated:
 					<script webc:type='js'>
-						`<span class='time-distance-last-updated' data-last-updated='${$data.page.date}'></span>`
+						`<span class='time-distance-last-updated' data-last-updated='${$data.updatedDate}'></span>`
 					</script>
 				</span>
 		</div>
@@ -29,7 +29,7 @@ layout: 'layouts/base.webc'
 						${
 					tags.filter(t => t !== 'posts').map((tag) => {
 						return `
-							<system-tag tag='${tag}'></system-tag>
+							<system-tag tag='${tag}' url='/tags/${tag}/'></system-tag>
 							`;
 					}).join('\n')
 				}
