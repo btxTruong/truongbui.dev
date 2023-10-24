@@ -6,7 +6,7 @@
 				${
 			tags.filter(t => t !== 'posts').map((tag) => {
 				return `
-					<system-tag tag='${tag}'></system-tag>
+					<system-tag tag='${tag}' url='/tags/${tag}/'></system-tag>
 				`;
 			}).join('\n')
 		}

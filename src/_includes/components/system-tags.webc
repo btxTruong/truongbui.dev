@@ -14,7 +14,7 @@
 				${
 			tags.sort().map((tag) => {
 				return `
-					<system-tag tag='${tag}'></system-tag>
+					<system-tag tag='${tag}' url='/tags/${tag}/'></system-tag>
 				`;
 			}).join('\n')
 		}

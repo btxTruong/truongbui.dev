@@ -1,0 +1,16 @@
+<script webc:type='js'>
+	const headers = ['url', 'tags', 'description'];
+
+	const renderTable = (headers, rows) => {
+		return `
+		<system-table :@headers='${JSON.stringify(headers)}' :@rows='${JSON.stringify(rows)}'></system-table>
+	`
+	}
+
+	`
+	<div class='mb-10'>
+		<h1 class='text-3xl font-bold'>${$data.title}</h1>
+	</div>
+	${renderTable(headers, addTagComponentInBookmarks($data.bookmarksGroupByTags[bookmarkTag]))}
+	`
+</script>

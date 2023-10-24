@@ -1,0 +1,63 @@
+---
+updatedDate: 2023-10-23
+publishedDate: 2023-10-23
+title: "[P1] - partial mock function in module in Jest"
+tags: ['ts', 'js', 'jest', 'tips']
+---
+<system-anchor heading='h2'>
+	Problem
+</system-anchor>
+
+<system-codeblock lang='ts' filename='math.ts'>
+export const add = (a: number, b: number) => a + b;
+export const subtract = (a: number, b: number) => a - b;
+export const multiply = (a: number, b: number) => a * b;
+</system-codeblock>
+<system-codeblock lang='ts' filename='do-math.ts'>
+import { add, multiply, subtract } from './math';
+
+export const complexFormula = (a: number, b: number) => {
+	const sum = add(a, b);
+	const mul = multiply(a, sum);
+	return subtract(mul, b);
+};
+</system-codeblock>
+
+
+Now, I want to test the <system-code>complexFormula</system-code> function, but I want to mock the <system-code>add</system-code> function. How can I do that ?
+
+<system-anchor heading='h2'>
+	Solution
+</system-anchor>
+
+<system-codeblock lang='ts' filename='do-math.test.ts'>
+import * as math from './math';
+import * as doMath from './do-math';
+
+jest.mock('./math', () => {
+	return {
+		...jest.requireActual('./math'); // keep the original implementation of other functions
+		add: jest.fn(),
+	};
+});
+
+
+describe('complexFormula', () => {
+	const addFunctionSpy = jest.spyOn(math, 'add');
+	it('should return correct value', () => {
+		addFunctionSpy.mockReturnValue(10);
+		const result = doMath.complexFormula(1, 2);
+		expect(result).toBe(8);
+	});
+});
+</system-codeblock>
+
+<system-info>
+	You can read more about bypassing module mocks in Jest at
+	<system-link url='https://jestjs.io/docs/bypassing-module-mocks'>
+		https://jestjs.io/docs/bypassing-module-mocks
+	</system-link>
+</system-info>
+
+What happen if <system-code>complexFormula</system-code> function is in <system-code>math</system-code> file ?
+In that case <system-code>jest.requireActual('./math')</system-code> does not work. I will show you how to do that in the next post.
