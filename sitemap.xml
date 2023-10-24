@@ -1,53 +1,163 @@
 <!--?xml version="1.0" encoding="utf-8"?--><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 					
 					<url>
-						<loc>https://www.truongbui.dev/404.html</loc>
-						<lastmod>2023-10-23T10:42:36.249Z</lastmod>
-					</url>
-				
-					<url>
-						<loc>https://www.truongbui.dev/tags/</loc>
-						<lastmod>2023-10-23T10:42:36.249Z</lastmod>
-					</url>
-				
-					<url>
-						<loc>https://www.truongbui.dev/blog/</loc>
-						<lastmod>2023-10-23T10:42:36.253Z</lastmod>
-					</url>
-				
-					<url>
-						<loc>https://www.truongbui.dev/bookmarks/</loc>
-						<lastmod>2023-10-23T10:42:36.253Z</lastmod>
-					</url>
-				
-					<url>
-						<loc>https://www.truongbui.dev/</loc>
-						<lastmod>2023-10-23T10:42:36.253Z</lastmod>
-					</url>
-				
-					<url>
 						<loc>https://www.truongbui.dev/blog/first-blog/</loc>
-						<lastmod>2023-10-23T10:42:36.253Z</lastmod>
+						<lastmod>2023-10-19T00:00:00.000Z</lastmod>
 					</url>
 				
 					<url>
 						<loc>https://www.truongbui.dev/blog/const-in-typescript/</loc>
-						<lastmod>2023-10-23T10:42:36.253Z</lastmod>
+						<lastmod>2023-10-20T00:00:00.000Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/blog/partial-mock-function-in-jest/</loc>
+						<lastmod>2023-10-23T00:00:00.000Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/404.html</loc>
+						<lastmod>2023-10-24T05:43:34.535Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/tags/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/blog/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/awesome/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/cheatsheets/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/js/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/react/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/rust/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/golang/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/ts/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/python/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/postgres/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/aws/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/lambda/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/how-to/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/performance/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/apm/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/elastic/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/ui/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/css/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/tags/tailwind/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/bookmarks/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
 					</url>
 				
 					<url>
 						<loc>https://www.truongbui.dev/projects/</loc>
-						<lastmod>2023-10-23T10:42:36.253Z</lastmod>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
 					</url>
 				
 					<url>
 						<loc>https://www.truongbui.dev/tags/memory/</loc>
-						<lastmod>2023-10-23T10:42:36.253Z</lastmod>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
 					</url>
 				
 					<url>
 						<loc>https://www.truongbui.dev/tags/ts/</loc>
-						<lastmod>2023-10-23T10:42:36.253Z</lastmod>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/tags/js/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/tags/jest/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
+					</url>
+				
+					<url>
+						<loc>https://www.truongbui.dev/tags/tips/</loc>
+						<lastmod>2023-10-24T05:43:34.539Z</lastmod>
 					</url>
 				
 				</urlset>
