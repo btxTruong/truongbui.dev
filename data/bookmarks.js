@@ -188,5 +188,14 @@ module.exports = [
 			"golang"
 		],
 		"description": "Blog of Martin Tournoij"
+	},
+	{
+		"url": "https://blog.miyuru.lk/",
+		"tags": [
+			"network",
+			"aws",
+			"devops"
+		],
+		"description": ""
 	}
 ]
