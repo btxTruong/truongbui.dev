@@ -42,7 +42,7 @@
 		"@11ty/eleventy-plugin-syntaxhighlight": "5.0.0",
 		"@11ty/eleventy-plugin-vite": "4.0.0",
 		"@11ty/eleventy-plugin-webc": "0.11.1",
-		"@commitlint/cli": "18.0.0",
+		"@commitlint/cli": "18.1.0",
 		"@commitlint/config-conventional": "18.0.0",
 		"autoprefixer": "10.4.16",
 		"browserslist": "4.22.1",
