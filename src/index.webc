@@ -13,7 +13,7 @@ ignoreNameInHeader: true
 			<div class='mt-5'>
 <!--				https://emojidb.org/web-emojis-->
 				<p class='font-mono text-neutral-600'>Hey 👋, I am Truong Bui, a web developer hailing from Vietnam, 🇻🇳. This site is my attempt to share web programming knowledge
-					while battling my <span class='text-primary-500'>&lt;</span>goldfish memory 🐠<span class='text-primary-500'>&gt;</span>.</p>
+					while battling my <span class='underline underline-offset-[6px] decoration-2 decoration-wavy decoration-primary-500'>goldfish memory</span> 🐠.</p>
 			</div>
 
 			<div class='flex mt-8 gap-2'>
