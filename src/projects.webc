@@ -18,6 +18,17 @@ title: 'projects'
 					type: 'blog'
 				}
 			]
+		},
+		{
+			year: '2023',
+			title: 'Color Picker',
+			description: 'A chrome extension to pick color from any website.',
+			buttons: [
+				{
+					url: 'https://github.com/btxTruong/color-picker',
+					type: 'source'
+				}
+			]
 		}
 	]
 

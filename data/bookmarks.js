@@ -197,5 +197,32 @@ module.exports = [
 			"devops"
 		],
 		"description": ""
-	}
+	},
+	{
+		"url": "https://byteofdev.com/",
+		"tags": [
+			"js",
+		],
+		"description": "JS articles"
+	},
+	{
+		"url": "https://explain.tensor.ru/about/",
+		"tags": [
+			"db",
+			"postgres",
+			"explain",
+			"performance",
+			"sql"
+		],
+		"description": "Postgres explain analyzer"
+	},
+	{
+		"url": "https://byteofdev.com/posts/how-to-use-esm/",
+		"tags": [
+			"js",
+			"esm",
+			"definition",
+		],
+		"description": "What is ESM and how to use it"
+	},
 ]

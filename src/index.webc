@@ -19,8 +19,18 @@ ignoreNameInHeader: true
 			<div class='flex mt-8 gap-2'>
 				<div class='cursor-default'>
 					<a @attributes='({ href: $data.site.social.github })'
-						 class='opacity-60 hover:opacity-100 hover:fill-primary-500'>
+						 class='opacity-60 hover:opacity-100 hover:fill-primary-500'
+						 target='_blank'
+					>
 						<system-svg icon='github'></system-svg>
+					</a>
+				</div>
+				<div class='cursor-default'>
+					<a @attributes='({ href: $data.site.social.linkedin })'
+						 class='opacity-60 hover:opacity-100 hover:fill-primary-500'
+						 target='_blank'
+					>
+						<system-svg icon='linkedin'></system-svg>
 					</a>
 				</div>
 				<div class='cursor-default'>
