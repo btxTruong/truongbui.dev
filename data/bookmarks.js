@@ -225,4 +225,81 @@ module.exports = [
 		],
 		"description": "What is ESM and how to use it"
 	},
+	{
+		"url": "https://www.tutorialdba.com/p/postgresql-architecture.html",
+		"tags": [
+			"postgres",
+			"advanced",
+			"devops"
+		],
+		"description": "PostgreSQL Architecture"
+	},
+	{
+		"url": "https://www.tutorialdba.com/p/postgresql-explain-plan.html",
+		"tags": [
+			"postgres",
+			"advanced",
+			"devops",
+			"tuning"
+		],
+		"description": "PostgreSQL EXPLAIN PLAN"
+	},
+	{
+		"url": "https://www.tutorialdba.com/p/postgresql-query-flow.html",
+		"tags": [
+			"postgres",
+			"advanced",
+			"devops"
+		],
+		"description": "PostgreSQL Query Flow"
+	},
+	{
+		"url": "https://www.tutorialdba.com/p/postgresql-archivelog.html",
+		"tags": [
+			"postgres",
+			"advanced",
+			"devops"
+		],
+		"description": "PostgreSQL Archivelog"
+	},
+	{
+		"url": "https://www.tutorialdba.com/2018/06/postgresql-tuning.html",
+		"tags": [
+			"postgres",
+			"advanced",
+			"devops",
+			"tuning"
+		],
+		"description": "PostgreSQL Tuning"
+	},
+	{
+		"url": "https://www.tutorialdba.com/2017/11/find-top-10-long-running-queries-using.html",
+		"tags": [
+			"postgres",
+			"advanced",
+			"devops",
+			"tuning"
+		],
+		"description": "find TOP 10 Long Running Queries using pg_stat_statements"
+	},
+	{
+		"url": "https://www.tutorialdba.com/2017/11/how-to-monitor-with-postgresql-indexes.html",
+		"tags": [
+			"postgres",
+			"advanced",
+			"devops",
+			"tuning"
+		],
+		"description": "How to Monitor with PostgreSQL Indexes"
+	},
+	{
+		"url": "https://www.tutorialdba.com/2017/11/improve-performance-of-pgdump-pgrestore.html",
+		"tags": [
+			"postgres",
+			"advanced",
+			"devops",
+			"tuning"
+		],
+		"description": "Improve the performance of pg_dump pg_restore"
+	},
 ]
