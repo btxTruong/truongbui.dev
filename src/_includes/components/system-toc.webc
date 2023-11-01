@@ -5,7 +5,7 @@
 	const renderLi = (toc) => {
 		return toc.map((item) => {
 			return `
-				<li class='list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-bold'>
+				<li class='list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-semibold'>
 					<a href='${item.slug}'>${item.text}</a>
 				</li>
 			`;
@@ -15,8 +15,8 @@
 	const renderToc = (toc) => {
 		if (Array.isArray(toc) && toc.length === 0) return '';
 		return `
-			<div class='p-4 border-[3px] rounded-md bg-slate-50 ${this.class}'>
-				<h3 class='text-xl font-bold text-primary-500'>TABLE OF CONTENTS</h3>
+			<div class='p-4 border-[2px] rounded-md border-primary-400 ${this.class}'>
+				<h3 class='text-lg font-semibold text-primary-500 border-b border-primary-400'>TABLE OF CONTENTS</h3>
 				<ol class='mt-3 px-8'>
 					${renderLi(tocParsed)}
 				</ol>

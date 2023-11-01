@@ -1,0 +1,63 @@
+---
+updatedDate: 2023-11-01
+publishedDate: 2023-11-01
+title: "[P2] - partial mock function in module in Jest"
+tags: ['ts', 'js', 'jest', 'tips']
+---
+<system-anchor heading='h2'>
+	Problem
+</system-anchor>
+
+Continuing from the <system-inline-link url='/blog/partial-mock-function-in-jest/'>previous post</system-inline-link>,
+the <system-code>complexFormula</system-code> function has now been moved to the <system-code>math</system-code> file.
+
+<system-codeblock lang='ts' filename='math.ts'>
+export const add = (a: number, b: number) => a + b;
+export const subtract = (a: number, b: number) => a - b;
+export const multiply = (a: number, b: number) => a * b;
+
+export const complexFormula = (a: number, b: number) => {
+	const sum = add(a, b);
+	const mul = multiply(a, sum);
+	return subtract(mul, b);
+};
+</system-codeblock>
+
+With the same requirement, we need to test <system-code>complexFormula</system-code> function, but I want to mock <system-code>add</system-code> function.
+
+<system-anchor heading='h2'>
+	Solution
+</system-anchor>
+
+Before go to solution, I want illustrate the relationship between <system-code>math</system-code> module and <system-code>add</system-code> function.
+
+<system-img src='../../assets/blog/get_property_descriptor_math.png' size='70'>get 'add' property configuration of math module</system-img>
+
+As you can see, the <system-code>value</system-code> is the function <system-code>(a, b) => a + b</system-code>
+
+so to mock  <system-code>add</system-code> function, all we need to do is override <system-code>value</system-code> using <system-code>Object.defineProperty</system-code>
+
+<system-codeblock lang='ts' filename='math.test.ts'>
+import * as math from './math';
+
+const mockAddFn = jest.fn();
+
+describe('complexFormula', () => {
+	beforeEach(() => {
+		Object.defineProperty(math, 'add', {
+			value: mockAddFn,
+	});
+});
+
+it('should return correct value', () => {
+	mockAddFn.mockReturnValue(10);
+
+	const result = math.complexFormula(1, 2);
+	expect(result).toBe(8);
+	});
+});
+
+</system-codeblock>
+
+It's easy, right ? 😎
+

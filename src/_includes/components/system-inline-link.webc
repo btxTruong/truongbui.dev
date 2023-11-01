@@ -1,0 +1,7 @@
+<script webc:type='js'>
+	`
+	<a href='${url}' target='_blank' class='underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]'>
+			<slot></slot>
+		</a>
+	`
+</script>

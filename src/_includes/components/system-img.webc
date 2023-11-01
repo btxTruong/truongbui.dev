@@ -1,0 +1,11 @@
+<script webc:type='js'>
+	`
+	<div class='mx-auto flex flex-col items-center my-10'>
+		<img :src='src' class='w-[${size}] h-[${size}]'>
+		</img>
+		<span class='text-sm text-slate-500 before:content-["Photo:"]'>
+			<slot></slot>
+		</span>
+	</div>
+	`
+</script>

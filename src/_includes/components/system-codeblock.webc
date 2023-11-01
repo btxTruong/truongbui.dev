@@ -18,7 +18,7 @@
 	const internalClass = !!filename ? 'justify-between' : 'justify-end';
 
 	`
-		<div class='mb-5 code-block'>
+		<div class='my-5 code-block'>
 			<div class='flex item-center ${internalClass}'>
 				${renderFilename(filename)}
 				<div class='text-xs font-medium text-slate-500 hover:text-primary-500 gap-1 copy-button-place mr-3'>

@@ -36,7 +36,7 @@ import * as doMath from './do-math';
 
 jest.mock('./math', () => {
 	return {
-		...jest.requireActual('./math'); // keep the original implementation of other functions
+		...jest.requireActual('./math'), // keep the original implementation of other functions
 		add: jest.fn(),
 	};
 });

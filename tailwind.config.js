@@ -12,10 +12,17 @@ module.exports = {
 			// https://www.tints.dev
 			colors: {
 				primary: {
+					50: "#FDEDF5",
+					100: "#FBDAEB",
+					200: "#F7B5D6",
+					300: "#F390C2",
 					400: "#F06BAD",
-					500: '#EC4899',
+					500: "#EC4899",
 					600: "#DE177A",
 					700: "#A6115C",
+					800: "#6F0C3D",
+					900: "#37061F",
+					950: "#1C030F"
 				},
 				callout: {
 					info: {

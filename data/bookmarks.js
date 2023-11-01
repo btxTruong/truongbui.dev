@@ -302,4 +302,26 @@ module.exports = [
 		],
 		"description": "Improve the performance of pg_dump pg_restore"
 	},
+	{
+		"url": "https://emojidb.org/web-emojis",
+		"tags": [
+			"emoji",
+			"fun",
+		],
+		"description": "Web emojis"
+	},
+	{
+		"url": "https://www.drawkit.com/",
+		"tags": [
+			"illustration",
+		],
+		"description": "Website to find illustrations"
+	},
+	{
+		"url": "https://undraw.co/",
+		"tags": [
+			"illustration",
+		],
+		"description": "Open-source illustrations"
+	},
 ]

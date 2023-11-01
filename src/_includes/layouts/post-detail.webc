@@ -3,7 +3,7 @@ layout: 'layouts/base.webc'
 ---
 <div class='mb-10'>
 	<system-toc
-		class='hidden min-[1800px]:block min-[1800px]:fixed min-[1800px]:left-[5%] min-[1800px]:max-w-[25rem] min-[1800px]:top-[20%]'></system-toc>
+		class='hidden min-[1800px]:block min-[1800px]:fixed min-[1800px]:left-[5%] min-[1800px]:max-w-[25rem] min-[1800px]:w-[25rem] min-[1800px]:top-[20%]'></system-toc>
 	<article>
 		<h1 @text='title' class='text-5xl font-semibold leading-[3.7rem]'></h1>
 		<p class='text-sm font-medium leading-6 text-gray-400 mt-4'>
