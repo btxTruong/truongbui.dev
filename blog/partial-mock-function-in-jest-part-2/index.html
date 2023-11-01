@@ -7,7 +7,7 @@
 	<meta name="google-site-verification" content="VPV7suDs7wRs6bjJET1APvp0XV4cXEdqlN3UQAbY-pc">
   <!--	https://search.google.com/search-console/welcome  -->
 	<!-- custom elements are not permitted inside <head>	-->
-	<title>[P1] - partial mock function in module in Jest — Truong Bui's Blog</title>
+	<title>[P2] - partial mock function in module in Jest — Truong Bui's Blog</title>
 
 	<meta name="author" content="Truong Bui">
 		<meta name="description" content="Share my knowledge, experience and tips about web development">
@@ -82,15 +82,15 @@
 	
 
 	<article>
-		<h1 class="text-5xl font-semibold leading-[3.7rem]">[P1] - partial mock function in module in Jest</h1>
+		<h1 class="text-5xl font-semibold leading-[3.7rem]">[P2] - partial mock function in module in Jest</h1>
 		<p class="text-sm font-medium leading-6 text-gray-400 mt-4">
 			<span>Truong Bui</span>
 		</p>
 		<div class="text-sm font-medium leading-6 text-gray-400">
-				<span>Published on: <time datetime="2023-10-23">2023-10-23</time></span>
+				<span>Published on: <time datetime="2023-11-01">2023-11-01</time></span>
 				•
 				<span>Last updated:
-					<span data-last-updated="Mon Oct 23 2023 00:00:00 GMT+0000 (Coordinated Universal Time)" class="time-distance-last-updated"></span>
+					<span data-last-updated="Wed Nov 01 2023 00:00:00 GMT+0000 (Coordinated Universal Time)" class="time-distance-last-updated"></span>
 				</span>
 		</div>
 		<p class="flex items-center flex-wrap mt-2">
@@ -146,6 +146,17 @@
 	
 
 
+Continuing from the <a href="/blog/partial-mock-function-in-jest/" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
+			previous post
+		</a>
+	
+,
+the <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">complexFormula</span>
+	
+ function has now been moved to the <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">math</span>
+	
+ file.
+
 <div class="my-5 code-block">
 			<div class="flex item-center justify-between">
 				
@@ -156,22 +167,7 @@
 			</div>
 			<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">add</span> <span class="token operator">=</span> <span class="token punctuation">(</span>a<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> b<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
 <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">subtract</span> <span class="token operator">=</span> <span class="token punctuation">(</span>a<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> b<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> a <span class="token operator">-</span> b<span class="token punctuation">;</span>
-<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">multiply</span> <span class="token operator">=</span> <span class="token punctuation">(</span>a<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> b<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> a <span class="token operator">*</span> b<span class="token punctuation">;</span></code></pre>
-			<div>
-				
-			</div>
-		</div>
-	
-
-<div class="my-5 code-block">
-			<div class="flex item-center justify-between">
-				
-			<span class="text-xs font-medium text-slate-500 ml-3">File name: do-math.ts</span>
-		
-				<div class="text-xs font-medium text-slate-500 hover:text-primary-500 gap-1 copy-button-place mr-3">
-				</div>
-			</div>
-			<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> add<span class="token punctuation">,</span> multiply<span class="token punctuation">,</span> subtract <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./math'</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">multiply</span> <span class="token operator">=</span> <span class="token punctuation">(</span>a<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> b<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> a <span class="token operator">*</span> b<span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">complexFormula</span> <span class="token operator">=</span> <span class="token punctuation">(</span>a<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> b<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
 	<span class="token keyword">const</span> sum <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -185,12 +181,11 @@
 	
 
 
-
-Now, I want to test the <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">complexFormula</span>
+With the same requirement, we need to test <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">complexFormula</span>
 	
- function, but I want to mock the <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">add</span>
+ function, but I want to mock <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">add</span>
 	
- function. How can I do that ?
+ function.
 
 <h2 class="text-3xl mb-5 mt-8 font-medium text-slate-700 group/heading" id="solution">
 		
@@ -203,31 +198,60 @@ Now, I want to test the <span class="font-mono text-primary-500 bg-gray-100 px-2
 	
 
 
+Before go to solution, I want illustrate the relationship between <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">math</span>
+	
+ module and <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">add</span>
+	
+ function.
+
+<div class="mx-auto flex flex-col items-center my-10">
+		<img src="/assets/get_property_descriptor_math-8a686e1d.png" class="w-[70] h-[70]">
+		
+		<span class="text-sm text-slate-500 before:content-[&quot;Photo:&quot;]">
+			get 'add' property configuration of math module
+		</span>
+	</div>
+	
+
+
+As you can see, the <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">value</span>
+	
+ is the function <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">(a, b) =&gt; a + b</span>
+	
+
+
+so to mock  <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">add</span>
+	
+ function, all we need to do is override <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">value</span>
+	
+ using <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">Object.defineProperty</span>
+	
+
+
 <div class="my-5 code-block">
 			<div class="flex item-center justify-between">
 				
-			<span class="text-xs font-medium text-slate-500 ml-3">File name: do-math.test.ts</span>
+			<span class="text-xs font-medium text-slate-500 ml-3">File name: math.test.ts</span>
 		
 				<div class="text-xs font-medium text-slate-500 hover:text-primary-500 gap-1 copy-button-place mr-3">
 				</div>
 			</div>
 			<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> math <span class="token keyword">from</span> <span class="token string">'./math'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> doMath <span class="token keyword">from</span> <span class="token string">'./do-math'</span><span class="token punctuation">;</span>
 
-jest<span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token string">'./math'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-	<span class="token keyword">return</span> <span class="token punctuation">{</span>
-		<span class="token operator">...</span>jest<span class="token punctuation">.</span><span class="token function">requireActual</span><span class="token punctuation">(</span><span class="token string">'./math'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// keep the original implementation of other functions</span>
-		add<span class="token operator">:</span> jest<span class="token punctuation">.</span><span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-	<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
+<span class="token keyword">const</span> mockAddFn <span class="token operator">=</span> jest<span class="token punctuation">.</span><span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token function">describe</span><span class="token punctuation">(</span><span class="token string">'complexFormula'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-	<span class="token keyword">const</span> addFunctionSpy <span class="token operator">=</span> jest<span class="token punctuation">.</span><span class="token function">spyOn</span><span class="token punctuation">(</span>math<span class="token punctuation">,</span> <span class="token string">'add'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token function">it</span><span class="token punctuation">(</span><span class="token string">'should return correct value'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-		addFunctionSpy<span class="token punctuation">.</span><span class="token function">mockReturnValue</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token keyword">const</span> result <span class="token operator">=</span> doMath<span class="token punctuation">.</span><span class="token function">complexFormula</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token function">expect</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+		Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>math<span class="token punctuation">,</span> <span class="token string">'add'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+			value<span class="token operator">:</span> mockAddFn<span class="token punctuation">,</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">it</span><span class="token punctuation">(</span><span class="token string">'should return correct value'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+	mockAddFn<span class="token punctuation">.</span><span class="token function">mockReturnValue</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">const</span> result <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">complexFormula</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">expect</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 			<div>
@@ -237,34 +261,8 @@ jest<span class="token punctuation">.</span><span class="token function">mock</s
 	
 
 
-<div class="border-[3px] border-callout-info-primary rounded-lg bg-callout-info-background my-5">
-	<span class="bg-callout-info-primary font-bold rounded-br-lg absolute px-2">INFO:</span>
-	<div class="mx-5 mt-9 mb-3 break-all">
-		
-	You can read more about bypassing module mocks in Jest at
-	<span class="flex gap-1 items-center underline underline-offset-2 font-semibold hover:underline-offset-4
-	hover:decoration-2">
-		<a href="https://jestjs.io/docs/bypassing-module-mocks" target="_blank">
-			
-		https://jestjs.io/docs/bypassing-module-mocks
-	
-		</a>
-	</span>
-	
+It's easy, right ? 😎
 
-
-	</div>
-</div>
-
-
-What happen if <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">complexFormula</span>
-	
- function is in <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">math</span>
-	
- file ?
-In that case <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">jest.requireActual('./math')</span>
-	
- does not work. I will show you how to do that in the next post.
 </div>
 	</article>
 	<hr class="h-[2px] my-10 bg-gray-200 border-0 rounded">
