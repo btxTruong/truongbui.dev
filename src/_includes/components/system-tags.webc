@@ -1,9 +1,17 @@
 <script webc:type='js'>
-	const allTags = $data.collections;
+	let allTags = $data.collections;
 	const ignoreTags = ['posts', 'all'];
-	const tags = Object.keys(allTags).filter((tag) => {
+	let tags = Object.keys(allTags).filter((tag) => {
 		return !ignoreTags.includes(tag);
 	});
+
+	if (tagType === 'bookmarkTags') {
+		allTags = Array.from(new Set($data.bookmarks.map((bookmark) => {
+			return bookmark.tags;
+		}).flat()));
+
+		tags = allTags
+	}
 
 	const internalClass = this.class || 'justify-center';
 
@@ -13,8 +21,9 @@
 		<p class='flex items-center flex-wrap ${internalClass}'>
 				${
 			tags.sort().map((tag) => {
+				const url = tagType === 'bookmarkTags' ? `/bookmarks/tags/${tag}/` : `/tags/${tag}/`;
 				return `
-					<system-tag tag='${tag}' url='/tags/${tag}/'></system-tag>
+					<system-tag tag='${tag}' url='${url}'></system-tag>
 				`;
 			}).join('\n')
 		}

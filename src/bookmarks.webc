@@ -14,10 +14,9 @@ title: 'bookmarks'
 
 	`
 		<div class='mb-5 text-slate-500'>
-		<span>Last updated:
-				<span class='time-distance-last-updated' data-last-updated='${$data.updatedDate}'></span>
-			</span>
+			<system-tags tag-type='bookmarkTags'></system-tags>
 		</div>
+		<hr class='my-7'/>
 		${renderTable(headers, addTagComponentInBookmarks($data.bookmarks))}
 	`
 </script>
