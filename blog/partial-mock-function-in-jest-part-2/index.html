@@ -90,7 +90,7 @@
 				<span>Published on: <time datetime="2023-11-01">2023-11-01</time></span>
 				•
 				<span>Last updated:
-					<span data-last-updated="Wed Nov 01 2023 00:00:00 GMT+0000 (Coordinated Universal Time)" class="time-distance-last-updated"></span>
+					<span data-last-updated="Thu Nov 02 2023 00:00:00 GMT+0000 (Coordinated Universal Time)" class="time-distance-last-updated"></span>
 				</span>
 		</div>
 		<p class="flex items-center flex-wrap mt-2">
@@ -247,11 +247,44 @@ so to mock  <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm"
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token function">it</span><span class="token punctuation">(</span><span class="token string">'should return correct value'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-	mockAddFn<span class="token punctuation">.</span><span class="token function">mockReturnValue</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">it</span><span class="token punctuation">(</span><span class="token string">'should return correct value'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+		mockAddFn<span class="token punctuation">.</span><span class="token function">mockReturnValue</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-	<span class="token keyword">const</span> result <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">complexFormula</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token function">expect</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">const</span> result <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">complexFormula</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">expect</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+			<div>
+				
+			</div>
+		</div>
+	
+
+
+But to be honest, for easy way I often assign the mock function directly to the module.
+
+<div class="my-5 code-block">
+			<div class="flex item-center justify-between">
+				
+			<span class="text-xs font-medium text-slate-500 ml-3">File name: math.test.ts</span>
+		
+				<div class="text-xs font-medium text-slate-500 hover:text-primary-500 gap-1 copy-button-place mr-3">
+				</div>
+			</div>
+			<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> math <span class="token keyword">from</span> <span class="token string">'./math'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> mockAddFn <span class="token operator">=</span> jest<span class="token punctuation">.</span><span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">describe</span><span class="token punctuation">(</span><span class="token string">'complexFormula'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+	<span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+		<span class="token punctuation">(</span>math <span class="token keyword">as</span> <span class="token builtin">any</span><span class="token punctuation">)</span><span class="token punctuation">.</span>add <span class="token operator">=</span> mockAddFn<span class="token punctuation">;</span> <span class="token comment">// we need to cast to any because add is readonly</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token function">it</span><span class="token punctuation">(</span><span class="token string">'should return correct value'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+		mockAddFn<span class="token punctuation">.</span><span class="token function">mockReturnValue</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		<span class="token keyword">const</span> result <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">complexFormula</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">expect</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 			<div>
