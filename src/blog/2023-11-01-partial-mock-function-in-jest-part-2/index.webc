@@ -1,5 +1,5 @@
 ---
-updatedDate: 2023-11-01
+updatedDate: 2023-11-02
 publishedDate: 2023-11-01
 title: "[P2] - partial mock function in module in Jest"
 tags: ['ts', 'js', 'jest', 'tips']
@@ -49,14 +49,35 @@ describe('complexFormula', () => {
 	});
 });
 
-it('should return correct value', () => {
-	mockAddFn.mockReturnValue(10);
+	it('should return correct value', () => {
+		mockAddFn.mockReturnValue(10);
 
-	const result = math.complexFormula(1, 2);
-	expect(result).toBe(8);
+		const result = math.complexFormula(1, 2);
+		expect(result).toBe(8);
 	});
 });
 
+</system-codeblock>
+
+But to be honest, for easy way I often assign the mock function directly to the module.
+
+<system-codeblock lang='ts' filename='math.test.ts'>
+import * as math from './math';
+
+const mockAddFn = jest.fn();
+
+describe('complexFormula', () => {
+	beforeEach(() => {
+		(math as any).add = mockAddFn; // we need to cast to any because add is readonly
+	});
+
+	it('should return correct value', () => {
+		mockAddFn.mockReturnValue(10);
+
+		const result = math.complexFormula(1, 2);
+		expect(result).toBe(8);
+	});
+});
 </system-codeblock>
 
 It's easy, right ? 😎

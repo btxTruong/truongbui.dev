@@ -324,4 +324,23 @@ module.exports = [
 		],
 		"description": "Open-source illustrations"
 	},
+	{
+		"url": "https://www.craigkerstiens.com/2012/10/01/understanding-postgres-performance/",
+		"tags": [
+			"postgres",
+			"performance",
+			"tuning"
+		],
+		"description": "Understand Postgres Performance"
+	},
+	{
+		"url": "https://www.dbrnd.com/2015/10/postgresql-script-to-find-a-missing-indexes-of-the-schema/",
+		"tags": [
+			"postgres",
+			"indexes",
+			"performance",
+			"tuning"
+		],
+		"description": "Script to find a missing indexes of the schema"
+	},
 ]
