@@ -343,4 +343,67 @@ module.exports = [
 		],
 		"description": "Script to find a missing indexes of the schema"
 	},
+	{
+		"url": "https://willj.net/posts/buffer-analysis-when-using-explain-analyse-in-postgres/",
+		"tags": [
+			"postgres",
+			"explain",
+			"performance",
+			"tuning"
+		],
+		"description": "Postgres Buffer Analysis"
+	},
+	{
+		"url": "https://jakelazaroff.com/words/web-components-will-outlive-your-javascript-framework/",
+		"tags": [
+			"js",
+			"web-components",
+		],
+		"description": "Web components"
+	},
+	{
+		"url": "https://pgtune.leopard.in.ua/",
+		"tags": [
+			"postgres",
+			"hardware",
+			"tuning"
+		],
+		"description": "Generate postgres config based on hardware"
+	},
+	{
+		"url": "https://www.cybertec-postgresql.com/en/reproducible-builds-postgresql-query-optimization/",
+		"tags": [
+			"postgres",
+			"tuning",
+			"performance",
+		],
+		"description": "Dont use NOT IN we use NOT EXISTS"
+	},
+	{
+		"url": "https://www.cybertec-postgresql.com/en/how-the-postgresql-query-optimizer-works/",
+		"tags": [
+			"postgres",
+			"tuning",
+			"performance",
+		],
+		"description": "How the PostgreSQL query optimizer works"
+	},
+	{
+		"url": "https://wiki.postgresql.org/wiki/Don%27t_Do_This#Don.27t_use_NOT_IN",
+		"tags": [
+			"postgres",
+			"tips",
+		],
+		"description": "Dont do in postgres"
+	},
+	{
+		"url": "https://explain.depesz.com/",
+		"tags": [
+			"postgres",
+			"tuning",
+			"performance",
+			"explain-visualizer",
+		],
+		"description": "Postgres explain visualizer"
+	},
 ]
