@@ -1,0 +1,88 @@
+---
+updatedDate: 2023-11-06
+publishedDate: 2023-11-06
+title: "continuation local storage in nodejs using cls-hooked"
+tags: ['ts', 'js', 'nodejs', 'async_hooks', 'exspressjs', 'cls-hooked', 'tips']
+---
+<system-anchor heading='h2'>
+	Problem
+</system-anchor>
+We need to embed some data into each request, so that we can use it in any function call in the request lifecycle in expressjs
+
+<system-anchor heading='h2'>
+	Solution
+</system-anchor>
+
+<p>Using <system-code>cls-hooked</system-code> to store data in every request via middleware.</p>
+
+<p class="mt-4">
+	<span>Step 1</span>: Download <system-code><system-inline-link url="https://www.npmjs.com/package/cls-hooked">cls-hooked</system-inline-link></system-code> package
+</p>
+
+<p class="mt-4">
+	<span>Step 2</span>: Create some util functions
+</p>
+
+<system-codeblock lang='ts' filename='cls-hook-utils.ts'>
+import cls from 'cls-hooked';
+import * as express from 'express';
+
+const ns = cls.createNamespace('your-namespace');
+
+export const clsHookMiddleware = () => {
+	return (req: express.Request, res: express.Response, next: express.NextFunction) => {
+		ns.bindEmitter(req);
+		ns.bindEmitter(res);
+
+		// create hook context
+		ns.run(() => {
+			// example - set request context
+			np.set('time', Date.now());
+			next();
+		});
+	};
+};
+
+export const getClsHookContext = <T>(key: string): T | undefined => {
+	if (ns.active) {
+		return ns.get(key) as T;
+	}
+};
+</system-codeblock>
+
+<p class="mt-4">
+	<span>Step 3</span>: Use <system-code>clsHookMiddleware</system-code> as <system-code>expressjs middleware</system-code>
+</p>
+
+<system-codeblock lang='ts' filename='app.ts'>
+import express from 'express';
+
+import { clsHookMiddleware, getClsHookContext } from './cls-hook-utils';
+
+const app = express();
+app.use(clsHookMiddleware());
+</system-codeblock>
+
+<p class="mt-4">
+	<span>Step 4</span>: Get data
+</p>
+
+<system-codeblock lang='ts' filename='app.ts'>
+...
+
+app.get('/', (req, res) => {
+	const requestTime = getClsHookContext('time');
+	res.send(`Your request time is ${requestTime}`);
+});
+
+</system-codeblock>
+
+<system-warning>
+	You have to create cls hooked context <system-code>ns.run()</system-code> before you can get data.
+
+	If not, you will get <system-code>Error: No context available. ns.run() or ns.bind() must be called first.</system-code> when you try to get data via hook.
+</system-warning>
+
+
+I don't go into detail about <system-code>cls-hooked</system-code> or <system-code>async-hook</system-code> in this post. If you're interested, you can read more about it <system-inline-link url="https://www.npmjs.com/package/cls-hooked">here</system-inline-link>
+or <system-inline-link url="https://nodejs.org/api/async_hooks.html">here</system-inline-link>

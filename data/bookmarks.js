@@ -406,4 +406,22 @@ module.exports = [
 		],
 		"description": "Postgres explain visualizer"
 	},
+	{
+		"url": "https://www.depesz.com/",
+		"tags": [
+			"postgres",
+			"advanced",
+		],
+		"description": "Blog about postgres"
+	},
+	{
+		"url": "https://www.depesz.com/tag/unexplainable/",
+		"tags": [
+			"postgres",
+			"tuning",
+			"performance",
+			"explain-visualizer",
+		],
+		"description": "Series of articles about postgres explain"
+	},
 ]
