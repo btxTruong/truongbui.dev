@@ -1,0 +1,661 @@
+---
+updatedDate: 2023-11-10
+publishedDate: 2023-11-10
+title: "tips to understand and optimize query in postgres"
+tags: ['postgres', 'optimize', 'query-plan']
+---
+Here are some tips to understand and optimize your query in postgres
+
+<system-anchor heading='h2' class='text-xl'>
+	Explain analyze
+</system-anchor>
+
+<system-codeblock lang='txt'>
+	// Source: https://www.postgresql.org/docs/current/using-explain.html#USING-EXPLAIN-ANALYZE
+	EXPLAIN ANALYZE SELECT *
+	FROM tenk1 t1, tenk2 t2
+	WHERE t1.unique1 < 10 AND t1.unique2 = t2.unique2;
+
+	QUERY PLAN
+	---------------------------------------------------------------------------------------------------------------------------------
+	Nested Loop (cost=4.65..118.62 rows=10 width=488) (actual time=0.128..0.377 rows=10 loops=1)
+		-> Bitmap Heap Scan on tenk1 t1 (cost=4.36..39.47 rows=10 width=244) (actual time=0.057..0.121
+		rows=10 loops=1)
+				Recheck Cond: (unique1 < 10)
+				-> Bitmap Index Scan on tenk1_unique1 (cost=0.00..4.36 rows=10 width=0) (actual time=0.024..0.024
+				rows=10 loops=1)
+						Index Cond: (unique1 < 10)
+		-> Index Scan using tenk2_unique2 on tenk2 t2 (cost=0.29..7.91 rows=1 width=244) (actual
+		time=0.021..0.022 rows=1 loops=10)
+				Index Cond: (unique2 = t1.unique2)
+	Planning time: 0.181 ms
+	Execution time: 0.501 ms
+</system-codeblock>
+
+<p class='mb-3 font-bold'>
+	Explain:
+</p>
+<div>
+	(cost=0.29..7.91 rows=1 width=244)
+	<ul class='list-inside list-disc'>
+		<li>
+			cost:
+			<ol class='list-inside list-disc ps-5 mt-2 space-y-1'>
+				<li>
+					=0.29: estimated start-up cost.
+				</li>
+				<li>
+					=7.91: estimated total cost.
+				</li>
+			</ol>
+		</li>
+		<li>rows=1: estimated number of rows output by this plan node.</li>
+		<li>width=244: estimated average width of rows output by this plan node (in bytes).</li>
+	</ul>
+</div>
+
+<div class='mt-5'>
+	(actual time=0.021..0.022 rows=1 loops=10)
+	<ul class='list-inside list-disc'>
+		<li>
+			time:
+			<ol class='list-inside list-disc ps-5 mt-2 space-y-1'>
+				<li>
+					=0.021: start-up time
+				</li>
+				<li>
+					=0.022: average index scan time per loop (/10)
+				</li>
+			</ol>
+		</li>
+		<li>rows=1: average index scan rows per loop (/10)</li>
+		<li>loops=10: index scan ran 10 times</li>
+	</ul>
+</div>
+
+<system-warning>
+	EXPLAIN ANALYZE actually runs the query. If you want to analyze a data-modifying query without
+	changing your tables, you can wrap your explain query in <span class='font-semibold'>BEGIN</span>
+	& <span class='font-semibold'>ROLLBACK</span>
+
+	<system-codeblock lang='txt'>
+		# Source: https://www.postgresql.org/docs/current/using-explain.html
+		BEGIN;
+
+		EXPLAIN ANALYZE UPDATE tenk1 SET hundred = hundred + 1 WHERE unique1 < 100;
+
+		QUERY PLAN
+		--------------------------------------------------------------------------------------------------------------------------------
+		Update on tenk1 (cost=5.08..230.08 rows=0 width=0) (actual time=3.791..3.792 rows=0 loops=1)
+				-> Bitmap Heap Scan on tenk1 (cost=5.08..230.08 rows=102 width=10) (actual time=0.069..0.513
+				rows=100 loops=1)
+						Recheck Cond: (unique1 < 100)
+						Heap Blocks: exact=90
+								-> Bitmap Index Scan on tenk1_unique1 (cost=0.00..5.05 rows=102 width=0) (actual
+								time=0.036..0.037 rows=300 loops=1)
+										Index Cond: (unique1 < 100)
+		Planning Time: 0.113 ms
+		Execution Time: 3.850 ms
+
+		ROLLBACK;
+	</system-codeblock>
+</system-warning>
+
+<system-info>
+	You can read more about operation times at:
+	<ul class='list-inside list-disc'>
+		<li>
+			<system-inline-link
+				url='https://www.pgmustard.com/blog/calculating-per-operation-times-in-postgres-explain-analyze'>
+				Calculating per operation times in explain analyze
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link url='https://www.pgmustard.com/docs/explain'>
+				EXPLAIN Glossary
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.pgmustard.com/blog/2018/12/14/row-count-estimates-in-postgres'>
+				Row count estimates in Postgres
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.pgmustard.com/blog/2019/9/17/postgres-execution-plans-field-glossary'>
+				Postgres execution plans–field glossary
+			</system-inline-link>
+		</li>
+	</ul>
+</system-info>
+
+
+<system-anchor heading='h2' class='text-xl'>
+	Buffers
+</system-anchor>
+
+<system-codeblock lang='txt'>
+	// Source: https://www.postgresql.org/docs/current/using-explain.html#USING-EXPLAIN-ANALYZE
+	EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM tenk1 WHERE unique1 < 100 AND unique2 > 9000;
+
+	QUERY PLAN
+	-------------------------------------------------------------------​--------------------------------------------------------------
+	Bitmap Heap Scan on tenk1 (cost=25.08..60.21 rows=10 width=244) (actual time=0.323..0.342 rows=10
+	loops=1)
+	Recheck Cond: ((unique1 < 100) AND (unique2 > 9000))
+	Buffers: shared hit=15
+	-> BitmapAnd (cost=25.08..25.08 rows=10 width=0) (actual time=0.309..0.309 rows=0 loops=1)
+				Buffers: shared hit=7 read 1
+				-> Bitmap Index Scan on tenk1_unique1 (cost=0.00..5.04 rows=101 width=0) (actual time=0.043..0.043
+				rows=100 loops=1)
+						Index Cond: (unique1 < 100)
+						Buffers: shared hit=2
+				-> Bitmap Index Scan on tenk1_unique2 (cost=0.00..19.78 rows=999 width=0) (actual
+				time=0.227..0.227 rows=999 loops=1)
+						Index Cond: (unique2 > 9000)
+						Buffers: shared hit=5 read 2
+	Planning time: 0.088 ms
+	Execution time: 0.423 ms
+</system-codeblock>
+
+<p class='mb-3 font-bold'>
+	Explain:
+</p>
+
+<div class='mt-5'>
+	Buffers: shared hit=7 read=1
+	<ul class='list-inside list-disc'>
+		<li>hit=7: 7 blocks were read from postgres buffer cache</li>
+		<li>read=1: 1 block was read from disk</li>
+	</ul>
+</div>
+<system-info>
+	You can read more about buffers at:
+	<ul class='list-inside list-disc'>
+		<li>
+			<system-inline-link
+				url='https://www.pgmustard.com/blog/using-postgres-buffers-for-query-optimization'>
+				Using BUFFERS for query optimization
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.depesz.com/2021/06/20/explaining-the-unexplainable-part-6-buffers/'>
+				Explaining the unexplainable – part 6: buffers
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link url='https://www.pgmustard.com/docs/explain/buffers-shared-written'>
+				Shared written
+			</system-inline-link>
+		</li>
+	</ul>
+</system-info>
+
+<system-anchor heading='h2' class='text-xl'>
+	Join order, join_collapse_limit and geqo_threshold
+</system-anchor>
+<system-blockquote>
+	<p>
+		When a query only involves two or three tables, there aren't many join orders to worry about.
+		But the number of possible join orders grows exponentially as the number of tables expands.
+		Beyond ten or so input tables it's no longer practical to do an exhaustive search of all the
+		possibilities,
+		and even for six or seven tables planning might take an annoyingly long time. When there are
+		<span class='font-semibold'>too many input tables</span>,
+		the PostgreSQL planner will switch from <span class='font-semibold'>exhaustive</span> search to
+		a <span class='font-semibold'>genetic probabilistic</span>
+		search through a limited number of possibilities.
+		(The switch-over threshold is set by the
+		<system-inline-link
+			url='https://www.postgresql.org/docs/current/runtime-config-query.html#GUC-GEQO-THRESHOLD'>
+			geqo_threshold
+		</system-inline-link>
+		run-time parameter.)
+		The <span class='font-semibold'>genetic search takes less time</span>, but it <span
+		class='font-semibold'>won't necessarily find the best possible plan.</span>
+	</p>
+
+	<div class='mt-5'>
+		<p>When the query involves outer joins, the planner has less freedom than it does for plain
+			(inner) joins. For example, consider:</p>
+		<p class='my-3'>
+			<system-code>SELECT * FROM a LEFT JOIN (b JOIN c ON (b.ref = c.id)) ON (a.id = b.id);
+			</system-code>
+		</p>
+		<p>
+			A row must be emitted for each row of A that has no matching row in the join of B and C.
+			Therefore the planner has no choice of join order here: it must join B to C and then join A to
+			that result. Accordingly, this query takes less time to plan than the previous query.
+			In other cases, the planner might be able to determine that more than one join order is safe.
+			For example, given:
+		</p>
+		<p class='my-3'>
+			<system-code>SELECT * FROM a LEFT JOIN b ON (a.bid = b.id) LEFT JOIN c ON (a.cid = c.id);
+			</system-code>
+		</p>
+		<p>
+			it is valid to join A to either B or C first. Currently, only FULL JOIN completely constrains
+			the join order.
+			Most practical cases involving LEFT JOIN or RIGHT JOIN can be rearranged to some extent.
+		</p>
+		<p class='mt-3'>
+			Explicit inner join syntax (INNER JOIN, CROSS JOIN, or unadorned JOIN) is semantically the
+			same as listing the input relations in FROM,
+			so it does not constrain the join order.
+		</p>
+	</div>
+
+	<p class='mt-5'>
+		--
+		<system-inline-link url='https://www.postgresql.org/docs/current/explicit-joins.html'>
+			Controlling the Planner with Explicit JOIN Clauses
+		</system-inline-link>
+		--
+	</p>
+</system-blockquote>
+
+<system-blockquote>
+	<p>
+		PostgresSQL's query planner by default will exhaust every possibility trying to determine the
+		fastest way to execute a query you request.
+		The complexity of this is exponential with the amount of joins added.
+		Attempting to plan the join of many tables together when the join order is not constrained could
+		take longer than doing the actual query.
+	</p>
+
+	<p class='mt-5'>
+		To avoid this planner's analysis paralysis, PostgreSQL also has a
+		<system-inline-link url='https://www.postgresql.org/docs/12/geqo.html'>genetic algorithm-based
+			query optimizer
+		</system-inline-link>
+		,
+		which attempts to find a heuristic solution.
+		Most of the time, it's pretty good but sometimes the results are pretty bad.
+		The decision to use <span class='font-bold'>heuristic</span> planning instead of <span
+		class='font-semibold'>deterministic</span> planning is determined by the <span
+		class=font-semibold>geqo_threshold</span>.
+		The amount of work the heuristic planner does is determined by <span class='font-bold'>geqo_effort</span>
+		, which is a simple 1-10 scale with a default to 5.
+	</p>
+
+	<p class='mt-5'>
+		Additionally, it pays to increase the values of <span
+		class='font-semibold'>join_collapse_limit</span> and <span class='font-semibold'>from_collapse_limit</span>.
+		These parameters determine the maximum number of tables for which PostgreSQL is willing to
+		optimize the join order.
+		And if you have a lot of tables, get the query plan right so you can save far more time
+		executing the query.
+	</p>
+
+	<p class='mt-5'>
+		--
+		<system-inline-link
+			url='https://www.aha.io/engineering/articles/optimizing-with-the-postgresql-deterministic-query-planner'>
+			Optimizing with the PostgreSQL deterministic query planner
+		</system-inline-link>
+		--
+	</p>
+</system-blockquote>
+
+<system-blockquote>
+	<p>
+		<span class='font-semibold'>The optimizer rearranges the join order of a query</span>.
+		With an inner join of
+		two tables, there are usually seven choices: PostgreSQL can opt for a nested loop, hash or merge
+		join, and for the first two of these, the order of the tables makes a difference as well. With
+		more tables, the number of options explodes, since the result of an inner join is independent of
+		the order in which you join the tables. For three tables, there can be up to 147 combinations.
+	</p>
+
+	<p class='mt-5'>
+		However, while the optimizer tries to find the best execution plan, it is also important that it
+		does not take too long for planning. After all, PostgreSQL normally does not cache execution
+		plans. To keep planning time moderate, the optimizer draws the line somewhere: if a query joins
+		many tables, <span class='font-semibold'>the optimizer will only consider all possible combinations for the first eight
+		tables</span>. <span class='font-semibold'>It joins the remaining tables just like you wrote them in the statement</span>.
+		You can
+		<span class='font-semibold'>adjust that limit</span> with the parameters <span
+		class='font-semibold'>join_collapse_limit</span> and <span class='font-semibold'>from_collapse_limit</span>.
+		The first one is for statements written with the explicit JOIN syntax, and the second applies to
+		joins written in the form
+	</p>
+
+	<p class='my-3'>
+		<system-code>FROM a, b WHERE a.col1 = b.col2</system-code>
+	</p>
+
+	<p class='mt-5'>
+		If <span class='font-semibold'>the number of tables reaches 12</span> (the default value of the
+		parameter <span class='font-semibold'>geqo_threshold </span>),
+		PostgreSQL uses an entirely different approach: it randomly generates a number of query plans
+		and plays evolution by recombining the most promising plans over several generations.
+		<system-inline-link url='https://www.postgresql.org/docs/current/geqo.html'>This
+			genetic query
+		</system-inline-link>
+		optimizer can result in non-deterministic query plans, which is not always what
+		you want.
+	</p>
+
+	<p class='mt-5'>
+		--
+		<system-inline-link
+			url='https://www.cybertec-postgresql.com/en/forcing-a-join-order-in-postgresql/'>
+			Join order and join_collapse_limit
+		</system-inline-link>
+		--
+	</p>
+</system-blockquote>
+
+
+<system-info>
+	<span class='font-bold mb-5'>Tips to optimize query:</span>
+	<ul class='list-inside list-disc'>
+		<li class='mt-3'>
+			Always keep number of rows needed to compute its output is small,
+			no matter how large the involved tables are.
+		</li>
+		<li class='mt-3'>
+			This means that the optimization goal is to <span class='font-semibold'>reduce
+			the size of the result set as early as possible</span>. When we execute a JOIN,
+			we prioritize joining the table that reduces the number of rows in the output the least first
+		</li>
+		<li class='mt-3'>
+			The most likely approach involves <span
+			class='font-semibold'>joining a small table first</span>, so that the result set remains
+			small even as subsequent larger tables are processed. Join the next smallest table, then the
+			next smallest, and so on.
+		</li>
+	</ul>
+</system-info>
+
+<system-info>
+	You can read more about join order at:
+	<ul class='list-inside list-disc'>
+		<li>
+			<system-inline-link
+				url='https://www.dbrnd.com/2019/02/postgresql-join_collapse_limit-to-force-join-order-laid-out-by-explicit-joins/'>
+				join_collapse_limit to force join order laid out by explicit JOINs
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.aha.io/engineering/articles/optimizing-with-the-postgresql-deterministic-query-planner'>
+				Optimizing with the PostgreSQL deterministic query planner
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.cybertec-postgresql.com/en/forcing-a-join-order-in-postgresql/'>
+				Forcing a join order in postgresql
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://pganalyze.com/blog/5mins-postgres-forcing-join-order#join_collapse_limit'>
+				Forcing Join Order in Postgres Using Optimization Barriers
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.postgresql.org/docs/current/runtime-config-query.html#GUC-JOIN-COLLAPSE-LIMIT'>
+				join_collapse_limit (integer) - config
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.postgresql.org/docs/current/runtime-config-query.html#GUC-GEQO-THRESHOLD'>
+				geqo_threshold (integer) - config
+			</system-inline-link>
+		</li>
+	</ul>
+</system-info>
+
+<system-anchor heading='h2' class='text-xl'>
+	Index
+</system-anchor>
+
+<system-info>
+	<span class='font-bold mb-5'>Index tips</span>
+	<ul class='list-inside list-disc'>
+		<li>Indexes with high selectivity are unlikely to be useful</li>
+		<li class='mt-2'>
+			Create <span class='font-semibold'>index</span> for <span
+			class='font-semibold'>foreign key</span>. Foreign key constraint does not automatically create
+			an index
+			<p>The nested loop join can use that index to optimize join. We will see them in join
+				section</p>
+		</li>
+		<li class='mt-2'>
+			B-tree index can support searches by equality, greater than, less than, and between
+			conditions.
+		</li>
+		<li class='mt-2'>
+			Using <span class='font-semibold'>functional</span> index for column transformations.
+			<p class='mt-2'>
+				We have the index like below
+			</p>
+			<p class='mt-1'>
+				<system-code>CREATE INDEX users_last_name_idx ON users (last_name);</system-code>
+			</p>
+			<p class='mt-1'>
+				the following query won’t be able to take advantage of the index:
+			</p>
+			<p class='mt-1'>
+				<system-code>SELECT * FROM users WHERE lower(last_name)='bui';</system-code>
+			</p>
+			To take advantage of the index we have to create functional index
+			<p class='mt-1'>
+				<system-code>CREATE INDEX users_last_name_idx ON users (lower(last_name));</system-code>
+			</p>
+		</li>
+
+		<li>
+			Index for <span class='font-semibold'>like</span> operator
+
+			<p class='mt-2'>
+				We have the query like below
+			</p>
+			<p class='mt-1'>
+				<system-code>SELECT * FROM users WHERE lower(last_name) like 'bui';</system-code>
+			</p>
+			<p class='mt-1'>
+				The problem with this query is that it can't take advantage of the index on lower(last_name)
+				because B-tree index does not support <span class='font-semibold'>like</span> operator
+			</p>
+			<p class='mt-1'>
+				To fix this problem, we will rewrite the index
+			</p>
+			<p class='mt-1'>
+				<system-code>CREATE INDEX users_last_name_idx ON users (lower(last_name)
+					<span class='font-semibold'>text_pattern_ops</span>);
+				</system-code>
+			</p>
+
+			<p class='mt-1'>You can read more about it at
+				<system-inline-link
+					url='https://www.postgresql.org/docs/current/indexes-opclass.html#INDEXES-OPCLASS'>Index
+					opclass
+				</system-inline-link>
+			</p>
+		</li>
+
+		<li>
+			Order must be considered in <span class='font-semibold'>compound index</span>. The <span
+			class='font-semibold'>first column</span> is <span class='font-semibold'>important</span>.
+
+			<p class='mt-2'>
+				Index on (a, b, c) will be applied when we search on <span class='font-semibold'>a</span>,
+				<span
+					class='font-semibold'>(a, b)</span>, <span class='font-semibold'>(a, b, c)</span> and
+				even <span
+				class='font-semibold'>(a, c)</span>
+				but not on <span class='font-semibold'>b</span> alone and not on <span
+				class='font-semibold'>(b, c)</span>.
+			</p>
+		</li>
+		<li>
+			Coverage indexes
+			<p class='mt-2'>
+				Create index using <span class='font-semibold'>INCLUDE</span> to make it like <span
+				class='font-semibold'>index-only-scan</span>
+				<system-inline-link
+					url='https://www.postgresql.org/docs/current/indexes-index-only-scans.html'>Index-Only
+					Scans and Covering Indexes
+				</system-inline-link>
+			</p>
+			<p>
+				<system-blockquote>
+					All indexes in PostgreSQL are secondary indexes, meaning that each index is stored
+					separately from the table's main data area (which is called the table's heap in PostgreSQL
+					terminology). This means that in an ordinary index scan, each row retrieval requires
+					fetching data from both the index and the heap
+				</system-blockquote>
+			</p>
+		</li>
+	</ul>
+</system-info>
+
+<system-anchor heading='h2' class='text-xl'>
+	Join Strategies
+</system-anchor>
+
+<system-img src='../../assets/blog/postgres_join.png' size='70'>join strategies
+	(
+	<system-inline-link
+		url='https://www.cybertec-postgresql.com/en/join-strategies-and-performance-in-postgresql/'>
+		https://www.cybertec-postgresql.com/en/join-strategies-and-performance-in-postgresql/
+	</system-inline-link>
+	)
+</system-img>
+
+<system-info>
+	You can read more about join at:
+	<ul class='list-inside list-disc'>
+		<li>
+			<system-inline-link
+				url='https://www.cybertec-postgresql.com/en/join-strategies-and-performance-in-postgresql/'>
+				Join strategies and performance in postgresql
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.metisdata.io/blog/understanding-join-strategies-in-postgresql'>
+				Understanding join strategies in postgres
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.depesz.com/tag/unexplainable/'>
+				Series explaining the unexplainable of depesz
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://postgrespro.com/blog/pgsql/5969618'>
+				Queries in PostgreSQL: 5. Nested loop
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://postgrespro.com/blog/pgsql/5969673'>
+				Queries in PostgreSQL: 6. Hashing
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://postgrespro.com/blog/pgsql/5969770'>
+				Queries in PostgreSQL: 7. Sort and merge
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://stackoverflow.com/questions/354070/sql-join-where-clause-vs-on-clause/20981676#20981676'>
+				SQL JOIN - WHERE clause vs. ON clause
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.alibabacloud.com/blog/how-to-write-a-high-performance-sql-join-implementation-and-best-practices-of-joins_599145'>
+				How To Write A High Performance Sql Join: Implementation And Best Practices Of Joins
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.cybertec-postgresql.com/en/subqueries-and-performance-in-postgresql/'>
+				Subqueries and performance in postgresql
+			</system-inline-link>
+		</li>
+	</ul>
+</system-info>
+
+<system-anchor heading='h2' class='text-xl'>
+	Query execution stages
+</system-anchor>
+
+<system-info>
+	You can read more about query execution stages at:
+	<ul class='list-inside list-disc'>
+		<li>
+			<system-inline-link
+				url='https://postgrespro.com/blog/pgsql/5969262'>
+				Queries in PostgreSQL: 1. Query execution stages
+			</system-inline-link>
+		</li>
+	</ul>
+</system-info>
+
+<system-anchor heading='h2' class='text-xl'>
+	Statistics
+</system-anchor>
+
+<system-info>
+	You can read more about statistics at:
+	<ul class='list-inside list-disc'>
+		<li>
+			<system-inline-link
+				url='https://postgrespro.com/blog/pgsql/5969296'>
+				Queries in PostgreSQL: 2. Statistics
+			</system-inline-link>
+		</li>
+	</ul>
+</system-info>
+
+<system-anchor heading='h2' class='text-xl'>
+	Scan Strategies
+</system-anchor>
+
+<system-info>
+	You can read more about scan strategies at:
+	<ul class='list-inside list-disc'>
+		<li>
+			<system-inline-link
+				url='https://postgrespro.com/blog/pgsql/5969403'>
+				Queries in PostgreSQL: 3. Sequential scan
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://postgrespro.com/blog/pgsql/5969493'>
+				Queries in PostgreSQL: 4. Index scan
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.depesz.com/tag/unexplainable/'>
+				Series explaining the unexplainable of depesz
+			</system-inline-link>
+		</li>
+	</ul>
+</system-info>
+
+<p class='mt-5'>
+	I hope you have gained an overview of how queries run in PostgreSQL; there is still much more
+	related knowledge on this topic. However, I believe that with the foundational knowledge provided
+	above, we can easily delve into more advanced concepts. And always remember that before <span class='font-semibold'>optimizing</span>
+	anything, we need to <span class='font-semibold'>measure</span> it <span class='font-semibold'>first</span>.
+</p>
+<p class='mt-4'>
+	Hope you enjoy this post! 🚀
+</p>
