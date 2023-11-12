@@ -78,7 +78,7 @@
 			
 
 				<li class="list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-semibold">
-					<a href="#join-order,-join_collapse_limit-and-geqo_threshold">Join order, join_collapse_limit and geqo_threshold</a>
+					<a href="#scan-strategies">Scan Strategies</a>
 				</li>
 			
 
@@ -93,17 +93,17 @@
 			
 
 				<li class="list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-semibold">
+					<a href="#join-order,-join_collapse_limit-and-geqo_threshold">Join order, join_collapse_limit and geqo_threshold</a>
+				</li>
+			
+
+				<li class="list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-semibold">
 					<a href="#query-execution-stages">Query execution stages</a>
 				</li>
 			
 
 				<li class="list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-semibold">
 					<a href="#statistics">Statistics</a>
-				</li>
-			
-
-				<li class="list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-semibold">
-					<a href="#scan-strategies">Scan Strategies</a>
 				</li>
 			
 				</ol>
@@ -157,7 +157,7 @@
 			
 
 				<li class="list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-semibold">
-					<a href="#join-order,-join_collapse_limit-and-geqo_threshold">Join order, join_collapse_limit and geqo_threshold</a>
+					<a href="#scan-strategies">Scan Strategies</a>
 				</li>
 			
 
@@ -172,17 +172,17 @@
 			
 
 				<li class="list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-semibold">
+					<a href="#join-order,-join_collapse_limit-and-geqo_threshold">Join order, join_collapse_limit and geqo_threshold</a>
+				</li>
+			
+
+				<li class="list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-semibold">
 					<a href="#query-execution-stages">Query execution stages</a>
 				</li>
 			
 
 				<li class="list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-semibold">
 					<a href="#statistics">Statistics</a>
-				</li>
-			
-
-				<li class="list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-semibold">
-					<a href="#scan-strategies">Scan Strategies</a>
 				</li>
 			
 				</ol>
@@ -464,6 +464,294 @@
 </div>
 
 
+<h2 class="text-3xl mb-5 mt-8 font-medium text-slate-700 group/heading text-xl" id="scan-strategies">
+		
+	Scan Strategies
+
+		<a href="#scan-strategies">
+			<span class="after:content-[&quot;#&quot;] text-primary-500 invisible group-hover/heading:visible"></span>
+		</a>
+	</h2>
+	
+
+
+<div class="border-[3px] border-callout-info-primary rounded-lg bg-callout-info-background my-5">
+	<span class="bg-callout-info-primary font-bold rounded-br-lg absolute px-2">INFO:</span>
+	<div class="mx-5 mt-9 mb-3 break-all">
+		
+	You can read more about scan strategies at:
+	<ul class="list-inside list-disc">
+		<li>
+			<a href="https://postgrespro.com/blog/pgsql/5969403" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
+			
+				Queries in PostgreSQL: 3. Sequential scan
+			
+		</a>
+	
+
+		</li>
+		<li>
+			<a href="https://postgrespro.com/blog/pgsql/5969493" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
+			
+				Queries in PostgreSQL: 4. Index scan
+			
+		</a>
+	
+
+		</li>
+		<li>
+			<a href="https://www.depesz.com/tag/unexplainable/" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
+			
+				Series explaining the unexplainable of depesz
+			
+		</a>
+	
+
+		</li>
+	</ul>
+
+	</div>
+</div>
+
+
+<h2 class="text-3xl mb-5 mt-8 font-medium text-slate-700 group/heading text-xl" id="index">
+		
+	Index
+
+		<a href="#index">
+			<span class="after:content-[&quot;#&quot;] text-primary-500 invisible group-hover/heading:visible"></span>
+		</a>
+	</h2>
+	
+
+
+<div class="border-[3px] border-callout-info-primary rounded-lg bg-callout-info-background my-5">
+	<span class="bg-callout-info-primary font-bold rounded-br-lg absolute px-2">INFO:</span>
+	<div class="mx-5 mt-9 mb-3 break-all">
+		
+	<span class="font-bold mb-5">Index tips</span>
+	<ul class="list-inside list-disc">
+		<li>Indexes with high selectivity are unlikely to be useful</li>
+		<li class="mt-2">
+			Create <span class="font-semibold">index</span> for <span class="font-semibold">foreign key</span>. Foreign key constraint does not automatically create
+			an index
+			<p>The nested loop join can use that index to optimize join. We will see them in join
+				section</p>
+		</li>
+		<li class="mt-2">
+			B-tree index can support searches by equality, greater than, less than, and between
+			conditions.
+		</li>
+		<li class="mt-2">
+			Using <span class="font-semibold">functional</span> index for column transformations.
+			<p class="mt-2">
+				We have the index like below
+			</p>
+			<p class="mt-1">
+				<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">CREATE INDEX users_last_name_idx ON users (last_name);</span>
+	
+
+			</p>
+			<p class="mt-1">
+				the following query won’t be able to take advantage of the index:
+			</p>
+			<p class="mt-1">
+				<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">SELECT * FROM users WHERE lower(last_name)='bui';</span>
+	
+
+			</p>
+			To take advantage of the index we have to create functional index
+			<p class="mt-1">
+				<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">CREATE INDEX users_last_name_idx ON users (lower(last_name));</span>
+	
+
+			</p>
+		</li>
+
+		<li>
+			Index for <span class="font-semibold">like</span> operator
+
+			<p class="mt-2">
+				We have the query like below
+			</p>
+			<p class="mt-1">
+				<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">SELECT * FROM users WHERE lower(last_name) like 'bui';</span>
+	
+
+			</p>
+			<p class="mt-1">
+				The problem with this query is that it can't take advantage of the index on lower(last_name)
+				because B-tree index does not support <span class="font-semibold">like</span> operator
+			</p>
+			<p class="mt-1">
+				To fix this problem, we will rewrite the index
+			</p>
+			<p class="mt-1">
+				<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">CREATE INDEX users_last_name_idx ON users (lower(last_name)
+					<span class="font-semibold">text_pattern_ops</span>);
+				</span>
+	
+
+			</p>
+
+			<p class="mt-1">You can read more about it at
+				<a href="https://www.postgresql.org/docs/current/indexes-opclass.html#INDEXES-OPCLASS" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
+			Index
+					opclass
+				
+		</a>
+	
+
+			</p>
+		</li>
+
+		<li>
+			Order must be considered in <span class="font-semibold">compound index</span>. The <span class="font-semibold">first column</span> is <span class="font-semibold">important</span>.
+
+			<p class="mt-2">
+				Index on (a, b, c) will be applied when we search on <span class="font-semibold">a</span>,
+				<span class="font-semibold">(a, b)</span>, <span class="font-semibold">(a, b, c)</span> and
+				even <span class="font-semibold">(a, c)</span>
+				but not on <span class="font-semibold">b</span> alone and not on <span class="font-semibold">(b, c)</span>.
+			</p>
+		</li>
+		<li>
+			Coverage indexes
+			<p class="mt-2">
+				Create index using <span class="font-semibold">INCLUDE</span> to make it like <span class="font-semibold">index-only-scan</span>
+				<a href="https://www.postgresql.org/docs/current/indexes-index-only-scans.html" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
+			Index-Only
+					Scans and Covering Indexes
+				
+		</a>
+	
+
+			</p>
+			<p>
+				<blockquote class="italic text-slate-500 my-7 border-l-4 pl-5 border-primary-500">
+    <p>
+    	
+					All indexes in PostgreSQL are secondary indexes, meaning that each index is stored
+					separately from the table's main data area (which is called the table's heap in PostgreSQL
+					terminology). This means that in an ordinary index scan, each row retrieval requires
+					fetching data from both the index and the heap
+				
+		</p>
+</blockquote>
+	
+
+			</p>
+		</li>
+	</ul>
+
+	</div>
+</div>
+
+
+<h2 class="text-3xl mb-5 mt-8 font-medium text-slate-700 group/heading text-xl" id="join-strategies">
+		
+	Join Strategies
+
+		<a href="#join-strategies">
+			<span class="after:content-[&quot;#&quot;] text-primary-500 invisible group-hover/heading:visible"></span>
+		</a>
+	</h2>
+	
+
+
+<div class="border-[3px] border-callout-info-primary rounded-lg bg-callout-info-background my-5">
+	<span class="bg-callout-info-primary font-bold rounded-br-lg absolute px-2">INFO:</span>
+	<div class="mx-5 mt-9 mb-3 break-all">
+		
+	You can read more about join strategies at:
+	<ul class="list-inside list-disc">
+		<li>
+			<a href="https://www.cybertec-postgresql.com/en/join-strategies-and-performance-in-postgresql/" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
+			
+				Join strategies and performance in postgresql
+			
+		</a>
+	
+
+		</li>
+		<li>
+			<a href="https://www.metisdata.sio/blog/understanding-join-strategies-in-postgresql" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
+			
+				Understanding join strategies in postgres
+			
+		</a>
+	
+
+		</li>
+		<li>
+			<a href="https://www.depesz.com/tag/unexplainable/" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
+			
+				Series explaining the unexplainable of depesz
+			
+		</a>
+	
+
+		</li>
+		<li>
+			<a href="https://postgrespro.com/blog/pgsql/5969618" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
+			
+				Queries in PostgreSQL: 5. Nested loop
+			
+		</a>
+	
+
+		</li>
+		<li>
+			<a href="https://postgrespro.com/blog/pgsql/5969673" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
+			
+				Queries in PostgreSQL: 6. Hashing
+			
+		</a>
+	
+
+		</li>
+		<li>
+			<a href="https://postgrespro.com/blog/pgsql/5969770" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
+			
+				Queries in PostgreSQL: 7. Sort and merge
+			
+		</a>
+	
+
+		</li>
+		<li>
+			<a href="https://stackoverflow.com/questions/354070/sql-join-where-clause-vs-on-clause/20981676#20981676" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
+			
+				SQL JOIN - WHERE clause vs. ON clause
+			
+		</a>
+	
+
+		</li>
+		<li>
+			<a href="https://www.alibabacloud.com/blog/how-to-write-a-high-performance-sql-join-implementation-and-best-practices-of-joins_599145" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
+			
+				How To Write A High Performance Sql Join: Implementation And Best Practices Of Joins
+			
+		</a>
+	
+
+		</li>
+		<li>
+			<a href="https://www.cybertec-postgresql.com/en/subqueries-and-performance-in-postgresql/" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
+			
+				Subqueries and performance in postgresql
+			
+		</a>
+	
+
+		</li>
+	</ul>
+
+	</div>
+</div>
+
+
 <h2 class="text-3xl mb-5 mt-8 font-medium text-slate-700 group/heading text-xl" id="join-order,-join_collapse_limit-and-geqo_threshold">
 		
 	Join order, join_collapse_limit and geqo_threshold
@@ -687,6 +975,11 @@
 			small even as subsequent larger tables are processed. Join the next smallest table, then the
 			next smallest, and so on.
 		</li>
+		<li class="mt-3">
+			When using ORM, always remember that postgres only optimizes some join tables not all (before
+			optimizer moves to another approach). You have to
+			get the explain query to see if the order of joins is proficient.
+		</li>
 	</ul>
 
 	</div>
@@ -759,264 +1052,6 @@
 </div>
 
 
-<h2 class="text-3xl mb-5 mt-8 font-medium text-slate-700 group/heading text-xl" id="index">
-		
-	Index
-
-		<a href="#index">
-			<span class="after:content-[&quot;#&quot;] text-primary-500 invisible group-hover/heading:visible"></span>
-		</a>
-	</h2>
-	
-
-
-<div class="border-[3px] border-callout-info-primary rounded-lg bg-callout-info-background my-5">
-	<span class="bg-callout-info-primary font-bold rounded-br-lg absolute px-2">INFO:</span>
-	<div class="mx-5 mt-9 mb-3 break-all">
-		
-	<span class="font-bold mb-5">Index tips</span>
-	<ul class="list-inside list-disc">
-		<li>Indexes with high selectivity are unlikely to be useful</li>
-		<li class="mt-2">
-			Create <span class="font-semibold">index</span> for <span class="font-semibold">foreign key</span>. Foreign key constraint does not automatically create
-			an index
-			<p>The nested loop join can use that index to optimize join. We will see them in join
-				section</p>
-		</li>
-		<li class="mt-2">
-			B-tree index can support searches by equality, greater than, less than, and between
-			conditions.
-		</li>
-		<li class="mt-2">
-			Using <span class="font-semibold">functional</span> index for column transformations.
-			<p class="mt-2">
-				We have the index like below
-			</p>
-			<p class="mt-1">
-				<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">CREATE INDEX users_last_name_idx ON users (last_name);</span>
-	
-
-			</p>
-			<p class="mt-1">
-				the following query won’t be able to take advantage of the index:
-			</p>
-			<p class="mt-1">
-				<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">SELECT * FROM users WHERE lower(last_name)='bui';</span>
-	
-
-			</p>
-			To take advantage of the index we have to create functional index
-			<p class="mt-1">
-				<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">CREATE INDEX users_last_name_idx ON users (lower(last_name));</span>
-	
-
-			</p>
-		</li>
-
-		<li>
-			Index for <span class="font-semibold">like</span> operator
-
-			<p class="mt-2">
-				We have the query like below
-			</p>
-			<p class="mt-1">
-				<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">SELECT * FROM users WHERE lower(last_name) like 'bui';</span>
-	
-
-			</p>
-			<p class="mt-1">
-				The problem with this query is that it can't take advantage of the index on lower(last_name)
-				because B-tree index does not support <span class="font-semibold">like</span> operator
-			</p>
-			<p class="mt-1">
-				To fix this problem, we will rewrite the index
-			</p>
-			<p class="mt-1">
-				<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">CREATE INDEX users_last_name_idx ON users (lower(last_name)
-					<span class="font-semibold">text_pattern_ops</span>);
-				</span>
-	
-
-			</p>
-
-			<p class="mt-1">You can read more about it at
-				<a href="https://www.postgresql.org/docs/current/indexes-opclass.html#INDEXES-OPCLASS" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
-			Index
-					opclass
-				
-		</a>
-	
-
-			</p>
-		</li>
-
-		<li>
-			Order must be considered in <span class="font-semibold">compound index</span>. The <span class="font-semibold">first column</span> is <span class="font-semibold">important</span>.
-
-			<p class="mt-2">
-				Index on (a, b, c) will be applied when we search on <span class="font-semibold">a</span>,
-				<span class="font-semibold">(a, b)</span>, <span class="font-semibold">(a, b, c)</span> and
-				even <span class="font-semibold">(a, c)</span>
-				but not on <span class="font-semibold">b</span> alone and not on <span class="font-semibold">(b, c)</span>.
-			</p>
-		</li>
-		<li>
-			Coverage indexes
-			<p class="mt-2">
-				Create index using <span class="font-semibold">INCLUDE</span> to make it like <span class="font-semibold">index-only-scan</span>
-				<a href="https://www.postgresql.org/docs/current/indexes-index-only-scans.html" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
-			Index-Only
-					Scans and Covering Indexes
-				
-		</a>
-	
-
-			</p>
-			<p>
-				<blockquote class="italic text-slate-500 my-7 border-l-4 pl-5 border-primary-500">
-    <p>
-    	
-					All indexes in PostgreSQL are secondary indexes, meaning that each index is stored
-					separately from the table's main data area (which is called the table's heap in PostgreSQL
-					terminology). This means that in an ordinary index scan, each row retrieval requires
-					fetching data from both the index and the heap
-				
-		</p>
-</blockquote>
-	
-
-			</p>
-		</li>
-	</ul>
-
-	</div>
-</div>
-
-
-<h2 class="text-3xl mb-5 mt-8 font-medium text-slate-700 group/heading text-xl" id="join-strategies">
-		
-	Join Strategies
-
-		<a href="#join-strategies">
-			<span class="after:content-[&quot;#&quot;] text-primary-500 invisible group-hover/heading:visible"></span>
-		</a>
-	</h2>
-	
-
-
-<div class="mx-auto flex flex-col items-center my-10">
-		<img src="/assets/postgres_join-60e92565.png" class="w-[70] h-[70]">
-		
-		<span class="text-sm text-slate-500 before:content-[&quot;Photo:&quot;]">
-			join strategies
-	(
-	<a href="https://www.cybertec-postgresql.com/en/join-strategies-and-performance-in-postgresql/" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
-			
-		https://www.cybertec-postgresql.com/en/join-strategies-and-performance-in-postgresql/
-	
-		</a>
-	
-
-	)
-
-		</span>
-	</div>
-	
-
-
-<div class="border-[3px] border-callout-info-primary rounded-lg bg-callout-info-background my-5">
-	<span class="bg-callout-info-primary font-bold rounded-br-lg absolute px-2">INFO:</span>
-	<div class="mx-5 mt-9 mb-3 break-all">
-		
-	You can read more about join at:
-	<ul class="list-inside list-disc">
-		<li>
-			<a href="https://www.cybertec-postgresql.com/en/join-strategies-and-performance-in-postgresql/" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
-			
-				Join strategies and performance in postgresql
-			
-		</a>
-	
-
-		</li>
-		<li>
-			<a href="https://www.metisdata.io/blog/understanding-join-strategies-in-postgresql" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
-			
-				Understanding join strategies in postgres
-			
-		</a>
-	
-
-		</li>
-		<li>
-			<a href="https://www.depesz.com/tag/unexplainable/" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
-			
-				Series explaining the unexplainable of depesz
-			
-		</a>
-	
-
-		</li>
-		<li>
-			<a href="https://postgrespro.com/blog/pgsql/5969618" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
-			
-				Queries in PostgreSQL: 5. Nested loop
-			
-		</a>
-	
-
-		</li>
-		<li>
-			<a href="https://postgrespro.com/blog/pgsql/5969673" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
-			
-				Queries in PostgreSQL: 6. Hashing
-			
-		</a>
-	
-
-		</li>
-		<li>
-			<a href="https://postgrespro.com/blog/pgsql/5969770" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
-			
-				Queries in PostgreSQL: 7. Sort and merge
-			
-		</a>
-	
-
-		</li>
-		<li>
-			<a href="https://stackoverflow.com/questions/354070/sql-join-where-clause-vs-on-clause/20981676#20981676" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
-			
-				SQL JOIN - WHERE clause vs. ON clause
-			
-		</a>
-	
-
-		</li>
-		<li>
-			<a href="https://www.alibabacloud.com/blog/how-to-write-a-high-performance-sql-join-implementation-and-best-practices-of-joins_599145" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
-			
-				How To Write A High Performance Sql Join: Implementation And Best Practices Of Joins
-			
-		</a>
-	
-
-		</li>
-		<li>
-			<a href="https://www.cybertec-postgresql.com/en/subqueries-and-performance-in-postgresql/" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
-			
-				Subqueries and performance in postgresql
-			
-		</a>
-	
-
-		</li>
-	</ul>
-
-	</div>
-</div>
-
-
 <h2 class="text-3xl mb-5 mt-8 font-medium text-slate-700 group/heading text-xl" id="query-execution-stages">
 		
 	Query execution stages
@@ -1070,56 +1105,6 @@
 			<a href="https://postgrespro.com/blog/pgsql/5969296" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
 			
 				Queries in PostgreSQL: 2. Statistics
-			
-		</a>
-	
-
-		</li>
-	</ul>
-
-	</div>
-</div>
-
-
-<h2 class="text-3xl mb-5 mt-8 font-medium text-slate-700 group/heading text-xl" id="scan-strategies">
-		
-	Scan Strategies
-
-		<a href="#scan-strategies">
-			<span class="after:content-[&quot;#&quot;] text-primary-500 invisible group-hover/heading:visible"></span>
-		</a>
-	</h2>
-	
-
-
-<div class="border-[3px] border-callout-info-primary rounded-lg bg-callout-info-background my-5">
-	<span class="bg-callout-info-primary font-bold rounded-br-lg absolute px-2">INFO:</span>
-	<div class="mx-5 mt-9 mb-3 break-all">
-		
-	You can read more about scan strategies at:
-	<ul class="list-inside list-disc">
-		<li>
-			<a href="https://postgrespro.com/blog/pgsql/5969403" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
-			
-				Queries in PostgreSQL: 3. Sequential scan
-			
-		</a>
-	
-
-		</li>
-		<li>
-			<a href="https://postgrespro.com/blog/pgsql/5969493" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
-			
-				Queries in PostgreSQL: 4. Index scan
-			
-		</a>
-	
-
-		</li>
-		<li>
-			<a href="https://www.depesz.com/tag/unexplainable/" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
-			
-				Series explaining the unexplainable of depesz
 			
 		</a>
 	
