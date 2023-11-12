@@ -194,6 +194,203 @@ Here are some tips to understand and optimize your query in postgres
 </system-info>
 
 <system-anchor heading='h2' class='text-xl'>
+	Scan Strategies
+</system-anchor>
+
+<system-info>
+	You can read more about scan strategies at:
+	<ul class='list-inside list-disc'>
+		<li>
+			<system-inline-link
+				url='https://postgrespro.com/blog/pgsql/5969403'>
+				Queries in PostgreSQL: 3. Sequential scan
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://postgrespro.com/blog/pgsql/5969493'>
+				Queries in PostgreSQL: 4. Index scan
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.depesz.com/tag/unexplainable/'>
+				Series explaining the unexplainable of depesz
+			</system-inline-link>
+		</li>
+	</ul>
+</system-info>
+
+<system-anchor heading='h2' class='text-xl'>
+	Index
+</system-anchor>
+
+<system-info>
+	<span class='font-bold mb-5'>Index tips</span>
+	<ul class='list-inside list-disc'>
+		<li>Indexes with high selectivity are unlikely to be useful</li>
+		<li class='mt-2'>
+			Create <span class='font-semibold'>index</span> for <span
+			class='font-semibold'>foreign key</span>. Foreign key constraint does not automatically create
+			an index
+			<p>The nested loop join can use that index to optimize join. We will see them in join
+				section</p>
+		</li>
+		<li class='mt-2'>
+			B-tree index can support searches by equality, greater than, less than, and between
+			conditions.
+		</li>
+		<li class='mt-2'>
+			Using <span class='font-semibold'>functional</span> index for column transformations.
+			<p class='mt-2'>
+				We have the index like below
+			</p>
+			<p class='mt-1'>
+				<system-code>CREATE INDEX users_last_name_idx ON users (last_name);</system-code>
+			</p>
+			<p class='mt-1'>
+				the following query won’t be able to take advantage of the index:
+			</p>
+			<p class='mt-1'>
+				<system-code>SELECT * FROM users WHERE lower(last_name)='bui';</system-code>
+			</p>
+			To take advantage of the index we have to create functional index
+			<p class='mt-1'>
+				<system-code>CREATE INDEX users_last_name_idx ON users (lower(last_name));</system-code>
+			</p>
+		</li>
+
+		<li>
+			Index for <span class='font-semibold'>like</span> operator
+
+			<p class='mt-2'>
+				We have the query like below
+			</p>
+			<p class='mt-1'>
+				<system-code>SELECT * FROM users WHERE lower(last_name) like 'bui';</system-code>
+			</p>
+			<p class='mt-1'>
+				The problem with this query is that it can't take advantage of the index on lower(last_name)
+				because B-tree index does not support <span class='font-semibold'>like</span> operator
+			</p>
+			<p class='mt-1'>
+				To fix this problem, we will rewrite the index
+			</p>
+			<p class='mt-1'>
+				<system-code>CREATE INDEX users_last_name_idx ON users (lower(last_name)
+					<span class='font-semibold'>text_pattern_ops</span>);
+				</system-code>
+			</p>
+
+			<p class='mt-1'>You can read more about it at
+				<system-inline-link
+					url='https://www.postgresql.org/docs/current/indexes-opclass.html#INDEXES-OPCLASS'>Index
+					opclass
+				</system-inline-link>
+			</p>
+		</li>
+
+		<li>
+			Order must be considered in <span class='font-semibold'>compound index</span>. The <span
+			class='font-semibold'>first column</span> is <span class='font-semibold'>important</span>.
+
+			<p class='mt-2'>
+				Index on (a, b, c) will be applied when we search on <span class='font-semibold'>a</span>,
+				<span
+					class='font-semibold'>(a, b)</span>, <span class='font-semibold'>(a, b, c)</span> and
+				even <span
+				class='font-semibold'>(a, c)</span>
+				but not on <span class='font-semibold'>b</span> alone and not on <span
+				class='font-semibold'>(b, c)</span>.
+			</p>
+		</li>
+		<li>
+			Coverage indexes
+			<p class='mt-2'>
+				Create index using <span class='font-semibold'>INCLUDE</span> to make it like <span
+				class='font-semibold'>index-only-scan</span>
+				<system-inline-link
+					url='https://www.postgresql.org/docs/current/indexes-index-only-scans.html'>Index-Only
+					Scans and Covering Indexes
+				</system-inline-link>
+			</p>
+			<p>
+				<system-blockquote>
+					All indexes in PostgreSQL are secondary indexes, meaning that each index is stored
+					separately from the table's main data area (which is called the table's heap in PostgreSQL
+					terminology). This means that in an ordinary index scan, each row retrieval requires
+					fetching data from both the index and the heap
+				</system-blockquote>
+			</p>
+		</li>
+	</ul>
+</system-info>
+
+<system-anchor heading='h2' class='text-xl'>
+	Join Strategies
+</system-anchor>
+
+<system-info>
+	You can read more about join strategies at:
+	<ul class='list-inside list-disc'>
+		<li>
+			<system-inline-link
+				url='https://www.cybertec-postgresql.com/en/join-strategies-and-performance-in-postgresql/'>
+				Join strategies and performance in postgresql
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.metisdata.sio/blog/understanding-join-strategies-in-postgresql'>
+				Understanding join strategies in postgres
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.depesz.com/tag/unexplainable/'>
+				Series explaining the unexplainable of depesz
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://postgrespro.com/blog/pgsql/5969618'>
+				Queries in PostgreSQL: 5. Nested loop
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://postgrespro.com/blog/pgsql/5969673'>
+				Queries in PostgreSQL: 6. Hashing
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://postgrespro.com/blog/pgsql/5969770'>
+				Queries in PostgreSQL: 7. Sort and merge
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://stackoverflow.com/questions/354070/sql-join-where-clause-vs-on-clause/20981676#20981676'>
+				SQL JOIN - WHERE clause vs. ON clause
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.alibabacloud.com/blog/how-to-write-a-high-performance-sql-join-implementation-and-best-practices-of-joins_599145'>
+				How To Write A High Performance Sql Join: Implementation And Best Practices Of Joins
+			</system-inline-link>
+		</li>
+		<li>
+			<system-inline-link
+				url='https://www.cybertec-postgresql.com/en/subqueries-and-performance-in-postgresql/'>
+				Subqueries and performance in postgresql
+			</system-inline-link>
+		</li>
+	</ul>
+</system-info>
+
+<system-anchor heading='h2' class='text-xl'>
 	Join order, join_collapse_limit and geqo_threshold
 </system-anchor>
 <system-blockquote>
@@ -367,6 +564,11 @@ Here are some tips to understand and optimize your query in postgres
 			small even as subsequent larger tables are processed. Join the next smallest table, then the
 			next smallest, and so on.
 		</li>
+		<li class='mt-3'>
+			When using ORM, always remember that postgres only optimizes some join tables not all (before
+			optimizer moves to another approach). You have to
+			get the explain query to see if the order of joins is proficient.
+		</li>
 	</ul>
 </system-info>
 
@@ -413,184 +615,6 @@ Here are some tips to understand and optimize your query in postgres
 </system-info>
 
 <system-anchor heading='h2' class='text-xl'>
-	Index
-</system-anchor>
-
-<system-info>
-	<span class='font-bold mb-5'>Index tips</span>
-	<ul class='list-inside list-disc'>
-		<li>Indexes with high selectivity are unlikely to be useful</li>
-		<li class='mt-2'>
-			Create <span class='font-semibold'>index</span> for <span
-			class='font-semibold'>foreign key</span>. Foreign key constraint does not automatically create
-			an index
-			<p>The nested loop join can use that index to optimize join. We will see them in join
-				section</p>
-		</li>
-		<li class='mt-2'>
-			B-tree index can support searches by equality, greater than, less than, and between
-			conditions.
-		</li>
-		<li class='mt-2'>
-			Using <span class='font-semibold'>functional</span> index for column transformations.
-			<p class='mt-2'>
-				We have the index like below
-			</p>
-			<p class='mt-1'>
-				<system-code>CREATE INDEX users_last_name_idx ON users (last_name);</system-code>
-			</p>
-			<p class='mt-1'>
-				the following query won’t be able to take advantage of the index:
-			</p>
-			<p class='mt-1'>
-				<system-code>SELECT * FROM users WHERE lower(last_name)='bui';</system-code>
-			</p>
-			To take advantage of the index we have to create functional index
-			<p class='mt-1'>
-				<system-code>CREATE INDEX users_last_name_idx ON users (lower(last_name));</system-code>
-			</p>
-		</li>
-
-		<li>
-			Index for <span class='font-semibold'>like</span> operator
-
-			<p class='mt-2'>
-				We have the query like below
-			</p>
-			<p class='mt-1'>
-				<system-code>SELECT * FROM users WHERE lower(last_name) like 'bui';</system-code>
-			</p>
-			<p class='mt-1'>
-				The problem with this query is that it can't take advantage of the index on lower(last_name)
-				because B-tree index does not support <span class='font-semibold'>like</span> operator
-			</p>
-			<p class='mt-1'>
-				To fix this problem, we will rewrite the index
-			</p>
-			<p class='mt-1'>
-				<system-code>CREATE INDEX users_last_name_idx ON users (lower(last_name)
-					<span class='font-semibold'>text_pattern_ops</span>);
-				</system-code>
-			</p>
-
-			<p class='mt-1'>You can read more about it at
-				<system-inline-link
-					url='https://www.postgresql.org/docs/current/indexes-opclass.html#INDEXES-OPCLASS'>Index
-					opclass
-				</system-inline-link>
-			</p>
-		</li>
-
-		<li>
-			Order must be considered in <span class='font-semibold'>compound index</span>. The <span
-			class='font-semibold'>first column</span> is <span class='font-semibold'>important</span>.
-
-			<p class='mt-2'>
-				Index on (a, b, c) will be applied when we search on <span class='font-semibold'>a</span>,
-				<span
-					class='font-semibold'>(a, b)</span>, <span class='font-semibold'>(a, b, c)</span> and
-				even <span
-				class='font-semibold'>(a, c)</span>
-				but not on <span class='font-semibold'>b</span> alone and not on <span
-				class='font-semibold'>(b, c)</span>.
-			</p>
-		</li>
-		<li>
-			Coverage indexes
-			<p class='mt-2'>
-				Create index using <span class='font-semibold'>INCLUDE</span> to make it like <span
-				class='font-semibold'>index-only-scan</span>
-				<system-inline-link
-					url='https://www.postgresql.org/docs/current/indexes-index-only-scans.html'>Index-Only
-					Scans and Covering Indexes
-				</system-inline-link>
-			</p>
-			<p>
-				<system-blockquote>
-					All indexes in PostgreSQL are secondary indexes, meaning that each index is stored
-					separately from the table's main data area (which is called the table's heap in PostgreSQL
-					terminology). This means that in an ordinary index scan, each row retrieval requires
-					fetching data from both the index and the heap
-				</system-blockquote>
-			</p>
-		</li>
-	</ul>
-</system-info>
-
-<system-anchor heading='h2' class='text-xl'>
-	Join Strategies
-</system-anchor>
-
-<system-img src='../../assets/blog/postgres_join.png' size='70'>join strategies
-	(
-	<system-inline-link
-		url='https://www.cybertec-postgresql.com/en/join-strategies-and-performance-in-postgresql/'>
-		https://www.cybertec-postgresql.com/en/join-strategies-and-performance-in-postgresql/
-	</system-inline-link>
-	)
-</system-img>
-
-<system-info>
-	You can read more about join at:
-	<ul class='list-inside list-disc'>
-		<li>
-			<system-inline-link
-				url='https://www.cybertec-postgresql.com/en/join-strategies-and-performance-in-postgresql/'>
-				Join strategies and performance in postgresql
-			</system-inline-link>
-		</li>
-		<li>
-			<system-inline-link
-				url='https://www.metisdata.io/blog/understanding-join-strategies-in-postgresql'>
-				Understanding join strategies in postgres
-			</system-inline-link>
-		</li>
-		<li>
-			<system-inline-link
-				url='https://www.depesz.com/tag/unexplainable/'>
-				Series explaining the unexplainable of depesz
-			</system-inline-link>
-		</li>
-		<li>
-			<system-inline-link
-				url='https://postgrespro.com/blog/pgsql/5969618'>
-				Queries in PostgreSQL: 5. Nested loop
-			</system-inline-link>
-		</li>
-		<li>
-			<system-inline-link
-				url='https://postgrespro.com/blog/pgsql/5969673'>
-				Queries in PostgreSQL: 6. Hashing
-			</system-inline-link>
-		</li>
-		<li>
-			<system-inline-link
-				url='https://postgrespro.com/blog/pgsql/5969770'>
-				Queries in PostgreSQL: 7. Sort and merge
-			</system-inline-link>
-		</li>
-		<li>
-			<system-inline-link
-				url='https://stackoverflow.com/questions/354070/sql-join-where-clause-vs-on-clause/20981676#20981676'>
-				SQL JOIN - WHERE clause vs. ON clause
-			</system-inline-link>
-		</li>
-		<li>
-			<system-inline-link
-				url='https://www.alibabacloud.com/blog/how-to-write-a-high-performance-sql-join-implementation-and-best-practices-of-joins_599145'>
-				How To Write A High Performance Sql Join: Implementation And Best Practices Of Joins
-			</system-inline-link>
-		</li>
-		<li>
-			<system-inline-link
-				url='https://www.cybertec-postgresql.com/en/subqueries-and-performance-in-postgresql/'>
-				Subqueries and performance in postgresql
-			</system-inline-link>
-		</li>
-	</ul>
-</system-info>
-
-<system-anchor heading='h2' class='text-xl'>
 	Query execution stages
 </system-anchor>
 
@@ -617,34 +641,6 @@ Here are some tips to understand and optimize your query in postgres
 			<system-inline-link
 				url='https://postgrespro.com/blog/pgsql/5969296'>
 				Queries in PostgreSQL: 2. Statistics
-			</system-inline-link>
-		</li>
-	</ul>
-</system-info>
-
-<system-anchor heading='h2' class='text-xl'>
-	Scan Strategies
-</system-anchor>
-
-<system-info>
-	You can read more about scan strategies at:
-	<ul class='list-inside list-disc'>
-		<li>
-			<system-inline-link
-				url='https://postgrespro.com/blog/pgsql/5969403'>
-				Queries in PostgreSQL: 3. Sequential scan
-			</system-inline-link>
-		</li>
-		<li>
-			<system-inline-link
-				url='https://postgrespro.com/blog/pgsql/5969493'>
-				Queries in PostgreSQL: 4. Index scan
-			</system-inline-link>
-		</li>
-		<li>
-			<system-inline-link
-				url='https://www.depesz.com/tag/unexplainable/'>
-				Series explaining the unexplainable of depesz
 			</system-inline-link>
 		</li>
 	</ul>
