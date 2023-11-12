@@ -305,7 +305,7 @@ Here are some tips to understand and optimize your query in postgres
 			</p>
 		</li>
 		<li>
-			Coverage indexes
+			Covering indexes
 			<p class='mt-2'>
 				Create index using <span class='font-semibold'>INCLUDE</span> to make it like <span
 				class='font-semibold'>index-only-scan</span>
