@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="google-site-verification" content="VPV7suDs7wRs6bjJET1APvp0XV4cXEdqlN3UQAbY-pc">
+  <!--	https://search.google.com/search-console/welcome  -->
+	<!-- custom elements are not permitted inside <head>	-->
+	<title>custom type in typescript — Truong Bui's Blog</title>
+
+	<meta name="author" content="Truong Bui">
+		<meta name="description" content="Share my knowledge, experience and tips about web development">
+	
+
+
+	<!--	we need webc:keep because 11ty runs webc in bundler mode. that means that when it find <style>, <link rel="stylesheet"> or <script> they are  -->
+	<!--	removed from output markup. Ref: https://www.11ty.dev/docs/languages/webc/#asset-bundling -->
+	<link rel="icon" href="/assets/favicon-0fc9d70e.ico">
+	
+	
+  <script type="module" crossorigin src="/assets/back-to-top-8fafbaab.js"></script>
+  <link rel="stylesheet" href="/assets/back-to-top-e78e2dbf.css">
+</head>
+<body class="flex flex-col min-h-screen">
+<!-- we need close tag here to make it work. it mean <site-header /> not work -->
+<header class="sticky top-0 bg-white opacity-[.97] w-full mb-8 z-50">
+	<nav class="flex justify-between items-center mx-auto max-w-3xl py-4 px-4 md:px-0">
+		<div class="hover:text-primary-500 font-bold">
+					
+			<a href="/">
+				<span>Truong Bui</span>
+			</a>
+			
+			</div>
+				
+
+		<ul class="flex gap-x-5">
+			<li class="cursor-default hover:text-primary-500">
+                  <a href="/blog/" class="text-base">
+                    blog
+                  </a>
+                </li>
+              
+                <li class="cursor-default hover:text-primary-500">
+                  <a href="/projects/" class="text-base">
+                    projects
+                  </a>
+                </li>
+              
+                <li class="cursor-default hover:text-primary-500">
+                  <a href="/bookmarks/" class="text-base">
+                    bookmarks
+                  </a>
+                </li>
+              
+		</ul>
+	</nav>
+	<div class="w-full h-[1px] bg-gray-200">
+		<div id="scrollIndicator" class="h-full bg-primary-500 w-0"></div>
+	</div>
+</header>
+
+
+<main class="flex-1 mx-auto max-w-3xl w-full px-4 md:px-0"><div class="mb-10">
+	<div class="p-4 border-[2px] rounded-md border-primary-400 hidden min-[1800px]:block min-[1800px]:fixed min-[1800px]:left-[5%] min-[1800px]:max-w-[25rem] min-[1800px]:w-[25rem] min-[1800px]:top-[20%]">
+				<h3 class="text-lg font-semibold text-primary-500 border-b border-primary-400">TABLE OF CONTENTS</h3>
+				<ol class="mt-3 px-8">
+					
+				<li class="list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-semibold">
+					<a href="#problem">Problem</a>
+				</li>
+			
+
+				<li class="list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-semibold">
+					<a href="#solution">Solution</a>
+				</li>
+			
+				</ol>
+			</div>
+		
+	
+
+	<article>
+		<h1 class="text-5xl font-semibold leading-[3.7rem]">custom type in typescript</h1>
+		<p class="text-sm font-medium leading-6 text-gray-400 mt-4">
+			<span>Truong Bui</span>
+		</p>
+		<div class="text-sm font-medium leading-6 text-gray-400">
+				<span>Published on: <time datetime="2023-11-14">2023-11-14</time></span>
+				•
+				<span>Last updated:
+					<span data-last-updated="Tue Nov 14 2023 00:00:00 GMT+0000 (Coordinated Universal Time)" class="time-distance-last-updated"></span>
+				</span>
+		</div>
+		<p class="flex items-center flex-wrap mt-2">
+						
+							<a class="mr-3 text-sm font-medium lowercase text-primary-400 before:content-['#'] before:mr-[2px] hover:text-primary-600 cursor-pointer" href="/tags/ts/">ts</a>
+	
+
+							
+
+							<a class="mr-3 text-sm font-medium lowercase text-primary-400 before:content-['#'] before:mr-[2px] hover:text-primary-600 cursor-pointer" href="/tags/tips/">tips</a>
+	
+
+							
+					</p>
+					
+			
+		<div class="p-4 border-[2px] rounded-md border-primary-400 block min-[1800px]:hidden my-10">
+				<h3 class="text-lg font-semibold text-primary-500 border-b border-primary-400">TABLE OF CONTENTS</h3>
+				<ol class="mt-3 px-8">
+					
+				<li class="list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-semibold">
+					<a href="#problem">Problem</a>
+				</li>
+			
+
+				<li class="list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-semibold">
+					<a href="#solution">Solution</a>
+				</li>
+			
+				</ol>
+			</div>
+		
+	
+
+		<div class="mt-10"><h2 class="text-3xl mb-5 mt-8 font-medium text-slate-700 group/heading" id="problem">
+		
+	Problem
+
+		<a href="#problem">
+			<span class="after:content-[&quot;#&quot;] text-primary-500 invisible group-hover/heading:visible"></span>
+		</a>
+	</h2>
+	
+
+We install the
+<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">lodash</span>
+	
+, but it supports only
+<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">javascript</span>
+	
+, how to use it in
+<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">typescript</span>
+	
+ ?
+
+
+<div class="my-5 code-block">
+			<div class="flex item-center justify-between">
+				
+			<span class="text-xs font-medium text-slate-500 ml-3">File name: source-root/src/index.ts</span>
+		
+				<div class="text-xs font-medium text-slate-500 hover:text-primary-500 gap-1 copy-button-place mr-3">
+				</div>
+			</div>
+			<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> isString <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'lodash'</span><span class="token punctuation">;</span>
+													<span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span> <span class="token operator">:</span> Could not find a declaration file <span class="token keyword">for</span> <span class="token keyword">module</span> <span class="token string">'lodash'</span><span class="token punctuation">.</span> <span class="token string">'.../node_modules/lodash/lodash.js'</span> implicitly has an <span class="token string">'any'</span> type<span class="token punctuation">.</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">isString</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+			<div>
+				
+			</div>
+		</div>
+	
+
+
+Of course, we can install the type definition for lodash by
+<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">npm i --save-dev @types/lodash</span>
+	
+
+. But in this post we will create our own type definition for lodash.
+
+<h2 class="text-3xl mb-5 mt-8 font-medium text-slate-700 group/heading" id="solution">
+		
+	Solution
+
+		<a href="#solution">
+			<span class="after:content-[&quot;#&quot;] text-primary-500 invisible group-hover/heading:visible"></span>
+		</a>
+	</h2>
+	
+
+We need to create
+<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">lodash.d.ts</span>
+	
+ file.
+
+<div class="my-5 code-block">
+			<div class="flex item-center justify-between">
+				
+			<span class="text-xs font-medium text-slate-500 ml-3">File name: source-root/types/lodash.d.ts</span>
+		
+				<div class="text-xs font-medium text-slate-500 hover:text-primary-500 gap-1 copy-button-place mr-3">
+				</div>
+			</div>
+			<pre class="language-ts"><code class="language-ts"><span class="token keyword">declare</span> <span class="token keyword">module</span> <span class="token string">'lodash'</span> <span class="token punctuation">{</span>
+	<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">isString</span><span class="token punctuation">(</span>value<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+			<div>
+				
+			</div>
+		</div>
+	
+
+
+Look into <span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">tsconfig.json</span>
+	
+ file
+<div class="my-5 code-block">
+			<div class="flex item-center justify-between">
+				
+			<span class="text-xs font-medium text-slate-500 ml-3">File name: source-root/tsconfig.json</span>
+		
+				<div class="text-xs font-medium text-slate-500 hover:text-primary-500 gap-1 copy-button-place mr-3">
+				</div>
+			</div>
+			<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"compilerOptions"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">"strict"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token property">"include"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+		<span class="token string">"./src"</span>
+	<span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+			<div>
+				
+			</div>
+		</div>
+	
+
+
+As you can see typescript can only look for types definition in
+<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">src</span>
+	
+. So we need to add
+<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">types</span>
+	
+ folder to
+<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">include</span>
+	
+ section.
+<div class="my-5 code-block">
+			<div class="flex item-center justify-between">
+				
+			<span class="text-xs font-medium text-slate-500 ml-3">File name: source-root/tsconfig.json</span>
+		
+				<div class="text-xs font-medium text-slate-500 hover:text-primary-500 gap-1 copy-button-place mr-3">
+				</div>
+			</div>
+			<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"compilerOptions"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">"strict"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token property">"include"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+		<span class="token string">"./src"</span><span class="token punctuation">,</span>
+		<span class="token string">"./types"</span>
+	<span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+			<div>
+				
+			</div>
+		</div>
+	
+
+
+Now run
+<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">tsc</span>
+	
+ command again. Bump, it works.
+
+<div class="mt-4">
+	<span class="font-semibold">Note</span>: You can use
+	<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">typeRoots</span>
+	
+ to specify the folder that contains the type definition. But I won't recommend it. Because it will override the default type definition folder.
+
+</div>
+
+<div class="border-[3px] border-callout-info-primary rounded-lg bg-callout-info-background my-5">
+	<span class="bg-callout-info-primary font-bold rounded-br-lg absolute px-2">INFO:</span>
+	<div class="mx-5 mt-9 mb-3 break-all">
+		
+	You can try
+	<span class="font-mono text-primary-500 bg-gray-100 px-2 rounded-sm">tsc --traceResolution</span>
+	
+
+	. You will see how typescript resolve the modules.
+
+	<p class="mt-4">You will see something like</p>
+	<p>
+		== Resolving module 'lodash' from 'source-root/src/index.ts'. ==
+	</p>
+	And
+	<p>
+		== Module name 'lodash' was successfully resolved to 'source-root/types/lodash.d.ts'. ==
+	</p>
+
+	</div>
+</div>
+
+
+See you next post 😎!
+</div>
+	</article>
+	<hr class="h-[2px] my-10 bg-gray-200 border-0 rounded">
+</div>
+
+<script src="https://giscus.app/client.js" data-repo="btxTruong/truongbui.dev" data-repo-id="R_kgDOKaS6tQ" data-category="Announcements" data-category-id="DIC_kwDOKaS6tc4CaQW8" data-mapping="url" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" async>
+</script>
+</main>
+
+<footer class="w-full bg-slate-50 mt-8">
+	<div class="w-full h-[1px] bg-gray-200"></div>
+	<div class="mx-auto max-w-3xl flex justify-between items-center py-2 px-4 md:px-0">
+		<div>
+			<p class="text-xs leading-5 text-gray-500">© 2023 Truong Bui</p>
+		</div>
+		<div class="flex gap-2">
+			<div class="cursor-default">
+				<a target="_blank" class="opacity-60 hover:opacity-100 hover:fill-primary-500" href="https://github.com/btxtruong">
+					<svg class="h-6 w-6">
+		<use href="/assets/icons-69639e0f.svg#svg-github"></use>
+	</svg>
+	
+
+				</a>
+			</div>
+			<div class="cursor-default">
+				<a target="_blank" class="opacity-60 hover:opacity-100 hover:fill-primary-500" href="https://www.linkedin.com/in/btxtruong">
+					<svg class="h-6 w-6">
+		<use href="/assets/icons-69639e0f.svg#svg-linkedin"></use>
+	</svg>
+	
+
+				</a>
+			</div>
+			<div class="cursor-default">
+				<a class="opacity-60 hover:opacity-100 hover:fill-primary-500" href="mailto: btxtruong@gmail.com">
+					<svg class="h-6 w-6">
+		<use href="/assets/icons-69639e0f.svg#svg-email"></use>
+	</svg>
+	
+
+				</a>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+<button type="button" id="btn-back-to-top" class="fixed bottom-5 right-5 hidden z-100 rounded-full bg-primary-500 p-3 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-lg focus:bg-primary-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-lg">
+	<svg aria-hidden="true" focusable="false" data-prefix="fas" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="h-4 w-4">
+		<path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path>
+	</svg>
+</button>
+
+
+
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G0E7089JGK"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-G0E7089JGK');
+</script>
+<script data-goatcounter="https://truongbui.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+
+</body>
+</html>
