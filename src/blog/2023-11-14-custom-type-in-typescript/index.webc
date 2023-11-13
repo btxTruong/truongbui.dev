@@ -1,0 +1,90 @@
+---
+updatedDate: 2023-11-14
+publishedDate: 2023-11-14
+title: "custom type in typescript"
+tags: ['ts', 'tips']
+---
+<system-anchor heading='h2'>
+	Problem
+</system-anchor>
+We install the
+<system-code>lodash</system-code>, but it supports only
+<system-code>javascript</system-code>, how to use it in
+<system-code>typescript</system-code> ?
+
+
+<system-codeblock lang='ts' filename='source-root/src/index.ts'>
+import { isString } from 'lodash';
+													^^^^^^ : Could not find a declaration file for module 'lodash'. '.../node_modules/lodash/lodash.js' implicitly has an 'any' type.
+console.log(isString(null));
+</system-codeblock>
+
+Of course, we can install the type definition for lodash by
+<system-code>npm i --save-dev @types/lodash</system-code>
+. But in this post we will create our own type definition for lodash.
+
+<system-anchor heading='h2'>
+	Solution
+</system-anchor>
+We need to create
+<system-code>lodash.d.ts</system-code> file.
+
+<system-codeblock lang='ts' filename='source-root/types/lodash.d.ts'>
+declare module 'lodash' {
+	export function isString(value: any): boolean;
+}
+</system-codeblock>
+
+Look into <system-code>tsconfig.json</system-code> file
+<system-codeblock lang='json' filename='source-root/tsconfig.json'>
+{
+	"compilerOptions": {
+		"strict": true
+	},
+	"include": [
+		"./src"
+	]
+}
+</system-codeblock>
+
+As you can see typescript can only look for types definition in
+<system-code>src</system-code>. So we need to add
+<system-code>types</system-code> folder to
+<system-code>include</system-code> section.
+<system-codeblock lang='json' filename='source-root/tsconfig.json'>
+{
+	"compilerOptions": {
+		"strict": true
+	},
+	"include": [
+		"./src",
+		"./types"
+	]
+}
+</system-codeblock>
+
+Now run
+<system-code>tsc</system-code> command again. Bump, it works.
+
+<div class='mt-4'>
+	<span class='font-semibold'>Note</span>: You can use
+	<system-code>typeRoots</system-code> to specify the folder that contains the type definition. But I won't recommend it. Because it will override the default type definition folder.
+
+</div>
+
+<system-info>
+	You can try
+	<system-code>tsc --traceResolution</system-code>
+	. You will see how typescript resolve the modules.
+
+	<p class='mt-4'>You will see something like</p>
+	<p>
+		== Resolving module 'lodash' from 'source-root/src/index.ts'. ==
+	</p>
+	And
+	<p>
+		== Module name 'lodash' was successfully resolved to 'source-root/types/lodash.d.ts'. ==
+	</p>
+</system-info>
+
+See you next post 😎!
