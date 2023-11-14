@@ -64,7 +64,7 @@ As you can see typescript can only look for types definition in
 </system-codeblock>
 
 Now run
-<system-code>tsc</system-code> command again. Bump, it works.
+<system-code>tsc</system-code> command. Woah, no errors 🎉.
 
 <div class='mt-4'>
 	<span class='font-semibold'>Note</span>: You can use
