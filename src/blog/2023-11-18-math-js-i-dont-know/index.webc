@@ -1,0 +1,21 @@
+---
+updatedDate: 2023-11-18
+publishedDate: 2023-11-18
+title: "[math] - js I dont know"
+tags: ['js', 'tips']
+---
+
+
+<system-codeblock lang='js' filename='math.js'>
++true // 1
++false // 0
+
++true + true // 2
++true + false // 1
+
+-null // 0
+
+-'33' + 5 // -28
+
+'33' + 5 // '335'
+</system-codeblock>
