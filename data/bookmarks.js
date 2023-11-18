@@ -455,6 +455,7 @@ module.exports = [
 			"useeffect",
 			"uselayouteffect",
 			"tips",
+			"react",
 		],
 		"description": "useEffect vs useLayoutEffect"
 	}
