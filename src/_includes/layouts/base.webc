@@ -42,5 +42,6 @@
 </script>
 <script data-goatcounter="https://truongbui.goatcounter.com/count"
 				async src="//gc.zgo.at/count.js" webc:keep></script>
+<script type='module' src="/assets/js/docsearch.js" webc:keep></script>
 </body>
 </html>

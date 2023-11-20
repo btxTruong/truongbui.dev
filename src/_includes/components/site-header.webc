@@ -22,7 +22,7 @@
 			}
 		</script>
 
-		<ul class='flex gap-x-5'>
+		<ul class='flex gap-x-5 items-center'>
 			<script webc:type='js'>
 				const navigationTabs = [
 					{
@@ -68,6 +68,7 @@
 					)
 					.join('');
 			</script>
+			<li id='docsearch'></li>
 		</ul>
 	</nav>
 	<div class="w-full h-[1px] bg-gray-200">
