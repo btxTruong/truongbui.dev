@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="google-site-verification" content="VPV7suDs7wRs6bjJET1APvp0XV4cXEdqlN3UQAbY-pc">
+  <!--	https://search.google.com/search-console/welcome  -->
+	<!-- custom elements are not permitted inside <head>	-->
+	<title>using bitwise — Truong Bui's Blog</title>
+
+	<meta name="author" content="Truong Bui">
+		<meta name="description" content="Share my knowledge, experience and tips about web development">
+	
+
+
+	<!--	we need webc:keep because 11ty runs webc in bundler mode. that means that when it find <style>, <link rel="stylesheet"> or <script> they are  -->
+	<!--	removed from output markup. Ref: https://www.11ty.dev/docs/languages/webc/#asset-bundling -->
+	<link rel="icon" href="/assets/avatar-4b69219e.jpeg">
+	
+	
+  <script type="module" crossorigin src="/assets/docsearch-4a5949f6.js"></script>
+  <link rel="stylesheet" href="/assets/docsearch-de9da030.css">
+</head>
+<body class="flex flex-col min-h-screen">
+<!-- we need close tag here to make it work. it mean <site-header /> not work -->
+<header class="sticky top-0 bg-white opacity-[.97] w-full mb-8 z-50">
+	<nav class="flex justify-between items-center mx-auto max-w-3xl py-4 px-4 md:px-0">
+		<div class="hover:text-primary-500 font-bold">
+					
+			<a href="/">
+				<span>Truong Bui</span>
+			</a>
+			
+			</div>
+				
+
+		<ul class="flex gap-x-5 items-center">
+			<li class="cursor-default hover:text-primary-500">
+                  <a href="/blog/" class="text-base">
+                    blog
+                  </a>
+                </li>
+              
+                <li class="cursor-default hover:text-primary-500">
+                  <a href="/projects/" class="text-base">
+                    projects
+                  </a>
+                </li>
+              
+                <li class="cursor-default hover:text-primary-500">
+                  <a href="/bookmarks/" class="text-base">
+                    bookmarks
+                  </a>
+                </li>
+              
+			<li id="docsearch"></li>
+		</ul>
+	</nav>
+	<div class="w-full h-[1px] bg-gray-200">
+		<div id="scrollIndicator" class="h-full bg-primary-500 w-0"></div>
+	</div>
+</header>
+
+
+<main class="flex-1 mx-auto max-w-3xl w-full px-4 md:px-0"><div class="mb-10">
+	<div class="p-4 border-[2px] rounded-md border-primary-400 hidden min-[1800px]:block min-[1800px]:fixed min-[1800px]:left-[5%] min-[1800px]:max-w-[25rem] min-[1800px]:w-[25rem] min-[1800px]:top-[20%]">
+				<h3 class="text-lg font-semibold text-primary-500 border-b border-primary-400">TABLE OF CONTENTS</h3>
+				<ol class="mt-3 px-8">
+					
+				<li class="my-1 hover:text-primary-600 text-primary-500 hover:font-semibold list-disc">
+					<a href="#practicalusecase">Practical use case</a>
+					
+			<ul class="list-none my-1">
+				
+				<li class="my-1 hover:text-primary-600 text-primary-500 hover:font-semibold list-none">
+					<a href="#xor">1. XOR</a>
+					
+			<ul class="list-none my-1">
+				
+			</ul>
+		
+				</li>
+			
+
+				<li class="my-1 hover:text-primary-600 text-primary-500 hover:font-semibold list-none">
+					<a href="#booleanflags">2. Boolean flags</a>
+					
+			<ul class="list-none my-1">
+				
+			</ul>
+		
+				</li>
+			
+			</ul>
+		
+				</li>
+			
+				</ol>
+			</div>
+		
+	
+
+	<article>
+		<h1 class="text-5xl font-semibold leading-[3.7rem]">using bitwise</h1>
+		<p class="text-sm font-medium leading-6 text-gray-400 mt-4">
+			<span>Truong Bui</span>
+		</p>
+		<div class="text-sm font-medium leading-6 text-gray-400">
+				<span>Published on: <time datetime="2023-11-24">2023-11-24</time></span>
+				•
+				<span>Last updated:
+					<span data-last-updated="Fri Nov 24 2023 00:00:00 GMT+0000 (Coordinated Universal Time)" class="time-distance-last-updated"></span>
+				</span>
+		</div>
+		<p class="flex items-center flex-wrap mt-2">
+						
+							<a class="mr-3 text-sm font-medium lowercase text-primary-400 before:content-['#'] before:mr-[2px] hover:text-primary-600 cursor-pointer" href="/tags/bitwise/">bitwise</a>
+	
+
+							
+
+							<a class="mr-3 text-sm font-medium lowercase text-primary-400 before:content-['#'] before:mr-[2px] hover:text-primary-600 cursor-pointer" href="/tags/tips/">tips</a>
+	
+
+							
+					</p>
+					
+			
+		<div class="p-4 border-[2px] rounded-md border-primary-400 block min-[1800px]:hidden my-10">
+				<h3 class="text-lg font-semibold text-primary-500 border-b border-primary-400">TABLE OF CONTENTS</h3>
+				<ol class="mt-3 px-8">
+					
+				<li class="my-1 hover:text-primary-600 text-primary-500 hover:font-semibold list-disc">
+					<a href="#practicalusecase">Practical use case</a>
+					
+			<ul class="list-none my-1">
+				
+				<li class="my-1 hover:text-primary-600 text-primary-500 hover:font-semibold list-none">
+					<a href="#xor">1. XOR</a>
+					
+			<ul class="list-none my-1">
+				
+			</ul>
+		
+				</li>
+			
+
+				<li class="my-1 hover:text-primary-600 text-primary-500 hover:font-semibold list-none">
+					<a href="#booleanflags">2. Boolean flags</a>
+					
+			<ul class="list-none my-1">
+				
+			</ul>
+		
+				</li>
+			
+			</ul>
+		
+				</li>
+			
+				</ol>
+			</div>
+		
+	
+
+		<div class="mt-10"><p>
+	As a developer, it's rare to use bitwise operators.
+	But sometimes it's useful to know how to use them.
+	There are many articles written about bitwise operators, so I will not explain them in detail.
+	Instead of that, I will show you some examples of using bitwise operators.
+</p>
+
+<h2 class="text-slate-700 group/heading text-3xl font-medium mb-5 mt-8" id="practicalusecase">
+		
+	Practical use case
+
+		<a href="#practicalusecase">
+			<span class="after:content-[&quot;#&quot;] text-primary-500 invisible group-hover/heading:visible"></span>
+		</a>
+	</h2>
+	
+
+
+<h3 class="text-slate-700 group/heading text-2xl font-semibold mb-5 mt-4" id="xor">
+		
+	1. XOR
+
+		<a href="#xor">
+			<span class="after:content-[&quot;#&quot;] text-primary-500 invisible group-hover/heading:visible"></span>
+		</a>
+	</h3>
+	
+
+At leetcode, there is a problem called <a href="https://leetcode.com/problems/single-number/" target="_blank" class="underline underline-offset-[4px] decoration-2 decoration-primary-500 hover:underline-offset-[6px]">
+			single number
+		</a>
+	
+.
+
+<blockquote class="italic text-slate-500 my-7 border-l-4 pl-5 border-primary-500">
+    <p>
+    	
+	Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+	<p class="mt-5">Example:</p>
+	<p><span class="font-bold">Input:</span> nums = [2,2,1]</p>
+	<p><span class="font-bold">Output:</span> 1</p>
+
+		</p>
+</blockquote>
+	
+
+
+We can solve this problem by using XOR operator.
+
+<div class="my-5 code-block">
+			<div class="flex item-center justify-between">
+				
+			<span class="text-xs font-medium text-slate-500 ml-3">File name: leetcode_single_number.py</span>
+		
+				<div class="text-xs font-medium text-slate-500 hover:text-primary-500 gap-1 copy-button-place mr-3">
+				</div>
+			</div>
+			<pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">single_number</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	res <span class="token operator">=</span> <span class="token number">0</span>
+		<span class="token keyword">for</span> i <span class="token keyword">in</span> nums<span class="token punctuation">:</span>
+			res <span class="token operator">^</span><span class="token operator">=</span> i
+	<span class="token keyword">return</span> res</code></pre>
+			<div>
+				
+			</div>
+		</div>
+	
+
+
+<div class="border-[3px] border-callout-info-primary rounded-lg bg-callout-info-background my-5">
+	<span class="bg-callout-info-primary font-bold rounded-br-lg absolute px-2">INFO:</span>
+	<div class="mx-5 mt-9 mb-3 break-all">
+		
+	<p>
+		a ^ a = 0
+	</p>
+	<p>
+		a ^ 0 = a
+	</p>
+
+	</div>
+</div>
+
+
+<h3 class="text-slate-700 group/heading text-2xl font-semibold mb-5 mt-4" id="booleanflags">
+		
+	2. Boolean flags
+
+		<a href="#booleanflags">
+			<span class="after:content-[&quot;#&quot;] text-primary-500 invisible group-hover/heading:visible"></span>
+		</a>
+	</h3>
+	
+
+
+<div class="my-5 code-block">
+			<div class="flex item-center justify-between">
+				
+			<span class="text-xs font-medium text-slate-500 ml-3">File name: permission.py</span>
+		
+				<div class="text-xs font-medium text-slate-500 hover:text-primary-500 gap-1 copy-button-place mr-3">
+				</div>
+			</div>
+			<pre class="language-py"><code class="language-py"><span class="token keyword">from</span> enum <span class="token keyword">import</span> Flag<span class="token punctuation">,</span> auto
+
+
+<span class="token keyword">class</span> <span class="token class-name">Permission</span><span class="token punctuation">(</span>Flag<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	NONE <span class="token operator">=</span> <span class="token number">0</span>
+	READ <span class="token operator">=</span> auto<span class="token punctuation">(</span><span class="token punctuation">)</span>
+	EXECUTE <span class="token operator">=</span> auto<span class="token punctuation">(</span><span class="token punctuation">)</span>
+	DELETE <span class="token operator">=</span> auto<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token comment"># Initialize the permission</span>
+permission <span class="token operator">=</span> Permission<span class="token punctuation">.</span>NONE
+
+<span class="token comment"># Set the READ permission</span>
+permission <span class="token operator">|</span><span class="token operator">=</span> Permission<span class="token punctuation">.</span>READ  <span class="token comment"># permission = Permission.READ</span>
+
+<span class="token comment"># Set the EXECUTE permission</span>
+permission <span class="token operator">|</span><span class="token operator">=</span> Permission<span class="token punctuation">.</span>EXECUTE  <span class="token comment"># permission = Permission.EXECUTE|READ</span>
+
+<span class="token comment"># Set the DELETE permission</span>
+permission <span class="token operator">|</span><span class="token operator">=</span> Permission<span class="token punctuation">.</span>DELETE  <span class="token comment"># permission = Permission.DELETE|EXECUTE|READ</span>
+
+<span class="token comment"># Check if the READ permission is set</span>
+permission <span class="token operator">&amp;</span> Permission<span class="token punctuation">.</span>READ <span class="token operator">==</span> Permission<span class="token punctuation">.</span>READ  <span class="token comment"># True</span>
+
+<span class="token comment"># Disable the READ permission</span>
+permission <span class="token operator">^</span><span class="token operator">=</span> Permission<span class="token punctuation">.</span>READ  <span class="token comment"># permission = Permission.DELETE|EXECUTE</span>
+
+permission <span class="token operator">&amp;</span> Permission<span class="token punctuation">.</span>READ <span class="token operator">==</span> Permission<span class="token punctuation">.</span>READ  <span class="token comment"># False</span></code></pre>
+			<div>
+				
+			<span class="text-xs font-medium text-slate-500 ml-3">Library: python &gt;=v3.6</span>
+		
+			</div>
+		</div>
+	
+
+
+<p>
+	There are many other use cases of bitwise operators. But for practical use cases, I think these two are enough - at least for me. 😁
+</p>
+
+<p class="mt-5">
+	Hope you find this article useful. If you have any questions, please let me know in the comment section below. 👇
+</p>
+</div>
+	</article>
+	<hr class="h-[2px] my-10 bg-gray-200 border-0 rounded">
+</div>
+
+<script src="https://giscus.app/client.js" data-repo="btxTruong/truongbui.dev" data-repo-id="R_kgDOKaS6tQ" data-category="Announcements" data-category-id="DIC_kwDOKaS6tc4CaQW8" data-mapping="url" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" async>
+</script>
+</main>
+
+<footer class="w-full bg-slate-50 mt-8">
+	<div class="w-full h-[1px] bg-gray-200"></div>
+	<div class="mx-auto max-w-3xl flex justify-between items-center py-2 px-4 md:px-0">
+		<div>
+			<p class="text-xs leading-5 text-gray-500">© 2023 Truong Bui</p>
+		</div>
+		<div class="flex gap-2">
+			<div class="cursor-default">
+				<a target="_blank" class="opacity-60 hover:opacity-100 hover:fill-primary-500" href="https://github.com/btxtruong">
+					<svg class="h-6 w-6">
+		<use href="/assets/icons-69639e0f.svg#svg-github"></use>
+	</svg>
+	
+
+				</a>
+			</div>
+			<div class="cursor-default">
+				<a target="_blank" class="opacity-60 hover:opacity-100 hover:fill-primary-500" href="https://www.linkedin.com/in/btxtruong">
+					<svg class="h-6 w-6">
+		<use href="/assets/icons-69639e0f.svg#svg-linkedin"></use>
+	</svg>
+	
+
+				</a>
+			</div>
+			<div class="cursor-default">
+				<a class="opacity-60 hover:opacity-100 hover:fill-primary-500" href="mailto: btxtruong@gmail.com">
+					<svg class="h-6 w-6">
+		<use href="/assets/icons-69639e0f.svg#svg-email"></use>
+	</svg>
+	
+
+				</a>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+<button type="button" id="btn-back-to-top" class="fixed bottom-5 right-5 hidden z-100 rounded-full bg-primary-500 p-3 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-lg focus:bg-primary-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-lg">
+	<svg aria-hidden="true" focusable="false" data-prefix="fas" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="h-4 w-4">
+		<path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path>
+	</svg>
+</button>
+
+
+
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G0E7089JGK"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-G0E7089JGK');
+</script>
+<script data-goatcounter="https://truongbui.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+
+
+</body>
+</html>
