@@ -1,6 +1,11 @@
 <script webc:type='js'>
 	const title = this.slots.text.default;
-	const headingId = title.toLowerCase().replace(/\?/g, '').trim().replace(/ /g, '-').replace(/[^a-zA-Z]/g, '');
+	const headingId = title.toLowerCase()
+		.replace(/\?/g, '')
+		.trim()
+		.replace(/ /g, '-')
+		.replace(/[^a-zA-Z-_]/g, '')
+		.replace(/^[-]/g, ''); // remove leading dash
 	const slug = `#${headingId}`
 
 	const h2Class = this.heading === 'h2' ? 'text-3xl font-medium mb-5 mt-8' : '';
