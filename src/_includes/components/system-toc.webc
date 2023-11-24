@@ -2,11 +2,20 @@
 	const content = this['$data'].content;
 	const tocParsed = parseContentToc(content);
 
-	const renderLi = (toc) => {
+	const renderUl = (toc) => {
+		return `
+			<ul class='list-none my-1'>
+				${renderLi(toc, 'list-none')}
+			</ul>
+		`;
+	};
+
+	const renderLi = (toc, listStyle = 'list-disc') => {
 		return toc.map((item) => {
 			return `
-				<li class='list-disc my-1 hover:text-primary-600 text-primary-500 hover:font-semibold'>
+				<li class='my-1 hover:text-primary-600 text-primary-500 hover:font-semibold ${listStyle}'>
 					<a href='${item.slug}'>${item.text}</a>
+					${renderUl(item.children)}
 				</li>
 			`;
 		}).join('\n');

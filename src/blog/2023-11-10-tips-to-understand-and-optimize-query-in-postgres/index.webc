@@ -6,7 +6,7 @@ tags: ['postgres', 'optimize', 'query-plan']
 ---
 Here are some tips to understand and optimize your query in postgres
 
-<system-anchor heading='h2' class='text-xl'>
+<system-anchor heading='h2'>
 	Explain analyze
 </system-anchor>
 
@@ -131,7 +131,7 @@ Here are some tips to understand and optimize your query in postgres
 </system-info>
 
 
-<system-anchor heading='h2' class='text-xl'>
+<system-anchor heading='h2'>
 	Buffers
 </system-anchor>
 
@@ -193,7 +193,7 @@ Here are some tips to understand and optimize your query in postgres
 	</ul>
 </system-info>
 
-<system-anchor heading='h2' class='text-xl'>
+<system-anchor heading='h2'>
 	Scan Strategies
 </system-anchor>
 
@@ -221,7 +221,7 @@ Here are some tips to understand and optimize your query in postgres
 	</ul>
 </system-info>
 
-<system-anchor heading='h2' class='text-xl'>
+<system-anchor heading='h2'>
 	Index
 </system-anchor>
 
@@ -326,7 +326,7 @@ Here are some tips to understand and optimize your query in postgres
 	</ul>
 </system-info>
 
-<system-anchor heading='h2' class='text-xl'>
+<system-anchor heading='h2'>
 	Join Strategies
 </system-anchor>
 
@@ -390,7 +390,7 @@ Here are some tips to understand and optimize your query in postgres
 	</ul>
 </system-info>
 
-<system-anchor heading='h2' class='text-xl'>
+<system-anchor heading='h2'>
 	Join order, join_collapse_limit and geqo_threshold
 </system-anchor>
 <system-blockquote>
@@ -614,7 +614,7 @@ Here are some tips to understand and optimize your query in postgres
 	</ul>
 </system-info>
 
-<system-anchor heading='h2' class='text-xl'>
+<system-anchor heading='h2'>
 	Query execution stages
 </system-anchor>
 
@@ -630,7 +630,7 @@ Here are some tips to understand and optimize your query in postgres
 	</ul>
 </system-info>
 
-<system-anchor heading='h2' class='text-xl'>
+<system-anchor heading='h2'>
 	Statistics
 </system-anchor>
 

@@ -44,13 +44,22 @@ module.exports = function(eleventyConfig) {
 	// JavaScript Template Function
 	eleventyConfig.addJavaScriptFunction('parseContentToc', (content) => {
 		const dom = new JSDOM(content);
-		const headings = [...dom.window.document.querySelectorAll('h2')];
-		return headings.map((heading) => {
-			return {
-				text: heading.textContent.trim().replace(/(<([^>]+)>)/gi, ""),
-				slug: `#${heading.id}`
+		const res = []
+		const headings = [...dom.window.document.querySelectorAll('h2, h3')];
+
+		for (const item of headings) {
+			const heading = {
+				text: item.textContent.trim().replace(/(<([^>]+)>)/gi, ""),
+				slug: `#${item.id}`,
+				children: []
 			};
-		});
+			if (item.tagName === 'H2') {
+				res.push(heading);
+			} else {
+				res[res.length - 1].children.push(heading);
+			}
+		}
+		return res;
 	});
 	eleventyConfig.addJavaScriptFunction('addTagComponentInBookmarks', (listBookmarks) => {
 		return listBookmarks.map((bookmark) => {

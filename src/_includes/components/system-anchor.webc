@@ -1,12 +1,15 @@
 <script webc:type='js'>
 	const title = this.slots.text.default;
-	const headingId = title.toLowerCase().replace(/\?/g, '').trim().replace(/ /g, '-');
+	const headingId = title.toLowerCase().replace(/\?/g, '').trim().replace(/ /g, '-').replace(/[^a-zA-Z]/g, '');
 	const slug = `#${headingId}`
 
-	const internalClass = this.class ?? '';
+	const h2Class = this.heading === 'h2' ? 'text-3xl font-medium mb-5 mt-8' : '';
+	const h3Class = this.heading === 'h3' ? 'text-2xl font-semibold mb-5 mt-4' : '';
+
+	const internalClass = this.class ?? `${h2Class} ${h3Class}`;
 
 	`
-	<${heading} class='text-3xl mb-5 mt-8 font-medium text-slate-700 group/heading ${internalClass}' @attributes='({ id: "${headingId}" })'>
+	<${heading} class='text-slate-700 group/heading ${internalClass}' @attributes='({ id: "${headingId}" })'>
 		<slot></slot>
 		<a @attributes='({ href: "${slug}"  })'>
 			<span class='after:content-["#"] text-primary-500 invisible group-hover/heading:visible'></span>

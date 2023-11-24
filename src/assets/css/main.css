@@ -11,4 +11,8 @@
 	src: url('../fonts/Inter-Regular.woff2') format('woff2');
 }
 
+:root:root {
+	--docsearch-primary-color: #EC4899;
+}
+
 @tailwind utilities;

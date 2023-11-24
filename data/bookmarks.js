@@ -33,35 +33,35 @@ module.exports = [
 		"tags": [
 			"golang"
 		],
-		"description": ""
+		"description": "Blog about golang, Nodejs"
 	},
 	{
 		"url": "https://appliedgo.net/",
 		"tags": [
 			"golang"
 		],
-		"description": ""
+		"description": "Blog about golang"
 	},
 	{
 		"url": "https://benhoyt.com/",
 		"tags": [
 			"golang"
 		],
-		"description": ""
+		"description": "Blog about golang, tech and non-tech"
 	},
 	{
 		"url": "https://threedots.tech/",
 		"tags": [
 			"golang"
 		],
-		"description": ""
+		"description": "Blog about golang"
 	},
 	{
 		"url": "https://yourbasic.org/",
 		"tags": [
 			"golang"
 		],
-		"description": ""
+		"description": "Blog about golang"
 	},
 	{
 		"url": "https://frontendmasters.com/blog/vanilla-javascript-reactivity/",
@@ -76,7 +76,7 @@ module.exports = [
 			"js",
 			"ts"
 		],
-		"description": ""
+		"description": "Blog about typescript & rust"
 	},
 	{
 		"url": "https://hakibenita.com/",
@@ -84,21 +84,22 @@ module.exports = [
 			"python",
 			"postgres"
 		],
-		"description": ""
+		"description": "Blog about python & postgres"
 	},
 	{
 		"url": "https://rust-lang.github.io/api-guidelines/about.html",
 		"tags": [
-			"rust"
+			"rust",
+			"api"
 		],
-		"description": ""
+		"description": "Rust API Guidelines"
 	},
 	{
 		"url": "https://www.alexedwards.net/blog",
 		"tags": [
 			"golang"
 		],
-		"description": ""
+		"description": "Blog about golang (two books)"
 	},
 	{
 		"url": "https://snyk.io/blog/nodejs-how-even-quick-async-functions-can-block-the-event-loop-starve-io",
@@ -131,7 +132,7 @@ module.exports = [
 			"aws",
 			"lambda"
 		],
-		"description": ""
+		"description": "Blog about serverless"
 	},
 	{
 		"url": "https://www.freecodecamp.org/news/how-to-set-up-monitoring-for-nodejs-applications-using-elastic/",
@@ -154,9 +155,10 @@ module.exports = [
 		"url": "https://xiaoyunyang.github.io/",
 		"tags": [
 			"js",
-			"ui"
+			"ui",
+			"life"
 		],
-		"description": ""
+		"description": "Blog about life, ui, js"
 	},
 	{
 		"url": "https://humanwhocodes.com/blog/",
@@ -165,14 +167,14 @@ module.exports = [
 			"ui",
 			"ts"
 		],
-		"description": ""
+		"description": "Blog about js"
 	},
 	{
 		"url": "https://jdsteinbach.com/",
 		"tags": [
 			"css"
 		],
-		"description": ""
+		"description": "Blog about css"
 	},
 	{
 		"url": "https://www.tints.dev/",
@@ -196,7 +198,7 @@ module.exports = [
 			"aws",
 			"devops"
 		],
-		"description": ""
+		"description": "Blog about devops, aws, network"
 	},
 	{
 		"url": "https://byteofdev.com/",
@@ -458,5 +460,69 @@ module.exports = [
 			"react",
 		],
 		"description": "useEffect vs useLayoutEffect"
-	}
+	},
+	{
+		"url": "http://www.petecorey.com/blog/2019/08/19/animating-a-canvas-with-react-hooks/",
+		"tags": [
+			"animation",
+			"react-hooks",
+			"tips",
+			"react",
+			"canvas",
+		],
+		"description": "Create animation with react hooks + canvas"
+	},
+	{
+		"url": "https://unsplash.com/",
+		"tags": [
+			"free",
+			"images",
+		],
+		"description": "Where to find free images"
+	},
+	{
+		"url": "https://tsh.io/blog/finite-state-machines-in-react/",
+		"tags": [
+			"react",
+			"finite-state-machines",
+		],
+		"description": "How to use finite state machines in react"
+	},
+	{
+		"url": "https://birdeatsbug.com/blog/creating-hover-effects-with-tailwind-css",
+		"tags": [
+			"tailwind",
+			"effects",
+		],
+		"description": "Create hover effects with tailwind"
+	},
+	{
+		"url": "https://overreacted.io/writing-resilient-components/",
+		"tags": [
+			"react",
+			"tips",
+		],
+		"description": "Writing resilient components"
+	},
+	{
+		"url": "https://opentelemetry.io/",
+		"tags": [
+			"metrics",
+			"log",
+			"trace",
+			"tools",
+			"performance",
+		],
+		"description": "Tools for metrics, logs, traces"
+	},
+	{
+		"url": "https://kentcdodds.com/blog/state-colocation-will-make-your-react-app-faster",
+		"tags": [
+			"react",
+			"state",
+			"tips",
+			"performance",
+		],
+		"description": "State Colocation will make your React app faster"
+	},
 ]

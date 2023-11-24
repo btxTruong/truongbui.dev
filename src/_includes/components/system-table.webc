@@ -15,7 +15,7 @@
 
 			return `
 				<td class="p-2">
-					<div class="text-left break-all">${d}</div>
+					<h5 class="text-left break-all">${d}</h5>
 				</td>
 			`
 		}

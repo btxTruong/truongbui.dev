@@ -1,0 +1,91 @@
+---
+updatedDate: 2023-11-24
+publishedDate: 2023-11-24
+title: using bitwise
+tags: ['bitwise', 'tips']
+---
+<p>
+	As a developer, it's rare to use bitwise operators.
+	But sometimes it's useful to know how to use them.
+	There are many articles written about bitwise operators, so I will not explain them in detail.
+	Instead of that, I will show you some examples of using bitwise operators.
+</p>
+
+<system-anchor heading='h2'>
+	Practical use case
+</system-anchor>
+
+<system-anchor heading='h3'>
+	1. XOR
+</system-anchor>
+At leetcode, there is a problem called <system-inline-link url='https://leetcode.com/problems/single-number/'>single number</system-inline-link>.
+
+<system-blockquote>
+	Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+	<p class='mt-5'>Example:</p>
+	<p><span class='font-bold'>Input:</span> nums = [2,2,1]</p>
+	<p><span class='font-bold'>Output:</span> 1</p>
+</system-blockquote>
+
+We can solve this problem by using XOR operator.
+
+<system-codeblock lang='py' filename='leetcode_single_number.py'>
+def single_number(nums):
+	res = 0
+		for i in nums:
+			res ^= i
+	return res
+</system-codeblock>
+
+<system-info>
+	<p>
+		a ^ a = 0
+	</p>
+	<p>
+		a ^ 0 = a
+	</p>
+</system-info>
+
+<system-anchor heading='h3'>
+	2. Boolean flags
+</system-anchor>
+
+<system-codeblock lang='py' library='python >=v3.6' filename='permission.py'>
+from enum import Flag, auto
+
+
+class Permission(Flag):
+	NONE = 0
+	READ = auto()
+	EXECUTE = auto()
+	DELETE = auto()
+
+
+# Initialize the permission
+permission = Permission.NONE
+
+# Set the READ permission
+permission |= Permission.READ  # permission = Permission.READ
+
+# Set the EXECUTE permission
+permission |= Permission.EXECUTE  # permission = Permission.EXECUTE|READ
+
+# Set the DELETE permission
+permission |= Permission.DELETE  # permission = Permission.DELETE|EXECUTE|READ
+
+# Check if the READ permission is set
+permission & Permission.READ == Permission.READ  # True
+
+# Disable the READ permission
+permission ^= Permission.READ  # permission = Permission.DELETE|EXECUTE
+
+permission & Permission.READ == Permission.READ  # False
+</system-codeblock>
+
+<p>
+	There are many other use cases of bitwise operators. But for practical use cases, I think these two are enough - at least for me. 😁
+</p>
+
+<p class='mt-5'>
+	Hope you find this article useful. If you have any questions, please let me know in the comment section below. 👇
+</p>
