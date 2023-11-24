@@ -525,4 +525,14 @@ module.exports = [
 		],
 		"description": "State Colocation will make your React app faster"
 	},
+	{
+		"url": "https://uptrace.dev/get/instrument/opentelemetry-express.html",
+		"tags": [
+			"expressjs",
+			"monitoring",
+			"performance",
+			"opentelemetry",
+		],
+		"description": "Monitor Express.js with OpenTelemetry"
+	},
 ]
