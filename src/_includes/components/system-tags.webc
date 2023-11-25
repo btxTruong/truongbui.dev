@@ -1,29 +1,37 @@
 <script webc:type='js'>
 	let allTags = $data.collections;
 	const ignoreTags = ['posts', 'all'];
-	let tags = Object.keys(allTags).filter((tag) => {
-		return !ignoreTags.includes(tag);
-	});
+	let tags = Object.entries(allTags).reduce((acc, [tag, value]) => {
+		if (ignoreTags.includes(tag)) return acc;
+		acc[tag] = value.length;
+		return acc;
+	}, {});
 
 	if (tagType === 'bookmarkTags') {
-		allTags = Array.from(new Set($data.bookmarks.map((bookmark) => {
-			return bookmark.tags;
-		}).flat()));
-
-		tags = allTags
+		tags = $data.bookmarks.reduce((acc, bookmark) => {
+			bookmark.tags.forEach((tag) => {
+				if (!acc[tag]) {
+					acc[tag] = 1
+				}
+				else {
+					acc[tag] += 1
+				}
+			});
+			return acc;
+		}, {});
 	}
 
-	const internalClass = this.class || 'justify-center';
+	const internalClass = this.class || '';
 
 	const renderTags = (tags) => {
 		if (!tags) return '';
 		return `
 		<p class='flex items-center flex-wrap ${internalClass}'>
 				${
-			tags.sort().map((tag) => {
+			Object.entries(tags).sort((a, b) => b[1] - a[1]).map(([tag, numsOfTag]) => {
 				const url = tagType === 'bookmarkTags' ? `/bookmarks/tags/${tag}/` : `/tags/${tag}/`;
 				return `
-					<system-tag tag='${tag}' url='${url}'></system-tag>
+					<system-tag tag='${tag}' url='${url}' class='basis-3/12' count=${numsOfTag}></system-tag>
 				`;
 			}).join('\n')
 		}

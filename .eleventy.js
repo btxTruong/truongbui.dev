@@ -66,7 +66,7 @@ module.exports = function(eleventyConfig) {
 			return {
 				...bookmark,
 				tags: bookmark.tags.map((tag) => {
-					return `<system-tag tag="${tag}" url="/bookmarks/tags/${tag}/" ></system-tag>`
+					return `<system-tag tag="${tag}" url="/bookmarks/tags/${tag}/" class="mr-3"></system-tag>`
 				})
 			};
 		})

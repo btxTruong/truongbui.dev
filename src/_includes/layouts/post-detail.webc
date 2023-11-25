@@ -29,7 +29,7 @@ layout: 'layouts/base.webc'
 						${
 					tags.filter(t => t !== 'posts').map((tag) => {
 						return `
-							<system-tag tag='${tag}' url='/tags/${tag}/'></system-tag>
+							<system-tag tag='${tag}' url='/tags/${tag}/' class='mr-3'></system-tag>
 							`;
 					}).join('\n')
 				}
