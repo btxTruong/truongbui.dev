@@ -16,7 +16,7 @@ ignoreNameInHeader: true
 					while battling my <span class='underline underline-offset-[6px] decoration-2 decoration-wavy decoration-primary-500'>goldfish memory</span> 🐠.</p>
 			</div>
 
-			<div class='flex mt-8 gap-2'>
+			<div class='flex mt-8 gap-2 items-center'>
 				<div class='cursor-default'>
 					<a @attributes='({ href: $data.site.social.github })'
 						 class='opacity-60 hover:opacity-100 hover:fill-primary-500'
@@ -31,6 +31,13 @@ ignoreNameInHeader: true
 						 target='_blank'
 					>
 						<system-svg icon='linkedin'></system-svg>
+					</a>
+				</div>
+				<div class='cursor-default'>
+					<a @attributes='({ href: $data.site.social.x })'
+						 target='_blank'
+					>
+						<system-svg icon='x' class='h-5 w-5 fill-black hover:fill-primary-500 opacity-80 hover:opacity-100'></system-svg>
 					</a>
 				</div>
 				<div class='cursor-default'>
