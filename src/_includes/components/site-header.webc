@@ -1,5 +1,5 @@
 <header class='sticky top-0 bg-white opacity-[.97] w-full mb-8 z-50'>
-	<nav class='flex justify-between items-center mx-auto max-w-3xl py-4 px-4 md:px-0'>
+	<nav class='flex justify-between items-center mx-auto max-w-3xl py-4 px-4'>
 		<script webc:type='js'>
 			const header = (content) => {
 				return `
@@ -11,7 +11,8 @@
 
 			const authorName = `
 			<a href='/'>
-				<span class=''>${$data.site.author.firstName} ${$data.site.author.lastName}</span>
+				<span class='sm:hidden'>${$data.site.author.firstName[0]}${$data.site.author.lastName[0]}</span>
+				<span class='hidden sm:block'>${$data.site.author.firstName} ${$data.site.author.lastName}</span>
 			</a>
 			`
 

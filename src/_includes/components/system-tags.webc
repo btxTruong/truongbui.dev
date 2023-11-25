@@ -31,7 +31,7 @@
 			Object.entries(tags).sort((a, b) => b[1] - a[1]).map(([tag, numsOfTag]) => {
 				const url = tagType === 'bookmarkTags' ? `/bookmarks/tags/${tag}/` : `/tags/${tag}/`;
 				return `
-					<system-tag tag='${tag}' url='${url}' class='basis-3/12' count=${numsOfTag}></system-tag>
+					<system-tag tag='${tag}' url='${url}' class='basis-5/12 md:basis-3/12' count=${numsOfTag}></system-tag>
 				`;
 			}).join('\n')
 		}

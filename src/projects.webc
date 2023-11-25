@@ -43,7 +43,7 @@ title: 'projects'
 	`).join('\n')}
 
 	`
-	<article class='flex items-center gap-4 flex-wrap'>
+	<article class='flex items-center gap-4 flex-wrap justify-center sm:justify-start'>
 		${renderProjects(allProjects)}
 	</article>
 	`
