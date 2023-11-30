@@ -576,4 +576,13 @@ module.exports = [
 		],
 		"description": "How to measure performance"
 	},
+	{
+		"url": "https://webperf.tips/examples/date-formatting/example1/",
+		"tags": [
+			"performance",
+			"examples",
+			"practice",
+		],
+		"description": "Example page to practice performance"
+	},
 ]
