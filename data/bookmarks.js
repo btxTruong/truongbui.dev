@@ -535,4 +535,45 @@ module.exports = [
 		],
 		"description": "Monitor Express.js with OpenTelemetry"
 	},
+	{
+		"url": "https://google.github.io/styleguide/",
+		"tags": [
+			"standards",
+			"google",
+		],
+		"description": "Google style guides for various languages"
+	},
+	{
+		"url": "https://webperf.tips/tip/understanding-flamegraphs/",
+		"tags": [
+			"performance",
+			"flamegraph",
+		],
+		"description": "How to Read Flamegraphs"
+	},
+	{
+		"url": "https://webperf.tips/tip/flamegraphs-in-depth/",
+		"tags": [
+			"performance",
+			"flamegraph",
+			"advanced",
+		],
+		"description": "Flamegraphs In Depth"
+	},
+	{
+		"url": "https://webperf.tips/",
+		"tags": [
+			"performance",
+			"tips",
+		],
+		"description": "All about web performance"
+	},
+	{
+		"url": "https://webperf.tips/tip/performance-timing-markers/",
+		"tags": [
+			"performance",
+			"how-to",
+		],
+		"description": "How to measure performance"
+	},
 ]
