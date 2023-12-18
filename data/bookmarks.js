@@ -585,4 +585,99 @@ module.exports = [
 		],
 		"description": "Example page to practice performance"
 	},
+	{
+		"url": "https://blog.isquaredsoftware.com/2021/01/context-redux-differences/",
+		"tags": ["react", "redux", "context"],
+		"description": "Why React Context is Not a Redux Killer"
+	},
+	{
+		"url": "https://collectivemind.dev/blog/why-context-should-not-be-used-for-state-management-in-react-js",
+		"tags": ["react", "redux", "context"],
+		"description": "Why Context Should Not be Used for State Management in React JS"
+	},
+	{
+		"url": "https://google.github.io/styleguide/",
+		"tags": ["standards", "google"],
+		"description": "Google style guides for various languages"
+	},
+	{
+		"url": "https://storyset.com/",
+		"tags": ["illustration"],
+		"description": "Free customizable illustrations"
+	},
+	{
+		"url": "https://iconbuddy.app/",
+		"tags": ["icons", "free"],
+		"description": "Free icons"
+	},
+	{
+		"url": "https://10015.io/",
+		"tags": ["tools"],
+		"description": "Tools for developers"
+	},
+	{
+		"url": "https://animista.net/",
+		"tags": ["css", "animation"],
+		"description": "CSS animations"
+	},
+	{
+		"url": "https://blog.iron.io/",
+		"tags": ["blog", "devops", "aws", "kubernetes", "docker", "message-queue"],
+		"description": "Blog about devops, aws, kubernetes, docker, message queue"
+	},
+	{
+		"url": "https://www.kartar.net/",
+		"tags": ["blog", "devops", "aws", "kubernetes", "docker", "monitoring"],
+		"description": "Blog about devops, aws, kubernetes, docker, monitoring"
+	},
+	{
+		"url": "https://serverlessland.com/",
+		"tags": ["devops", "aws", "serverless"],
+		"description": "Serverless patterns"
+	},
+	{
+		"url": "https://eli.thegreenplace.net/",
+		"tags": ["golang"],
+		"description": "Blog about golang"
+	},
+	{
+		"url": "https://stackoverflow.com/questions/74694675/adding-a-git-tag-and-version-info-to-docker-image-during-github-actions-build",
+		"tags": ["docker", "github-actions"],
+		"description": "Adding a git tag and version info to docker image during github actions build"
+	},
+	{
+		"url": "https://tpaschalis.me/",
+		"tags": ["golang", "blog"],
+		"description": "Blog about golang"
+	},
+	{
+		"url": "https://pythonspeed.com/articles/schema-migrations-server-startup/",
+		"tags": ["migration"],
+		"description": "Schema migrations at server startup strategy"
+	},
+	{
+		"url": "http://calculist.org/blog/2011/12/14/why-coroutines-wont-work-on-the-web/",
+		"tags": ["coroutines", "js"],
+		"description": "Why coroutines wont work on the web"
+	},
+	{
+		"url": "http://osr507doc.xinuos.com/en/PERFORM/context_switching_cpu.html",
+		"tags": ["context-switching", "performance"],
+		"description": "Context switching"
+	},
+	{
+		"url": "https://www.sobyte.net/post/2021-10/go-pointer/",
+		"tags": ["golang", "pointers"],
+		"description": "Go pointers"
+	},
+	{
+		"url": "https://medium.com/a-journey-with-go/go-should-i-use-a-pointer-instead-of-a-copy-of-my-struct-44b43b104963",
+		"tags": ["golang", "pointers"],
+		"description": "Go: should I use a pointer instead of a copy of my struct?"
+	},
+	{
+		"url": "https://www.sobyte.net/",
+		"tags": ["golang", "blog"],
+		"description": "Blog about golang"
+	}
 ]
