@@ -1,7 +1,7 @@
 ---
 updatedDate: 2023-11-02
 publishedDate: 2023-11-01
-title: "[P2] - partial mock function in module in Jest"
+title: "[Jest] - partial mock function in module in Jest P2"
 tags: ['ts', 'js', 'jest', 'tips']
 ---
 <system-anchor heading='h2'>
@@ -81,4 +81,6 @@ describe('complexFormula', () => {
 </system-codeblock>
 
 It's easy, right ? 😎
+
+<system-feedback></system-feedback>
 

@@ -1,7 +1,7 @@
 ---
 updatedDate: 2023-11-10
 publishedDate: 2023-11-10
-title: "tips to understand and optimize query in postgres"
+title: "[Postgres] - tips to understand and optimize query in postgres"
 tags: ['postgres', 'optimize', 'query-plan']
 ---
 Here are some tips to understand and optimize your query in postgres
@@ -652,6 +652,5 @@ Here are some tips to understand and optimize your query in postgres
 	above, we can easily delve into more advanced concepts. And always remember that before <span class='font-semibold'>optimizing</span>
 	anything, we need to <span class='font-semibold'>measure</span> it <span class='font-semibold'>first</span>.
 </p>
-<p class='mt-4'>
-	Hope you enjoy this post! 🚀
-</p>
+
+<system-feedback></system-feedback>

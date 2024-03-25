@@ -10,8 +10,9 @@
 
 	const h2Class = this.heading === 'h2' ? 'text-3xl font-medium mb-5 mt-8' : '';
 	const h3Class = this.heading === 'h3' ? 'text-2xl font-semibold mb-5 mt-4' : '';
+	const h5Class = this.heading === 'h5' ? 'text-xl font-semibold mb-5 mt-4' : '';
 
-	const internalClass = this.class ?? `${h2Class} ${h3Class}`;
+	const internalClass = this.class ?? `${h2Class} ${h3Class} ${h5Class}`;
 
 	`
 	<${heading} class='text-slate-700 group/heading ${internalClass}' @attributes='({ id: "${headingId}" })'>

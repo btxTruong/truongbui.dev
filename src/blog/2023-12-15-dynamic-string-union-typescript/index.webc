@@ -1,0 +1,57 @@
+---
+updatedDate: 2023-12-15
+publishedDate: 2023-12-15
+title: "[Typescript] - Dynamic string union types in Typescript"
+tags: ['typescript', 'tips']
+---
+
+<system-anchor heading='h2'>
+	Problem
+</system-anchor>
+
+<p>
+	I have a string union type like this:
+</p>
+
+<system-codeblock lang='ts'>
+	type Status = 'active' | 'inactive' | 'pending';
+</system-codeblock>
+
+<p>but <system-code>Status</system-code>can be any string, not only
+	<system-code>active</system-code>
+	,
+	<system-code>active</system-code>
+	,
+	<system-code>active</system-code>
+	. How can I define a type that allows any string?
+</p>
+
+<system-anchor heading='h2'>
+	Solution
+</system-anchor>
+
+<p>
+	You can use the following type to allow any string:
+</p>
+
+<system-codeblock lang='ts'>
+	type Status = 'active' | 'inactive' | 'pending' | string;
+</system-codeblock>
+
+<p>But there is a new problem: we can't use the completion hint anymore</p>
+
+<system-img src='../../assets/blog/string_union_without_completion_hint.png' size='70'>string union without the completion hint</system-img>
+
+<p>
+	To solve this problem, we can use <system-code>string & {}</system-code> retain the completion hint
+</p>
+
+<system-codeblock lang='ts'>
+	type Status = 'active' | 'inactive' | 'pending' | string & {};
+</system-codeblock>
+
+<p>Now, we can use the completion hint again</p>
+
+<system-img src='../../assets/blog/string_union_with_completion_hint.png' size='70'>string union with the completion hint</system-img>
+
+<system-feedback></system-feedback>

@@ -1,0 +1,168 @@
+---
+updatedDate: 2023-12-22
+publishedDate: 2023-12-22
+title: "[React] - useEffect vs useLayoutEffect in React"
+tags: ['react']
+---
+
+<p>
+	In React,
+	<system-code>useEffect</system-code>
+	and
+	<system-code>useLayoutEffect</system-code>
+	are two hooks that allow us to perform side effects in our
+	functional components. They are similar in many ways, but there are key differences that can
+	affect when and how you use them.
+</p>
+
+<system-anchor heading='h2'>
+	useEffect
+</system-anchor>
+<p>
+	<system-code>useEffect</system-code>
+	is a hook that allows you to perform side effects in your components. Side effects could
+	be data fetching, subscriptions, or manually changing the DOM.
+	<system-code>useEffect</system-code> runs after the render is painted to the screen.
+</p>
+
+<system-codeblock lang='jsx' library='react v18.2.0 - react-dom v18.2.0'>
+import React, { useEffect, useState } from 'react'
+import ReactDOM from 'react-dom/client'
+
+function RandomNumber () {
+	const [value, setValue] = useState(0)
+
+	useEffect(() => {
+		if (value === 0) {
+			setValue(Math.random())
+		}
+	}, [value])
+
+	return (
+		<div>
+			<h3>Random number: {value}</h3>
+			<button onClick={() => setValue(0)}>Generate</button>
+		</div>
+	)
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(
+	<React.StrictMode>
+		<RandomNumber />
+	</React.StrictMode>
+)
+</system-codeblock>
+
+<p>As you can see, there is a flicker effect when we click on the <system-code>Gererate</system-code> button
+	because <system-code>useEffect</system-code> will run after the render is painted to the screen.
+</p>
+
+<p class='mt-5'>The order of render with <system-code>Gererate</system-code> something like:</p>
+<ul class='ml-2 list-inside list-decimal'>
+	<li>Click Generate button</li>
+	<li>Render</li>
+	<li>UI updated</li>
+	<li>useEffect run</li>
+	<li>Render</li>
+	<li>UI updated</li>
+</ul>
+
+
+<p class='mt-5'>Using <system-code>react</system-code> chrome plugin</p>
+<system-img src='../../assets/blog/useeffect.gif' size='70'>useEffect</system-img>
+
+
+<system-anchor heading='h2'>
+	useLayoutEffect
+</system-anchor>
+
+<p>
+	<system-code>useLayoutEffect</system-code>
+	, on the other hand, is identical to
+	<system-code>useEffect</system-code>
+	but it fires synchronously after all DOM mutations. This means it runs before the browser has a chance to paint the screen. This can be
+	useful when you need to make DOM changes and want to prevent a flicker effect.
+</p>
+
+<system-codeblock lang='jsx' library='react v18.2.0 - react-dom v18.2.0'>
+import React, { useLayoutEffect, useState } from 'react'
+import ReactDOM from 'react-dom/client'
+
+function RandomNumber () {
+	const [value, setValue] = useState(0)
+
+	useLayoutEffect(() => {
+		if (value === 0) {
+			setValue(Math.random())
+		}
+	}, [value])
+
+	return (
+		<div>
+			<h3>Random number: {value}</h3>
+			<button onClick={() => setValue(0)}>Generate</button>
+		</div>
+		)
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(
+<React.StrictMode>
+	<RandomNumber />
+</React.StrictMode>
+)
+</system-codeblock>
+
+<p>There is no flicker effect when we click on the <system-code>Gererate</system-code> button
+	because <system-code>useLayoutEffect</system-code> will run synchronously after all DOM mutations.
+
+<p class='mt-5'>The order of render with <system-code>useLayoutEffect</system-code> something like:</p>
+<ul class='ml-2 list-inside list-decimal'>
+	<li>Click Generate button</li>
+	<li>Render</li>
+	<li>useLayoutEffect run and wait</li>
+	<li>UI updated</li>
+</ul>
+
+<system-img src='../../assets/blog/uselayouteffect.gif' size='70'>useEffect</system-img>
+
+<system-anchor heading='h2'>
+	When to use which?
+</system-anchor>
+
+<div>
+	<ul class='list-inside list-disc'>
+		<li>
+			Use
+			<system-code>useEffect</system-code>
+			for most side effects, including data fetching and integrating with other
+			libraries. It doesn’t block the browser from updating the screen, which is crucial for keeping
+			your UI responsive.
+		</li>
+		<li>
+			Use
+			<system-code>useLayoutEffect</system-code>
+			if you need to make DOM changes and want to prevent a flicker effect. Be
+			careful, though, as this can lead to performance issues if overused.
+		</li>
+	</ul>
+</div>
+
+<system-info>
+	<ul class='list-inside list-disc'>
+		<li>
+			<system-link url='https://kentcdodds.com/blog/useeffect-vs-uselayouteffect'>
+				https://kentcdodds.com/blog/useeffect-vs-uselayouteffect
+			</system-link>
+		</li>
+		<li>
+			<system-link
+				url='https://blog.logrocket.com/react-useeffect-vs-uselayouteffect-hooks-examples/'>
+				https://blog.logrocket.com/react-useeffect-vs-uselayouteffect-hooks-examples/
+			</system-link>
+		</li>
+	</ul>
+</system-info>
+
+<system-feedback></system-feedback>

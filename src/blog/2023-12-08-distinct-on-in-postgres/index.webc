@@ -1,0 +1,76 @@
+---
+updatedDate: 2023-12-08
+publishedDate: 2023-12-08
+title: "[Postgres] - DISTINCT ON in Postgres"
+tags: ['postgres', 'tips']
+---
+<div>
+	In PostgreSQL, the
+	<system-code>DISTINCT ON</system-code>
+	expression is a very useful feature that allows us to select
+	distinct rows based on a certain column or set of columns.
+</div>
+
+<div class='mt-5'>
+	Let's consider a simple example. Suppose we have a table <system-code>orders</system-code> with the following data:
+</div>
+
+<system-codeblock lang='sql' filename='orders.sql'>
+	CREATE TABLE orders (
+		id SERIAL PRIMARY KEY,
+		customer_id INT,
+		order_date DATE,
+		amount DECIMAL
+	);
+
+	INSERT INTO orders (customer_id, order_date, amount)
+	VALUES (1, '2023-01-01', 100),
+	       (1, '2023-01-02', 200),
+				 (2, '2023-01-01', 150),
+				 (2, '2023-01-03', 300);
+</system-codeblock>
+
+<div>
+	Now, if we want to get the latest order of each customer, we can use the
+	<system-code>DISTINCT ON</system-code>
+	expression as follows:
+</div>
+
+<system-codeblock lang='sql'>
+	SELECT DISTINCT ON (customer_id) customer_id, order_date, amount
+	FROM orders
+	ORDER BY customer_id, order_date DESC;
+</system-codeblock>
+
+<div class='mb-5'>
+	This query will return the latest order of each customer. The
+	<system-code>DISTINCT ON</system-code>
+	expression is used in conjunction with the
+	<system-code>ORDER BY</system-code>
+	clause to determine which row among the duplicates should be returned.
+</div>
+<system-table :@headers='["customer_id", "order_date", "amount"]'
+							:@rows='[{"customer_id":1,"order_date":"2023-01-02","amount":200},{"customer_id":2,"order_date":"2023-01-03","amount":300}]'></system-table>
+
+<div class='mt-5'>If we use <system-code>DISTINCT</system-code> only</div>
+
+<system-codeblock lang='sql'>
+	SELECT customer_id, order_date, amount
+	FROM orders
+	ORDER BY customer_id, order_date DESC;
+</system-codeblock>
+
+<div class='mb-5'>
+	This query will return all distinct rows in the table, not just the latest order of each customer.
+</div>
+
+<system-table :@headers='["customer_id", "order_date", "amount"]'
+							:@rows='[{"customer_id":1,"order_date":"2023-01-02","amount":200},{"customer_id":1,"order_date":"2023-01-01","amount":100},{"customer_id":2,"order_date":"2023-01-03","amount":300},{"customer_id":2,"order_date":"2023-01-01","amount":150}]'></system-table>
+
+<system-warning>
+	Be aware that the
+	<system-code>DISTINCT ON</system-code>
+	expression is a PostgreSQL-specific feature and may not be available in other SQL databases.
+</system-warning>
+
+<system-feedback></system-feedback>

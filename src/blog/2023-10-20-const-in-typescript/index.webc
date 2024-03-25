@@ -1,7 +1,7 @@
 ---
 updatedDate: 2023-10-24
 publishedDate: 2023-10-20
-title: 'const in typescript'
+title: '[TS] - const in typescript'
 tags: ['ts']
 ---
 <system-anchor heading='h2'>
@@ -131,4 +131,4 @@ const mercedes = {
 }
 </system-codeblock>
 
-Hope you enjoy this post, see you in the next post!
+<system-feedback></system-feedback>

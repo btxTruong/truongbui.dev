@@ -1,0 +1,102 @@
+---
+updatedDate: 2023-12-01
+publishedDate: 2023-12-01
+title: "[SQL] - join WHERE clause and ON clause"
+tags: ['sql']
+---
+<system-anchor heading='h2'>
+	Question
+</system-anchor>
+<p>When we use <system-code>JOIN</system-code> in <system-code>SQL</system-code>, we can use <system-code>WHERE</system-code> clause to filter the rows. But what if we want to filter the rows before joining them?</p>
+
+<p class='mt-10 mb-5'>Here is the two tables</p>
+
+<p>1. <system-code>im_products</system-code> table</p>
+<system-table :@headers='["id","product_name"]' :@rows='[{"id":1,"product_name":"Hat"},{"id":2,"product_name":"Sock"},{"id":3,"product_name":"T-Shirt"},{"id":4,"product_name":"Pan"}]'></system-table>
+<system-codeblock lang='sql'>
+CREATE TABLE im_products
+	(
+	id           SERIAL PRIMARY KEY,
+	product_name VARCHAR(100)
+	);
+
+INSERT INTO im_products (product_name)
+VALUES ('Hat'),
+	     ('Sock'),
+       ('T-Shirt'),
+       ('Pan');
+</system-codeblock>
+<p class='mt-10'>1. <system-code>im_orders</system-code> table</p>
+<system-table :@headers='["id","product_id","user_name"]' :@rows='[{"id":1,"product_id":1,"user_name":"Peter"},{"id":2,"product_id":3,"user_name":"David"},{"id":3,"product_id":2,"user_name":"Lata"}]'></system-table>
+<system-codeblock lang='sql'>
+	CREATE TABLE im_orders
+	(
+	id         SERIAL PRIMARY KEY,
+	product_id INTEGER REFERENCES im_products (id),
+	user_name  varchar(100)
+	);
+
+	INSERT INTO im_orders (product_id, user_name)
+	VALUES (1, 'Peter'),
+	       (3, 'David'),
+	       (2, 'Lata');
+</system-codeblock>
+
+<system-anchor heading='h2'>
+	Answer
+</system-anchor>
+
+<system-anchor heading='h5'>
+	INNER JOIN
+</system-anchor>
+<div class='mt-5'>Inside <system-code>WHERE</system-code> clause</div>
+<system-codeblock lang='sql'>
+	SELECT im_products.product_name, im_orders.user_name
+	FROM im_products
+	JOIN im_orders on im_products.id = im_orders.product_id
+	WHERE user_name = 'Peter'
+</system-codeblock>
+<system-table :@headers='["product_name","user_name"]' :@rows='[{"product_name":"Hat","user_name":"Peter"}]'></system-table>
+
+<div class='mt-5'>Inside <system-code>ON</system-code> clause</div>
+<system-codeblock lang='sql'>
+	SELECT im_products.product_name, im_orders.user_name
+	FROM im_products
+	JOIN im_orders on im_products.id = im_orders.product_id AND user_name = 'Peter'
+</system-codeblock>
+<system-table :@headers='["product_name","user_name"]' :@rows='[{"product_name":"Hat","user_name":"Peter"}]'></system-table>
+
+<system-info>
+	🚀 Both queries will return the same result
+</system-info>
+
+<system-anchor heading='h5'>
+	LEFT JOIN
+</system-anchor>
+<div class='mt-5'>Inside <system-code>WHERE</system-code> clause</div>
+<system-codeblock lang='sql'>
+	SELECT im_products.product_name, im_orders.user_name
+	FROM im_products
+	LEFT JOIN im_orders on im_products.id = im_orders.product_id
+	WHERE user_name = 'Peter';
+</system-codeblock>
+<system-table :@headers='["product_name","user_name"]' :@rows='[{"product_name":"Hat","user_name":"Peter"}]'></system-table>
+
+<div class='mt-5'>Inside <system-code>ON</system-code> clause</div>
+<system-codeblock lang='sql'>
+	SELECT im_products.product_name, im_orders.user_name
+	FROM im_products
+	LEFT JOIN im_orders on im_products.id = im_orders.product_id AND user_name = 'Peter';
+</system-codeblock>
+<system-table :@headers='["product_name","user_name"]' :@rows='[{"product_name":"Hat","user_name":"Peter"},{"product_name":"Sock","user_name":null},{"product_name":"T-Shirt","user_name":null},{"product_name":"Pan","user_name":null}]'></system-table>
+
+<system-info>
+	<div class='text-balance'>
+		🚀 The result of the query inside <system-code>WHERE</system-code> clause will be different from the query inside
+		<system-code>ON</system-code> clause. The query inside<system-code>WHERE</system-code> clause will return only the rows that match the condition, while the query inside
+		<system-code>ON
+		</system-code> clause will return all rows from the left table and the matched rows from the right table.
+	</div>
+</system-info>
+
+<system-feedback></system-feedback>

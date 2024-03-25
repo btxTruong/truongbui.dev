@@ -1,7 +1,7 @@
 ---
 updatedDate: 2023-11-24
 publishedDate: 2023-11-24
-title: using bitwise
+title: "[Bitwise] - using bitwise"
 tags: ['bitwise', 'tips']
 ---
 <p>
@@ -86,6 +86,4 @@ permission & Permission.READ == Permission.READ  # False
 	There are many other use cases of bitwise operators. But for practical use cases, I think these two are enough - at least for me. 😁
 </p>
 
-<p class='mt-5'>
-	Hope you find this article useful. If you have any questions, please let me know in the comment section below. 👇
-</p>
+<system-feedback></system-feedback>
