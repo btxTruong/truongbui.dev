@@ -1,5 +1,5 @@
 ---
-updatedDate: 2023-12-22
+updatedDate: 2024-03-26
 publishedDate: 2023-12-22
 title: "[React] - useEffect vs useLayoutEffect in React"
 tags: ['react']
@@ -160,6 +160,18 @@ root.render(
 			<system-link
 				url='https://blog.logrocket.com/react-useeffect-vs-uselayouteffect-hooks-examples/'>
 				https://blog.logrocket.com/react-useeffect-vs-uselayouteffect-hooks-examples/
+			</system-link>
+		</li>
+		<li>
+			<system-link
+				url='https://julesblom.com/writing/react-hook-component-timeline'>
+				React hook component timeline
+			</system-link>
+		</li>
+		<li>
+			<system-link
+				url='https://blog.isquaredsoftware.com/2020/05/blogged-answers-a-mostly-complete-guide-to-react-rendering-behavior/'>
+				Complete Guide to React Rendering Behavior
 			</system-link>
 		</li>
 	</ul>

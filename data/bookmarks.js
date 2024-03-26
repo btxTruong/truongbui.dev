@@ -679,5 +679,30 @@ module.exports = [
 		"url": "https://www.sobyte.net/",
 		"tags": ["golang", "blog"],
 		"description": "Blog about golang"
+	},
+	{
+		"url": "https://blog.boot.dev/golang/how-to-use-golangs-generics/",
+		"tags": ["golang", "generics"],
+		"description": "How to use Golang generics",
+	},
+	{
+		"url": "https://uicolors.app/create",
+		"tags": ["colors", "ui", "tailwind", "design"],
+		"description": "Generate Tailwind CSS color shades",
+	},
+	{
+		"url": "https://blog.isquaredsoftware.com/",
+		"tags": ["react", "js", "blog", "redux"],
+		"description": "Blog about React, Redux, JavaScript",
+	},
+	{
+		"url": "https://thecodebarbarian.com/",
+		"tags": ["nodejs", "mongodb", "blog"],
+		"description": "Blog about Node.js, MongoDB",
+	},
+	{
+		"url": "https://www.developerway.com/",
+		"tags": ["react", "js", "blog"],
+		"description": "Blog about React, JavaScript",
 	}
 ]
