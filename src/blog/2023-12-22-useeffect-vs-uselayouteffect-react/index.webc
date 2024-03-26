@@ -125,7 +125,7 @@ root.render(
 	<li>UI updated</li>
 </ul>
 
-<system-img src='../../assets/blog/uselayouteffect.gif' size='70'>useEffect</system-img>
+<system-img src='../../assets/blog/uselayouteffect.gif' size='70'>useLayoutEffect</system-img>
 
 <system-anchor heading='h2'>
 	When to use which?
