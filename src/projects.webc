@@ -29,6 +29,21 @@ title: 'projects'
 					type: 'source'
 				}
 			]
+		},
+		{
+			year: '2024',
+			title: 'React Render',
+			description: 'Understand how React render works.',
+			buttons: [
+				{
+					url: 'https://github.com/btxTruong/react-render',
+					type: 'source'
+				},
+				{
+					url: 'https://btxtruong.github.io/react-render/',
+					type: 'demo'
+				},
+			]
 		}
 	]
 
