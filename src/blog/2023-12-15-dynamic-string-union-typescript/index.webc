@@ -20,9 +20,9 @@ tags: ['typescript', 'tips']
 <p>but <system-code>Status</system-code>can be any string, not only
 	<system-code>active</system-code>
 	,
-	<system-code>active</system-code>
+	<system-code>inactive</system-code>
 	,
-	<system-code>active</system-code>
+	<system-code>pending</system-code>
 	. How can I define a type that allows any string?
 </p>
 
