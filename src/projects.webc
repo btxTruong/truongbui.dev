@@ -18,6 +18,28 @@ title: 'projects'
 					type: 'blog'
 				}
 			]
+		},
+		{
+			year: '2025',
+			title: 'loans.truongbui.dev',
+			description: 'A loan calculator.',
+			buttons: [
+				{
+					url: 'https://loans.truongbui.dev/',
+					type: 'website'
+				},
+			]
+		},
+		{
+			year: '2025',
+			title: 'exam.truongbui.dev',
+			description: 'An online exam system.',
+			buttons: [
+				{
+					url: 'https://exam.truongbui.dev/',
+					type: 'website'
+				},
+			]
 		}
 	]
 

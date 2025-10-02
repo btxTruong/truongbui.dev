@@ -10,7 +10,7 @@
 					class="flex items-center gap-1 uppercase text-sm font-semibold text-primary-400 hover:text-primary-600 focus:outline-non"
 					type="button"
 				>
-					${type === 'blog' ? 'Blog' : type === 'demo' ? 'Demo' : 'Source'}
+					${type === 'blog' ? 'Blog' : type === 'demo' ? 'Demo' : 'Link'}
 					<system-svg icon="go" class='w-3 h-3'></system-svg>
 				</button>
 			</a>
