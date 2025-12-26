@@ -32,11 +32,33 @@ title: 'projects'
 		},
 		{
 			year: '2025',
-			title: 'exam.truongbui.dev',
-			description: 'An online exam system.',
+			title: 'pr-resolver',
+			description: 'Resolve Github PR comments',
 			buttons: [
 				{
-					url: 'https://exam.truongbui.dev/',
+					url: 'https://github.com/btxTruong/pr-resolver',
+					type: 'website'
+				},
+			]
+		},
+		{
+			year: '2025',
+			title: 'network-monitor',
+			description: 'A simple IP monitoring tool for linux',
+			buttons: [
+				{
+					url: 'https://github.com/btxTruong/network-monitor',
+					type: 'website'
+				},
+			]
+		},
+		{
+			year: '2025',
+			title: 'linux-treegen',
+			description: 'A simple library to generate linux folder tree',
+			buttons: [
+				{
+					url: 'https://github.com/btxTruong/linux-treegen',
 					type: 'website'
 				},
 			]
